@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./assets/icono.png">
+    <link rel="stylesheet" href="./css/style.css"/>
+    <script defer src="js/main.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Proyecto</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="navbar">
+          <div class="logo">
+            <a href="index.html"><img src="./assets/logo.jpg" alt="logo"/ id="logo"></a>
+          </div>
+          <div class="nav">
+            <label for="toggle-menu" class="check"
+              ><i class="fas fa-bars"></i></label>
+              <label for="toggle-menu" class="checked"><i class="fa-solid fa-xmark"></i></label>
+            <input type="checkbox" id="toggle-menu" />
+            <ul class="navbar-list">
+              <li><a class="active" href="#hero">Inicio</a></li>
+              <li><a href="#about-us">Información</a></li>
+              <li><a href="#form">Contacto</a></li>
+              <li><a href="login.html" id="signup">Admin</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="divider"></div>
+    <div id="hero">
+      <div id="info">
+        <h1>HELLO WORLD!</h1>
+        <span
+          >Hola! soy Leo, Full Stack Web Developer y Certified Tech Developer en proceso. <br>
+          En esta web podrás encontrar algunos de mis últimos proyectos, tecnologías que manejo y mis canales de contacto
+        </span>
+        <div class="lenguajes">
+          <img src="./assets/html.png" alt="" />
+          <img src="./assets/css.png" alt="" />
+          <img src="./assets/js.png" alt="" />
+          <img src="./assets/sql.png" alt="" />
+          <img src="./assets/mongodb.png" alt="" />
+          <img src="./assets/vscode.png" alt="" />
+        </div>
+      </div>
+      <div id="gif">
+        <img src="./assets/dev.gif" alt="" />
+      </div>
+    </div>
+    <div id="about-us">
+        <div class="title">
+            <h2>SERVICIOS BRINDADOS</h2>
+        </div>
+      <div id="cards">
+        <div class="card">
+          <i class="fa-solid fa-sack-dollar" id="foto"></i>
+          <p>Económico</p>
+          <span
+            >¡Los mejores precios del mercado! Incluye política de devolución
+            parcial.
+          </span>
+        </div>
+        <div class="card">
+          <i class="fa-regular fa-clock" id="foto"></i>
+          <p>A TIEMPO</p>
+          <span
+            >Compromiso de entrega, tiempos de demora precisos, sin vueltas.
+          </span>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-location-dot" id="foto"></i>
+          <p>Seguimiento</p>
+          <span
+            >Seguimiento del trabajo en tiempo real sobre tu proyecto, contacto
+            las 24hs.
+          </span>
+        </div>
+      </div>
+    </div>
+    <div id="proyectos">
+      <div class="title">
+        <h2>Mis Proyectos</h2>
+      </div>
+      <div id="lista-proyectos"></div>
+    </div>
+    
+    <div id="form">
+      <div class="title">
+        <h2>¡Contáctame!</h2>
+      </div>
+      <div>
+        <img src="./assets/bongo.gif" alt="bongo" id="bongo">
+      </div>
+      <div class="datos">
+        <input type="text" id="datos" placeholder="Nombre y Apellido">
+        <input type="email" id="datos" placeholder="nombre@email.com">
+      </div>
+      <input type="text" id="mensaje" placeholder="Déjame tu consulta">
+      <input type="submit" id="enviar">
+    </div>
+    
+    <div id="footer">
+      <p>Córdoba, Argentina.</p>
+      <p>Hecho con ❤️ by Leo.</p>
+      <p>Todos los derechos reservados</p>
+    </div>
+  </body>
+</html>

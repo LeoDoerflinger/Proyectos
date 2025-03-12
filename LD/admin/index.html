@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Portfolio</title>
+    <link rel="stylesheet" href="../css/admin.css" />
+    <script defer src="../js/admin.js"></script>
+  </head>
+  <body>
+    <script>
+      if (localStorage.getItem("autenticado") !== "true") {
+        window.location.href = "../login.html";
+      }
+    </script>
+
+    <div class="container">
+      <h1>Panel de Administración</h1>
+
+      <h2>Agregar/Editar Proyecto</h2>
+<input type="text" id="nombre" placeholder="Nombre del Proyecto">
+<input type="text" id="descripcion" placeholder="Descripción">
+<input type="text" id="link" placeholder="Enlace">
+<button id="btnGuardar" onclick="agregarProyecto()">Agregar</button>
+
+
+      <h2>Lista de Proyectos</h2>
+      <div id="admin-proyectos"></div>
+
+      <h2>Modificar Contacto</h2>
+      <input type="email" id="nuevoEmail" placeholder="Nuevo Email" />
+      <input type="text" id="nuevoTelefono" placeholder="Nuevo Teléfono" />
+      <button onclick="guardarContacto()">Guardar</button>
+
+      <h2>Cambiar Datos de Acceso</h2>
+      <input type="text" id="nuevoUsuario" placeholder="Nuevo Usuario" />
+      <input
+        type="password"
+        id="nuevaPassword"
+        placeholder="Nueva Contraseña"
+      />
+      <button onclick="guardarCredenciales()">Guardar</button>
+
+      <button onclick="logout()">Cerrar Sesión</button>
+      <br />
+      <a href="../index.html">Volver al Portfolio</a>
+    </div>
+  </body>
+</html>
