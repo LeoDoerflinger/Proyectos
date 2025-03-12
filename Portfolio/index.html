@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./assets/Logo.svg">
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script defer src="main.js"></script>
+    <title>Proyecto</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="navbar">
+                <div class="logo">
+                    <a href="https://integrador-nucba-gray.vercel.app/"><img src="./assets/Logo.svg" alt="logo"/></a>
+                </div>
+                <div class="nav">
+                    <label for="toggle-menu" class="check"><i class="fas fa-bars"></i></label>
+                    <label for="toggle-menu" class="checked"><i class="fa-solid fa-xmark"></i></label>
+                    <input type="checkbox" id="toggle-menu" />
+                    <ul class="navbar-list">
+                        <li><a class="active" href="#hero">Inicio</a></li>
+                        <li><a href="#about-us">Información</a></li>
+                        <li><a href="#proyectos">Proyectos</a></li>
+                        <li><a href="#form">Contacto</a></li>
+                        <li><a href="login.html" id="admin">Admin</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="divider"></div>
+
+    <div id="hero">
+        <div id="info">
+            <h1>HELLO WORLD!</h1>
+            <span>
+                Hola! soy Leo, actualmente estudiante de la carrera ágil Full Stack
+                Web Developer, en NUCBA. Estas son algunas de las tecnologías que
+                manejo hasta el momento:
+            </span>
+            <div class="lenguajes">
+                <img src="./assets/html.png" alt="" />
+                <img src="./assets/css.png" alt="" />
+                <img src="./assets/java.png" alt="" />
+                <img src="./assets/python.png" alt="" />
+            </div>
+        </div>
+        <div id="gif">
+            <img src="./assets/dev.gif" alt="" />
+        </div>
+    </div>
+
+    <div id="about-us">
+        <div class="title">
+            <h2>SERVICIOS BRINDADOS</h2>
+        </div>
+        <div id="cards">
+            <div class="card">
+                <i class="fa-solid fa-sack-dollar" id="foto"></i>
+                <p>Económico</p>
+                <span>
+                    ¡Los mejores precios del mercado! Incluye política de devolución parcial.
+                </span>
+            </div>
+            <div class="card">
+                <i class="fa-regular fa-clock" id="foto"></i>
+                <p>A TIEMPO</p>
+                <span>
+                    Compromiso de entrega, tiempos de demora precisos, sin vueltas.
+                </span>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-location-dot" id="foto"></i>
+                <p>Seguimiento</p>
+                <span>
+                    Seguimiento del trabajo en tiempo real sobre tu proyecto, contacto las 24hs.
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div id="proyectos">
+        <h2>Mis Proyectos</h2>
+        <div id="lista-proyectos"></div>
+    </div>  
+
+    <div id="form">
+        <h2>Contactame!</h2>
+        <div>
+            <img src="./assets/bongo.gif" alt="bongo" id="bongo">
+        </div>
+        <div class="datos">
+            <input type="text" id="datos" placeholder="Nombre y Apellido">
+            <input type="email" id="datos" placeholder="nombre@email.com">
+        </div>
+        <input type="text" id="mensaje" placeholder="Dejame tu consulta">
+        <input type="submit" id="enviar">
+    </div>
+
+    <div id="footer">
+        <p>Córdoba, Argentina.</p>
+        <p>Hecho con ❤️ by Leo.</p>
+        <p>Todos los derechos reservados</p>
+    </div>
+</body>
+</html>
