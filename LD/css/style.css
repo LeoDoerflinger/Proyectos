@@ -10,6 +10,10 @@ body,
 html {
   overflow-x: hidden;
   scroll-padding-top: 20%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Garantiza que el contenido ocupe toda la altura de la pantalla */
+  margin: 0;
 }
 
 :root {
@@ -280,13 +284,26 @@ a {
 }
 
 #footer {
+  width: 100%;
   height: 50px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: space-around;
+  align-items: center;
   background-color: var(--blue);
   color: var(--yellow);
+  padding: 10px;
+  position: relative; /* Evita que se superponga en contenido pequeño */
+  bottom: 0;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 560px) {
+  #footer {
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
 }
 
 #proyectos {
@@ -477,13 +494,13 @@ a {
     width: 450px;
   }
 
-  #footer {
+  /* #footer {
     height: 90px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-  }
+  } */
 }
 
 @media (max-width: 525px) {
@@ -573,9 +590,9 @@ a {
   #form h2 {
     font-size: 30px;
   }
-  #footer {
+  /* #footer {
     height: 90px;
     display: flex;
     flex-direction: column;
-  }
+  } */
 }
