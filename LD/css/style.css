@@ -101,14 +101,74 @@ a {
 }
 
 #hero {
-  height: 550px;
-  background-size: auto;
-  background-color: var(--black);
+  min-height: 100vh; /* Asegura que el hero ocupe el 100% de la pantalla */
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  flex-wrap: wrap; /* Permite que los elementos se acomoden mejor en pantallas pequeñas */
+  gap: 20px;
+  text-align: center;
+  padding: 50px 20px;
+  background-color: var(--black);
+}
+
+#hero div {
+  background-color: transparent;
+  max-width: 90%; /* Evita que los elementos sean demasiado anchos */
+}
+
+#hero h1 {
+  color: var(--yellow);
+  font-size: 2.5rem;
+}
+
+#hero span {
+  color: var(--white);
+  font-size: 1.5rem;
+  max-width: 80%;
+  text-align: center;
+  line-height: 1.5;
+  padding: 10px;
+  display: block;
+}
+
+/* Ajustes para pantallas medianas */
+@media (max-width: 1024px) {
+  #hero span {
+    font-size: 1.3rem;
+    max-width: 90%;
+  }
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  #hero {
+    flex-direction: column; /* Los elementos se apilan verticalmente */
+    text-align: center;
+  }
+
+  #hero span {
+    font-size: 1.1rem;
+    max-width: 95%;
+  }
+
+  #hero img {
+    width: 80%; /* Ajusta el tamaño de la imagen para móviles */
+  }
+}
+
+/* Ajustes para celulares pequeños */
+@media (max-width: 480px) {
+  #hero span {
+    font-size: 1rem;
+    max-width: 100%;
+    padding: 5px;
+  }
+
+  #hero h1 {
+    font-size: 2rem; /* Reduce el tamaño del título en móviles */
+  }
 }
 
 #hero img {
@@ -125,19 +185,19 @@ a {
   font-size: 50px;
 }
 
-#hero div {
+hh div {
   background-color: transparent;
   padding: 50px;
 }
 
-#hero div h1 {
+hh div h1 {
   margin: auto;
   color: var(--yellow);
   background-color: transparent;
   background-position: 0px;
 }
 
-#hero span {
+hh span {
   color: var(--white);
   font-size: 1.5rem;
   max-width: 80%;
@@ -149,21 +209,21 @@ a {
 
 /* Ajustes responsivos para el hero */
 @media (max-width: 1024px) {
-  #hero span {
+  hh span {
     font-size: 1.3rem;
     max-width: 90%;
   }
 }
 
 @media (max-width: 768px) {
-  #hero span {
+  hh span {
     font-size: 1.1rem;
     max-width: 95%;
   }
 }
 
 @media (max-width: 480px) {
-  #hero span {
+  hh span {
     font-size: 1rem;
     max-width: 100%;
     padding: 5px;
@@ -410,11 +470,11 @@ a {
     display: none;
   }
 
-  #hero #info {
+  hh #info {
     padding: 100px 120px 50px 120px;
   }
 
-  #hero #info span {
+  hh #info span {
     font-size: 30px;
     text-align: center;
   }
@@ -508,7 +568,7 @@ a {
     width: 45px;
   }
 
-  #hero #info span {
+  hh #info span {
     padding: 10px 25px 0px;
     font-size: 20px;
   }
@@ -557,12 +617,12 @@ a {
     width: 50px;
   }
 
-  #hero #info span {
+  hh #info span {
     padding: 10px 50px 0px;
     font-size: 20px;
   }
 
-  #hero {
+  hh {
     height: 600px;
   }
 
