@@ -1,3 +1,4 @@
+/*
 document.addEventListener("DOMContentLoaded", () => {
     cargarProyectos();
     cargarContacto();
@@ -47,3 +48,4 @@ function activarAnimaciones() {
 
     secciones.forEach(seccion => observer.observe(seccion));
 }
+*/
