@@ -1,51 +1,19 @@
-/*
 document.addEventListener("DOMContentLoaded", () => {
-    cargarProyectos();
-    cargarContacto();
+  document.getElementById("form").addEventListener("submit", function (event) {
+    event.preventDefault(); // Evita el envío por defecto del formulario
+
+    let nombre = document.querySelector("#nombre").value;
+    let email = document.querySelector("#email").value;
+    let mensaje = document.querySelector("#mensaje").value;
+
+    let telefonoDestino = "5493512619874";
+
+    let mensajeWhatsApp = `Hola Leo! Soy ${nombre}. Mi correo es ${email}. %0A%0A${mensaje}`;
+
+    let url = `https://wa.me/${telefonoDestino}?text=${mensajeWhatsApp}`;
+
+    window.open(url, "_blank"); // Abre WhatsApp en una nueva pestaña
+  });
 });
 
-function cargarProyectos() {
-    const proyectos = JSON.parse(localStorage.getItem("proyectos")) || [];
-    const contenedor = document.getElementById("lista-proyectos");
-    contenedor.innerHTML = "";
-
-    proyectos.forEach(proyecto => {
-        const div = document.createElement("div");
-        div.classList.add("proyecto");
-        div.innerHTML = `
-            <h3>${proyecto.nombre}</h3>
-            <p>${proyecto.descripcion}</p>
-            <a href="${proyecto.link}" target="_blank">Ver Proyecto</a>
-        `;
-        contenedor.appendChild(div);
-    });
-}
-
-function cargarContacto() {
-    const email = localStorage.getItem("email") || "correo@ejemplo.com";
-    const telefono = localStorage.getItem("telefono") || "+123456789";
-
-    document.getElementById("email").textContent = email;
-    document.getElementById("telefono").textContent = telefono;
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    cargarProyectos();
-    cargarContacto();
-    activarAnimaciones();
-});
-
-function activarAnimaciones() {
-    const secciones = document.querySelectorAll(".reveal");
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-            }
-        });
-    }, { threshold: 0.2 });
-
-    secciones.forEach(seccion => observer.observe(seccion));
-}
-*/
+document.getElementById("form").reset();
