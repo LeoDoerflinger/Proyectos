@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tienda Online</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-theme="light">
+
+    <header>
+        <div class="container">
+            <a href="#" class="logo"><h1>MiTienda</h1></a>
+            <nav class="desktop-nav">
+                <a href="#hero">Inicio</a>
+                <a href="#productos">Productos</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <div class="nav-icons">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema"><i class="fas fa-sun"></i><i class="fas fa-moon"></i></button>
+                <div class="icono-carrito"><i class="fas fa-shopping-cart"></i><span id="carrito-contador">0</span></div>
+                <button class="hamburger" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <button class="cerrar-menu-movil" aria-label="Cerrar menú">&times;</button>
+            <a href="#hero">Inicio</a>
+            <a href="#productos">Productos</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+             <div class="hero-overlay"><div class="container"><h2>La mejor calidad, al mejor precio</h2><p>Descubre nuestras ofertas exclusivas de temporada.</p><a href="#productos" class="cta-button">Ver Productos</a></div></div>
+        </section>
+
+        <section id="productos" class="container section-padding">
+            <h2>Nuestros Productos</h2>
+            <div id="productos-container" class="productos-grid">
+                 <article class="producto" data-id="1" data-nombre="iPhone 15 Pro" data-precio="1499.99" data-imagen="assets/phone.jpg" data-descripcion="El último smartphone con tecnología de punta, cámara Pro de 48MP y una pantalla Super Retina XDR. Rendimiento sin precedentes con el chip A17 Pro."><img src="assets/phone.jpg" alt="iPhone 15 Pro"><h3>iPhone 15 Pro</h3><p class="precio">$1499.99</p><button class="ver-detalles">Ver Detalles</button></article><article class="producto" data-id="2" data-nombre="Laptop Gamer Victus" data-precio="1250.00" data-imagen="assets/laptop.jpg" data-descripcion="Laptop gamer de alto rendimiento con procesador Ryzen 5, 16GB RAM, SSD de 512GB y gráficos NVIDIA RTX. Ideal para juegos y trabajo pesado."><img src="assets/laptop.jpg" alt="Laptop Gamer Victus"><h3>Laptop Gamer Victus</h3><p class="precio">$1250.00</p><button class="ver-detalles">Ver Detalles</button></article><article class="producto" data-id="3" data-nombre="Zapatillas Nike Air Max" data-precio="180.50" data-imagen="assets/shoes.jpg" data-descripcion="Zapatillas Nike Air Max, un clásico reinventado para la comodidad y el estilo urbano diario. Amortiguación visible y materiales premium."><img src="assets/shoes.jpg" alt="Zapatillas Nike Air Max"><h3>Zapatillas Nike Air Max</h3><p class="precio">$180.50</p><button class="ver-detalles">Ver Detalles</button></article><article class="producto" data-id="4" data-nombre="Camiseta Boca Juniors 24" data-precio="110.00" data-imagen="assets/tshirt.jpg" data-descripcion="La nueva camiseta titular de Boca Juniors para la temporada 2024. Tejido AEROREADY que absorbe el sudor. Llevá la pasión Xeneize a todos lados."><img src="assets/tshirt.jpg" alt="Camiseta Boca Juniors 24"><h3>Camiseta Boca Juniors 24</h3><p class="precio">$110.00</p><button class="ver-detalles">Ver Detalles</button></article><article class="producto" data-id="5" data-nombre="Sofá Minimalista 2 Cuerpos" data-precio="790.00" data-imagen="assets/sofa.jpg" data-descripcion="Sofá de dos cuerpos con diseño minimalista y tapizado en tela de alta resistencia. Comodidad y estilo para tu living."><img src="assets/sofa.jpg" alt="Sofá Minimalista 2 Cuerpos"><h3>Sofá Minimalista</h3><p class="precio">$790.00</p><button class="ver-detalles">Ver Detalles</button></article><article class="producto" data-id="6" data-nombre="Lámpara de Lava Retro" data-precio="75.00" data-imagen="assets/lamp.jpg" data-descripcion="Lámpara de lava icónica. Un toque retro y relajante para cualquier habitación, con movimiento hipnótico y luz ambiental suave."><img src="assets/lamp.jpg" alt="Lámpara de Lava Retro"><h3>Lámpara de Lava Retro</h3><p class="precio">$75.00</p><button class="ver-detalles">Ver Detalles</button></article>
+            </div>
+        </section>
+
+        <section id="contacto" class="contacto-section section-padding">
+             <div class="container"><h2>Contactanos!</h2><p>¿Tenés alguna duda? Escribinos y te responderemos a la brevedad.</p><form id="form-contacto"><input type="text" placeholder="Tu Nombre" required><input type="email" placeholder="Tu Correo Electrónico" required><textarea rows="5" placeholder="Tu Mensaje" required></textarea><button type="submit" class="cta-button">Enviar Mensaje</button><p id="contacto-mensaje"></p></form></div>
+        </section>
+    </main>
+
+    <aside id="carrito-sidebar" class="carrito-sidebar"></aside>
+
+    <div id="modal-producto" class="modal">
+        <div class="modal-contenido">
+            <button class="cerrar-modal" aria-label="Cerrar">&times;</button>
+            <div class="modal-producto-grid">
+                <img id="modal-producto-img" src="" alt="Imagen de producto">
+                <div class="modal-producto-info">
+                    <h2 id="modal-producto-nombre"></h2><p id="modal-producto-descripcion"></p><p id="modal-producto-precio" class="precio"></p>
+                    <button id="modal-agregar-carrito" class="cta-button">Añadir al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-checkout" class="modal">
+        <div class="modal-contenido modal-checkout-contenido">
+            <button class="cerrar-modal" aria-label="Cerrar">&times;</button>
+            <h2>Finalizar Compra</h2>
+            <div class="checkout-grid">
+                <div class="checkout-col-izquierda">
+                    <div class="checkout-seccion">
+                        <h3>1. Tus Datos</h3>
+                        <div id="user-login-view" class="hidden"><p>Bienvenido de nuevo, <strong id="logged-in-user-name"></strong>. <button id="logout-btn" class="link-btn">Cerrar sesión</button></p></div>
+                        <div id="user-details-form"><input type="text" id="checkout-nombre" placeholder="Nombre y Apellido" required><input type="email" id="checkout-email" placeholder="Correo Electrónico" required><input type="tel" id="checkout-telefono" placeholder="Teléfono"><div class="checkbox-container"><input type="checkbox" id="save-user-data"><label for="save-user-data">Guardar mis datos para futuras compras</label></div></div>
+                    </div>
+                    <div class="checkout-seccion">
+                        <h3>2. Método de Entrega</h3>
+                        <div class="delivery-option"><input type="radio" id="delivery-pickup" name="delivery" value="pickup" checked><label for="delivery-pickup">Retirar en el local (Gratis)</label></div>
+                        <div class="delivery-option"><input type="radio" id="delivery-shipping" name="delivery" value="shipping"><label for="delivery-shipping">Envío a domicilio ($10.00)</label></div>
+                        <div id="delivery-address-container" class="hidden"><input type="text" id="checkout-direccion" placeholder="Tu Dirección de Envío"></div>
+                    </div>
+                </div>
+                <div class="checkout-col-derecha">
+                    <div class="checkout-seccion resumen-pedido">
+                        <h3>3. Resumen del Pedido</h3>
+                        <div id="resumen-items" class="resumen-items-container"></div>
+                        <div class="resumen-linea"><span>Subtotal:</span><span id="resumen-subtotal">$0.00</span></div>
+                        <div class="resumen-linea"><span>Envío:</span><span id="resumen-envio">$0.00</span></div>
+                        <div id="resumen-descuento-linea" class="resumen-linea hidden"><span>Descuento:</span><span id="resumen-descuento">$0.00</span></div>
+                        <hr>
+                        <div class="resumen-linea total"><strong>Total:</strong><strong id="resumen-total">$0.00</strong></div>
+                        <div class="cupon-container"><input type="text" id="cupon-input" placeholder="Código de descuento"><button id="aplicar-cupon-btn">Aplicar</button></div>
+                        <p id="cupon-mensaje"></p>
+                    </div>
+                    <button id="continuar-pago-btn" class="cta-button">Continuar al Pago</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-pago" class="modal">
+        <div class="modal-contenido">
+            <button class="cerrar-modal" aria-label="Cerrar">&times;</button><h2>Pasarela de Pago Simulada</h2><form id="form-pago"><label for="nombre-tarjeta">Nombre en la Tarjeta</label><input type="text" id="nombre-tarjeta" placeholder="Juan Pérez" required><label for="numero-tarjeta">Número de Tarjeta</label><input type="text" id="numero-tarjeta" placeholder="1234 5678 9012 3456" required><div class="fila"><div><label for="fecha-exp">Fecha Exp.</label><input type="text" id="fecha-exp" placeholder="MM/AA" required></div><div><label for="cvv">CVV</label><input type="text" id="cvv" placeholder="123" required></div></div><button type="submit" class="btn-pagar">Pagar Ahora</button><div id="pago-spinner" class="spinner" style="display: none;"></div><p id="pago-mensaje"></p></form>
+        </div>
+    </div>
+    
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col"><h3>Sobre MiTienda</h3><p>Comprometidos con la calidad y la satisfacción del cliente. Explorá nuestro catálogo y encontrá lo que buscás.</p></div>
+            <div class="footer-col"><h3>Navegación</h3><ul><li><a href="#hero">Inicio</a></li><li><a href="#productos">Productos</a></li><li><a href="#contacto">Contacto</a></li></ul></div>
+            <div class="footer-col"><h3>Seguinos!</h3><div class="social-icons"><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></div></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2025 MiTienda. Todos los derechos reservados.</p></div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

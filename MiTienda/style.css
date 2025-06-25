@@ -1,0 +1,145 @@
+/* ==========================================================================
+   1. VARIABLES Y ESTILOS BASE
+   ========================================================================== */
+:root {
+    --color-primario: #007bff; --color-primario-hover: #0056b3; --color-fondo: #f8f9fa; --color-superficie: #ffffff; --color-texto-primario: #212529; --color-texto-secundario: #6c757d; --color-borde: #dee2e6; --sombra-caja: 0 4px 12px rgba(0, 0, 0, 0.08); --color-exito: #28a745; --color-error: #dc3545;
+}
+body[data-theme="dark"] {
+    --color-primario: #3391ff; --color-primario-hover: #55aaff; --color-fondo: #121212; --color-superficie: #1e1e1e; --color-texto-primario: #e0e0e0; --color-texto-secundario: #adb5bd; --color-borde: #495057; --sombra-caja: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; background-color: var(--color-fondo); color: var(--color-texto-primario); transition: background-color 0.3s, color 0.3s; }
+.container { max-width: 1200px; margin: auto; padding: 0 20px; }
+.section-padding { padding: 80px 0; }
+.hidden { display: none !important; }
+.link-btn { background: none; border: none; color: var(--color-primario); text-decoration: underline; cursor: pointer; }
+hr { border: none; border-top: 1px solid var(--color-borde); margin: 15px 0; }
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; }
+
+/* ==========================================================================
+   2. COMPONENTES REUTILIZABLES
+   ========================================================================== */
+.cta-button { background-color: var(--color-primario); color: #fff; padding: 12px 28px; border-radius: 5px; font-weight: bold; transition: background-color 0.3s, transform 0.3s; display: inline-block; border: none; font-size: 1rem; cursor: pointer; width: 100%; }
+.cta-button:hover:not(:disabled) { background-color: var(--color-primario-hover); transform: translateY(-2px); }
+.cta-button:disabled { background-color: var(--color-texto-secundario); cursor: not-allowed; transform: none; }
+
+/* ==========================================================================
+   3. HEADER Y NAVEGACIÓN
+   ========================================================================== */
+header { background: var(--color-superficie); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: var(--sombra-caja); transition: background-color 0.3s; }
+header .container { display: flex; justify-content: space-between; align-items: center; }
+.logo h1 { font-size: 1.8rem; color: var(--color-primario); }
+.desktop-nav a { margin: 0 15px; font-weight: 500; transition: color 0.3s; }
+.nav-icons { display: flex; align-items: center; gap: 25px; }
+.theme-toggle { background: none; border: none; cursor: pointer; font-size: 1.5rem; color: var(--color-texto-secundario); transition: color 0.3s; position: relative; width: 24px; height: 24px; }
+.theme-toggle:hover { color: var(--color-primario); }
+.theme-toggle .fa-sun, .theme-toggle .fa-moon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: opacity 0.3s, transform 0.3s; }
+body[data-theme="light"] .theme-toggle .fa-sun { opacity: 0; transform: translate(-50%, -50%) rotate(-90deg); }
+body[data-theme="dark"] .theme-toggle .fa-moon { opacity: 0; transform: translate(-50%, -50%) rotate(90deg); }
+.icono-carrito { position: relative; cursor: pointer; font-size: 1.5rem; color: var(--color-texto-primario); }
+#carrito-contador { position: absolute; top: -10px; right: -10px; background: var(--color-primario); color: #fff; border-radius: 50%; width: 20px; height: 20px; font-size: 0.75rem; font-weight: bold; display: none; justify-content: center; align-items: center; }
+.hamburger { display: none; background: none; border: none; font-size: 1.5rem; color: var(--color-texto-primario); z-index: 4001; }
+.mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--color-superficie); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; z-index: 4000; transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1); }
+.mobile-menu.abierto { transform: translateX(0); }
+.mobile-menu a { font-size: 2rem; font-weight: 500; }
+.cerrar-menu-movil { position: absolute; top: 20px; right: 20px; font-size: 2.5rem; background: none; border: none; color: var(--color-texto-primario); }
+
+/* ==========================================================================
+   4. SECCIONES PRINCIPALES
+   ========================================================================== */
+.hero { height: 70vh; background-image: url('assets/banner.png'); background-size: cover; background-position: center; position: relative; color: #fff; }
+.hero-overlay { background-color: rgba(0, 0, 0, 0.8); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; }
+#productos h2, #contacto h2 { text-align: center; margin-bottom: 20px; font-size: 2.5rem; }
+.productos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.producto { background: var(--color-superficie); border: 1px solid var(--color-borde); border-radius: 8px; box-shadow: var(--sombra-caja); overflow: hidden; text-align: center; display: flex; flex-direction: column; }
+.producto img { width: 100%; height: 250px; object-fit: cover; }
+.ver-detalles { background: none; border: 2px solid var(--color-primario); color: var(--color-primario); padding: 10px 25px; cursor: pointer; font-size: 1rem; width: 100%; transition: all 0.3s; margin-top: auto; }
+.contacto-section { background-color: var(--color-superficie); }
+/* CORRECCIÓN: Estilos para centrar el párrafo de la sección de contacto */
+.contacto-section .container > p {
+    text-align: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    color: var(--color-texto-secundario);
+}
+#form-contacto { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+#form-contacto input, #form-contacto textarea { width: 100%; padding: 15px; border: 1px solid var(--color-borde); border-radius: 5px; font-size: 1rem; background-color: var(--color-fondo); color: var(--color-texto-primario); }
+#contacto-mensaje { text-align: center; font-weight: bold; margin-top: 15px; height: 1em; }
+
+/* ==========================================================================
+   5. MODALES Y SIDEBAR
+   ========================================================================== */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); align-items: center; justify-content: center; overflow-y: auto; padding: 20px 0; }
+.modal.visible { display: flex; }
+.modal-contenido { background-color: var(--color-superficie); padding: 30px; border-radius: 10px; width: 90%; max-width: 500px; position: relative; animation: fadeIn 0.4s; box-shadow: var(--sombra-caja); margin: auto; }
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+.cerrar-modal { color: var(--color-texto-secundario); position: absolute; top: 15px; right: 25px; font-size: 2.5rem; font-weight: 300; line-height: 1; cursor: pointer; background: none; border: none; transition: color 0.2s; }
+.cerrar-modal:hover { color: var(--color-texto-primario); }
+#modal-producto .modal-contenido { max-width: 800px; }
+.modal-producto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+#modal-producto-img { max-width: 100%; max-height: 60vh; object-fit: contain; border-radius: 8px; }
+
+/* --- Sidebar del Carrito --- */
+.carrito-sidebar { height: 100%; width: 0; position: fixed; z-index: 3000; top: 0; right: 0; background-color: var(--color-superficie); overflow: hidden; transition: width 0.5s; box-shadow: -5px 0 15px rgba(0,0,0,0.2); display: flex; flex-direction: column; }
+.carrito-sidebar.abierto { width: 400px; }
+.carrito-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-borde); }
+.carrito-items { flex-grow: 1; overflow-y: auto; padding: 20px; }
+.carrito-item { display: flex; margin-bottom: 20px; gap: 15px; }
+.carrito-item img { width: 80px; height: 80px; object-fit: cover; border-radius: 5px; flex-shrink: 0; }
+.carrito-item-info { flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.item-actions { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.quantity-btn { background-color: var(--color-fondo); border: 1px solid var(--color-borde); color: var(--color-texto-primario); width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-weight: bold; display: flex; justify-content: center; align-items: center; transition: background-color 0.2s; }
+.quantity-btn:hover { background-color: var(--color-borde); }
+.remover-item { color: var(--color-texto-secundario); cursor: pointer; background: none; border: none; font-size: 1.2rem; margin-left: auto; transition: color 0.2s; }
+.remover-item:hover { color: var(--color-error); }
+.carrito-footer { padding: 20px; border-top: 1px solid var(--color-borde); background-color: var(--color-fondo); margin-top: auto; }
+.carrito-total h3 { display: flex; justify-content: space-between; font-size: 1.2rem; margin-bottom: 20px; }
+
+/* --- Modal de Checkout --- */
+.modal-checkout-contenido { max-width: 900px; }
+.checkout-grid { display: grid; grid-template-columns: 1fr 0.7fr; gap: 30px; }
+.checkout-seccion { background-color: var(--color-fondo); padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--color-borde); }
+.checkout-seccion input[type="text"], .checkout-seccion input[type="email"], .checkout-seccion input[type="tel"] { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid var(--color-borde); border-radius: 5px; background-color: var(--color-superficie); color: var(--color-texto-primario); }
+.delivery-option { background-color: var(--color-superficie); padding: 15px; border: 2px solid var(--color-borde); border-radius: 5px; margin-bottom: 10px; cursor: pointer; }
+.delivery-option:has(input:checked) { border-color: var(--color-primario); }
+.cupon-container { display: flex; margin-top: 20px; }
+.cupon-container input { flex-grow: 1; border: 1px solid var(--color-borde); padding: 10px; border-radius: 5px 0 0 5px; background-color: var(--color-superficie); color: var(--color-texto-primario); }
+.cupon-container button { background-color: var(--color-primario); color: #fff; border: none; padding: 0 15px; border-radius: 0 5px 5px 0; font-weight: 500; transition: background-color 0.2s; }
+.cupon-container button:hover { background-color: var(--color-primario-hover); }
+#cupon-mensaje.exito { color: var(--color-exito); }
+#cupon-mensaje.error { color: var(--color-error); }
+
+/* ==========================================================================
+   6. FOOTER
+   ========================================================================== */
+.site-footer { background-color: #26272b; color: #aaa; padding: 45px 0 20px; }
+body[data-theme="dark"] .site-footer { background-color: #1a1a1a; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+.footer-col h3 { color: #fff; margin-bottom: 20px; }
+.social-icons { display: flex; align-items: center; gap: 15px; }
+.social-icons a { display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 50%; background-color: rgba(255,255,255,0.2); color: #fff; transition: background-color 0.3s; }
+.social-icons a:hover { background-color: var(--color-primario); }
+.footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #444; margin-top: 30px; }
+
+/* ==========================================================================
+   7. RESPONSIVIDAD (MEDIA QUERIES)
+   ========================================================================== */
+@media (max-width: 900px) {
+    .checkout-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+    .desktop-nav { display: none; }
+    .hamburger { display: block; }
+    .hero h2 { font-size: 2.2rem; }
+    .modal-producto-grid { grid-template-columns: 1fr; text-align: center; }
+    .carrito-sidebar.abierto { width: 90%; }
+}
+@media (max-width: 480px) {
+    .productos-grid { grid-template-columns: 1fr; }
+    .carrito-sidebar.abierto { width: 100%; }
+}
