@@ -1,119 +1,494 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Tienda Online</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiTienda — E-Commerce Moderno & Exclusivo</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="MiTienda — Descubrí lo mejor en tecnología, calzado, moda urbana y artículos para el hogar con envíos a todo el país y cuotas sin interés." />
+  <meta name="author" content="Leopoldo Doerflinger" />
+  <meta name="theme-color" content="#4f46e5" />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Modern Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body data-theme="light">
 
-    <header>
+  <!-- ======================================================================
+       ANNOUNCEMENT BAR
+       ====================================================================== -->
+  <div class="announcement-bar">
+    <span class="announcement-badge">OFERTAS 2026</span>
+    <span>Envío Gratis a partir de $500 • Usá el cupón <strong>SOYDEV</strong> para un 20% OFF</span>
+  </div>
+
+  <!-- ======================================================================
+       HEADER & NAVIGATION
+       ====================================================================== -->
+  <header>
+    <div class="container header-container">
+
+      <!-- Brand Logo -->
+      <a href="#" class="logo" aria-label="Ir al inicio de MiTienda">
+        <div class="logo-icon">
+          <i class="fas fa-bag-shopping"></i>
+        </div>
+        <h1>MiTienda<span>.</span></h1>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="desktop-nav" aria-label="Navegación principal">
+        <a href="#hero" class="active">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <!-- Nav Icons Group -->
+      <div class="nav-icons">
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="icon-btn theme-toggle" aria-label="Cambiar tema de color" title="Alternar tema claro/oscuro">
+          <i class="fas fa-sun"></i>
+          <i class="fas fa-moon"></i>
+        </button>
+
+        <!-- Wishlist Button -->
+        <button id="icono-favoritos-btn" class="icon-btn" aria-label="Ver productos favoritos" title="Tus Favoritos">
+          <i class="far fa-heart"></i>
+          <span id="favoritos-contador" class="badge-count">0</span>
+        </button>
+
+        <!-- Shopping Cart Button -->
+        <button id="icono-carrito-btn" class="icon-btn" aria-label="Abrir carrito de compras" title="Tu Carrito">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="carrito-contador" class="badge-count">0</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="icon-btn hamburger" aria-label="Abrir menú para móviles">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú móvil">
+      <button class="cerrar-menu-movil" aria-label="Cerrar menú">&times;</button>
+      <a href="#hero">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         HERO SECTION
+         ====================================================================== -->
+    <section id="hero" class="hero">
+      <div class="hero-overlay">
         <div class="container">
-            <a href="#" class="logo"><h1>MiTienda</h1></a>
-            <nav class="desktop-nav">
-                <a href="#hero">Inicio</a>
-                <a href="#productos">Productos</a>
-                <a href="#contacto">Contacto</a>
-            </nav>
-            <div class="nav-icons">
-                <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema"><i class="fas fa-sun"></i><i class="fas fa-moon"></i></button>
-                <div class="icono-carrito"><i class="fas fa-shopping-cart"></i><span id="carrito-contador">0</span></div>
-                <button class="hamburger" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
+          <div class="hero-content">
+            <div class="hero-tag">
+              <i class="fas fa-bolt"></i> Nueva Colección Exclusiva
             </div>
-        </div>
-        <div class="mobile-menu">
-            <button class="cerrar-menu-movil" aria-label="Cerrar menú">&times;</button>
-            <a href="#hero">Inicio</a>
-            <a href="#productos">Productos</a>
-            <a href="#contacto">Contacto</a>
-        </div>
-    </header>
-
-    <main>
-        <section id="hero" class="hero">
-             <div class="hero-overlay"><div class="container"><h2>La mejor calidad, al mejor precio</h2><p>Descubre nuestras ofertas exclusivas de temporada.</p><a href="#productos" class="cta-button">Ver Productos</a></div></div>
-        </section>
-
-        <section id="productos" class="container section-padding">
-            <h2>Nuestros Productos</h2>
-            <div id="productos-container" class="productos-grid">
-                 <article class="producto" data-id="1" data-nombre="iPhone 15 Pro" data-precio="1499.99" data-imagen="assets/phone.jpg" data-descripcion="El último smartphone con tecnología de punta, cámara Pro de 48MP y una pantalla Super Retina XDR. Rendimiento sin precedentes con el chip A17 Pro."><img src="assets/phone.jpg" alt="iPhone 15 Pro"><h3>iPhone 15 Pro</h3><p class="precio">$1499.99</p><button class="ver-detalles">Ver Detalles</button></article><article class="producto" data-id="2" data-nombre="Laptop Gamer Victus" data-precio="1250.00" data-imagen="assets/laptop.jpg" data-descripcion="Laptop gamer de alto rendimiento con procesador Ryzen 5, 16GB RAM, SSD de 512GB y gráficos NVIDIA RTX. Ideal para juegos y trabajo pesado."><img src="assets/laptop.jpg" alt="Laptop Gamer Victus"><h3>Laptop Gamer Victus</h3><p class="precio">$1250.00</p><button class="ver-detalles">Ver Detalles</button></article><article class="producto" data-id="3" data-nombre="Zapatillas Nike Air Max" data-precio="180.50" data-imagen="assets/shoes.jpg" data-descripcion="Zapatillas Nike Air Max, un clásico reinventado para la comodidad y el estilo urbano diario. Amortiguación visible y materiales premium."><img src="assets/shoes.jpg" alt="Zapatillas Nike Air Max"><h3>Zapatillas Nike Air Max</h3><p class="precio">$180.50</p><button class="ver-detalles">Ver Detalles</button></article><article class="producto" data-id="4" data-nombre="Camiseta Boca Juniors 24" data-precio="110.00" data-imagen="assets/tshirt.jpg" data-descripcion="La nueva camiseta titular de Boca Juniors para la temporada 2024. Tejido AEROREADY que absorbe el sudor. Llevá la pasión Xeneize a todos lados."><img src="assets/tshirt.jpg" alt="Camiseta Boca Juniors 24"><h3>Camiseta Boca Juniors 24</h3><p class="precio">$110.00</p><button class="ver-detalles">Ver Detalles</button></article><article class="producto" data-id="5" data-nombre="Sofá Minimalista 2 Cuerpos" data-precio="790.00" data-imagen="assets/sofa.jpg" data-descripcion="Sofá de dos cuerpos con diseño minimalista y tapizado en tela de alta resistencia. Comodidad y estilo para tu living."><img src="assets/sofa.jpg" alt="Sofá Minimalista 2 Cuerpos"><h3>Sofá Minimalista</h3><p class="precio">$790.00</p><button class="ver-detalles">Ver Detalles</button></article><article class="producto" data-id="6" data-nombre="Lámpara de Lava Retro" data-precio="75.00" data-imagen="assets/lamp.jpg" data-descripcion="Lámpara de lava icónica. Un toque retro y relajante para cualquier habitación, con movimiento hipnótico y luz ambiental suave."><img src="assets/lamp.jpg" alt="Lámpara de Lava Retro"><h3>Lámpara de Lava Retro</h3><p class="precio">$75.00</p><button class="ver-detalles">Ver Detalles</button></article>
+            <h2>Calidad Premium,<br><span>tecnología y estilo</span>.</h2>
+            <p>
+              Explorá nuestro catálogo curado con los mejores productos de tecnología, indumentaria y diseño para tu hogar. Compras seguras con entrega rápida.
+            </p>
+            <div class="hero-actions">
+              <a href="#productos" class="cta-button">
+                <span>Ver Productos</span>
+                <i class="fas fa-arrow-down"></i>
+              </a>
+              <a href="#contacto" class="cta-button cta-button-outline">
+                <span>Consultar Dudas</span>
+                <i class="fab fa-whatsapp"></i>
+              </a>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <section id="contacto" class="contacto-section section-padding">
-             <div class="container"><h2>Contactanos!</h2><p>¿Tenés alguna duda? Escribinos y te responderemos a la brevedad.</p><form id="form-contacto"><input type="text" placeholder="Tu Nombre" required><input type="email" placeholder="Tu Correo Electrónico" required><textarea rows="5" placeholder="Tu Mensaje" required></textarea><button type="submit" class="cta-button">Enviar Mensaje</button><p id="contacto-mensaje"></p></form></div>
-        </section>
-    </main>
+    <!-- Trust / Value Propositions Strip -->
+    <section class="trust-strip">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fas fa-truck-fast"></i></div>
+          <div class="trust-text">
+            <h4>Envío Rápido y Seguro</h4>
+            <p>Gratis en compras mayores a $500</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fas fa-credit-card"></i></div>
+          <div class="trust-text">
+            <h4>Hasta 6 Cuotas Sin Interés</h4>
+            <p>Todas las tarjetas y Mercado Pago</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fas fa-shield-halved"></i></div>
+          <div class="trust-text">
+            <h4>Compra 100% Protegida</h4>
+            <p>Garantía de devolución de 30 días</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fas fa-headset"></i></div>
+          <div class="trust-text">
+            <h4>Soporte Inmediato</h4>
+            <p>Atención personalizada por WhatsApp</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <aside id="carrito-sidebar" class="carrito-sidebar"></aside>
+    <!-- ======================================================================
+         PRODUCTS CATALOG SECTION
+         ====================================================================== -->
+    <section id="productos" class="container section-padding">
 
-    <div id="modal-producto" class="modal">
-        <div class="modal-contenido">
-            <button class="cerrar-modal" aria-label="Cerrar">&times;</button>
-            <div class="modal-producto-grid">
-                <img id="modal-producto-img" src="" alt="Imagen de producto">
-                <div class="modal-producto-info">
-                    <h2 id="modal-producto-nombre"></h2><p id="modal-producto-descripcion"></p><p id="modal-producto-precio" class="precio"></p>
-                    <button id="modal-agregar-carrito" class="cta-button">Añadir al Carrito</button>
+      <div class="catalog-header">
+        <div class="catalog-title-wrap">
+          <h2>Catálogo Destacado</h2>
+          <p id="productos-count">Cargando productos...</p>
+        </div>
+      </div>
+
+      <!-- Filter & Search Toolbar -->
+      <div class="catalog-toolbar">
+        <div class="category-tabs">
+          <button type="button" class="tab-btn active" data-category="all">Todos</button>
+          <button type="button" class="tab-btn" data-category="tecnologia">Tecnología</button>
+          <button type="button" class="tab-btn" data-category="moda">Moda & Calzado</button>
+          <button type="button" class="tab-btn" data-category="hogar">Hogar & Deco</button>
+          <button type="button" class="tab-btn" data-category="ofertas">Ofertas 🔥</button>
+        </div>
+
+        <div class="toolbar-controls">
+          <!-- Search Input -->
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" class="search-input" placeholder="Buscar producto..." aria-label="Buscar producto" />
+          </div>
+
+          <!-- Sort Select -->
+          <select id="sort-select" class="sort-select" aria-label="Ordenar productos">
+            <option value="featured">Destacados</option>
+            <option value="price-asc">Precio: Menor a Mayor</option>
+            <option value="price-desc">Precio: Mayor a Menor</option>
+            <option value="rating">Mejor Calificados</option>
+            <option value="name">Nombre: A - Z</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Products Grid Container (Populated by app.js) -->
+      <div id="productos-container" class="productos-grid">
+        <!-- Rendered dynamically -->
+      </div>
+
+    </section>
+
+    <!-- ======================================================================
+         CONTACT SECTION
+         ====================================================================== -->
+    <section id="contacto" class="contacto-section section-padding">
+      <div class="container contact-container">
+        <h2>¿Tenés alguna consulta?</h2>
+        <p>Escribinos y te responderemos al instante por WhatsApp o correo electrónico.</p>
+        
+        <form id="form-contacto">
+          <div>
+            <input type="text" placeholder="Tu Nombre Completo" required aria-label="Tu Nombre" />
+          </div>
+          <div>
+            <input type="email" placeholder="Tu Correo Electrónico" required aria-label="Tu Email" />
+          </div>
+          <div>
+            <textarea rows="4" placeholder="¿En qué te podemos ayudar? (Consultas sobre stock, envíos, formas de pago...)" required aria-label="Mensaje"></textarea>
+          </div>
+          <button type="submit" class="cta-button" style="width:100%">
+            <span>Enviar Consulta por WhatsApp</span>
+            <i class="fab fa-whatsapp"></i>
+          </button>
+          <p id="contacto-mensaje"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       CART SLIDE-OVER DRAWER & BACKDROP
+       ====================================================================== -->
+  <div id="cart-backdrop" class="cart-backdrop"></div>
+  <aside id="carrito-sidebar" class="carrito-sidebar" role="dialog" aria-modal="true" aria-label="Carrito de compras">
+    <!-- Populated by app.js -->
+  </aside>
+
+  <!-- ======================================================================
+       MODAL: PRODUCT DETAILS
+       ====================================================================== -->
+  <div id="modal-producto" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-producto-nombre">
+    <div class="modal-contenido">
+      <button class="cerrar-modal" aria-label="Cerrar ventana">&times;</button>
+      <div class="modal-producto-grid">
+        <div class="modal-product-img-box">
+          <img id="modal-producto-img" src="" alt="Imagen de producto" />
+        </div>
+        <div class="modal-producto-info">
+          <span class="modal-stock-badge">En Stock — Envío Inmediato</span>
+          <h2 id="modal-producto-nombre"></h2>
+          <div id="modal-producto-precio" class="modal-producto-precio"></div>
+          <p id="modal-producto-descripcion"></p>
+          <ul id="modal-producto-specs" style="list-style:none; display:flex; flex-direction:column; gap:0.4rem; font-size:0.88rem; color:var(--text-secondary); margin-bottom:1.5rem;"></ul>
+          <button id="modal-agregar-carrito" class="cta-button" style="width:100%">
+            <i class="fas fa-shopping-cart"></i> Añadir al Carrito
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: CHECKOUT
+       ====================================================================== -->
+  <div id="modal-checkout" class="modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+    <div class="modal-contenido modal-checkout-contenido">
+      <button class="cerrar-modal" aria-label="Cerrar">&times;</button>
+      <div class="checkout-header">
+        <h2 id="checkout-title">Finalizar tu Pedido</h2>
+      </div>
+
+      <div class="checkout-grid">
+        <!-- Col Izquierda: Datos y Entrega -->
+        <div>
+          <div class="checkout-seccion">
+            <h3><i class="fas fa-user-circle" style="color:var(--color-primary);margin-right:6px"></i> 1. Tus Datos</h3>
+            <div id="user-login-view" class="hidden">
+              <p style="font-size:0.9rem; margin-bottom:0.8rem;">
+                Hola, <strong id="logged-in-user-name"></strong>. 
+                <button type="button" id="logout-btn" class="link-btn" style="color:var(--color-primary);font-size:0.85rem;">(Cerrar sesión)</button>
+              </p>
+            </div>
+            <div id="user-details-form" class="checkout-input-group">
+              <input type="text" id="checkout-nombre" class="checkout-input" placeholder="Nombre y Apellido *" required />
+              <input type="email" id="checkout-email" class="checkout-input" placeholder="Correo Electrónico *" required />
+              <input type="tel" id="checkout-telefono" class="checkout-input" placeholder="Teléfono / WhatsApp (Opcional)" />
+              <div style="display:flex; align-items:center; gap:0.6rem; margin-top:0.3rem; font-size:0.85rem; color:var(--text-secondary);">
+                <input type="checkbox" id="save-user-data" checked />
+                <label for="save-user-data">Recordar mis datos para futuras compras</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout-seccion">
+            <h3><i class="fas fa-truck" style="color:var(--color-primary);margin-right:6px"></i> 2. Método de Entrega</h3>
+            <div class="delivery-options">
+              <label class="delivery-card" for="delivery-pickup">
+                <input type="radio" id="delivery-pickup" name="delivery" value="pickup" checked />
+                <div>
+                  <strong style="color:var(--text-main);display:block">Retirar en el Local</strong>
+                  <span style="font-size:0.82rem;color:var(--color-success)">Gratis — Listo en 24 horas</span>
                 </div>
+              </label>
+
+              <label class="delivery-card" for="delivery-shipping">
+                <input type="radio" id="delivery-shipping" name="delivery" value="shipping" />
+                <div>
+                  <strong style="color:var(--text-main);display:block">Envío Estándar a Domicilio</strong>
+                  <span style="font-size:0.82rem;color:var(--text-muted)">Costo: $10.00 (Gratis superando $500)</span>
+                </div>
+              </label>
+
+              <div id="delivery-address-container" class="hidden" style="margin-top:0.6rem;">
+                <input type="text" id="checkout-direccion" class="checkout-input" placeholder="Calle, Número, Piso/Depto, Ciudad" />
+              </div>
             </div>
+          </div>
         </div>
+
+        <!-- Col Derecha: Resumen de Pedido & Cupón -->
+        <div>
+          <div class="checkout-seccion resumen-pedido">
+            <h3><i class="fas fa-receipt" style="color:var(--color-primary);margin-right:6px"></i> 3. Resumen del Pedido</h3>
+            <div id="resumen-items" style="max-height:160px; overflow-y:auto; margin-bottom:1rem; border-bottom:1px solid var(--border-color); padding-bottom:0.6rem;"></div>
+            
+            <div style="display:flex; justify-content:space-between; font-size:0.88rem; color:var(--text-secondary); margin-bottom:0.4rem;">
+              <span>Subtotal:</span>
+              <span id="resumen-subtotal" style="font-weight:600;color:var(--text-main)">$0.00</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.88rem; color:var(--text-secondary); margin-bottom:0.4rem;">
+              <span>Envío:</span>
+              <span id="resumen-envio" style="font-weight:600;color:var(--text-main)">$0.00</span>
+            </div>
+            <div id="resumen-descuento-linea" class="hidden" style="display:flex; justify-content:space-between; font-size:0.88rem; color:var(--color-success); margin-bottom:0.4rem;">
+              <span>Descuento aplicado:</span>
+              <span id="resumen-descuento">-$0.00</span>
+            </div>
+            <hr style="border:none; border-top:1px solid var(--border-color); margin:0.8rem 0;" />
+            <div style="display:flex; justify-content:space-between; font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.2rem;">
+              <span>Total:</span>
+              <span id="resumen-total" style="color:var(--color-primary)">$0.00</span>
+            </div>
+
+            <!-- Coupon Box -->
+            <div class="coupon-box">
+              <input type="text" id="cupon-input" class="coupon-input" placeholder="CUPÓN (Ej: SOYDEV)" aria-label="Cupón de descuento" />
+              <button type="button" id="aplicar-cupon-btn" class="coupon-btn">Aplicar</button>
+            </div>
+            <p id="cupon-mensaje"></p>
+          </div>
+
+          <button type="button" id="continuar-pago-btn" class="cta-button" style="width:100%">
+            <span>Continuar al Pago</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: PAYMENT (SIMULATION WITH VIRTUAL CARD)
+       ====================================================================== -->
+  <div id="modal-pago" class="modal" role="dialog" aria-modal="true" aria-labelledby="pago-title">
+    <div class="modal-contenido">
+      <button class="cerrar-modal" aria-label="Cerrar">&times;</button>
+      <h2 id="pago-title" style="font-family:var(--font-heading); font-size:1.5rem; margin-bottom:1.2rem;">Pasarela de Pago Segura</h2>
+
+      <!-- Formulario de Pago con Tarjeta Virtual -->
+      <form id="form-pago">
+        <!-- Virtual Card Live Mockup -->
+        <div class="virtual-card-preview">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="card-chip"></div>
+            <i class="fab fa-cc-visa" style="font-size:2rem; opacity:0.9;"></i>
+          </div>
+          <div id="card-display-number" class="card-number-display">•••• •••• •••• ••••</div>
+          <div class="card-details-display">
+            <div>
+              <div style="font-size:0.65rem; opacity:0.7;">TITULAR</div>
+              <div id="card-display-name">TITULAR DE LA TARJETA</div>
+            </div>
+            <div>
+              <div style="font-size:0.65rem; opacity:0.7;">VENCE</div>
+              <div id="card-display-exp">MM/AA</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:0.9rem; margin-bottom:1.5rem;">
+          <div>
+            <label for="nombre-tarjeta" style="font-size:0.78rem; text-transform:uppercase; font-weight:700; color:var(--text-muted); display:block; margin-bottom:0.3rem;">Nombre en la Tarjeta</label>
+            <input type="text" id="nombre-tarjeta" class="checkout-input" placeholder="Como figura en la tarjeta" required />
+          </div>
+          <div>
+            <label for="numero-tarjeta" style="font-size:0.78rem; text-transform:uppercase; font-weight:700; color:var(--text-muted); display:block; margin-bottom:0.3rem;">Número de Tarjeta</label>
+            <input type="text" id="numero-tarjeta" class="checkout-input" placeholder="1234 5678 9012 3456" maxlength="19" required />
+          </div>
+          <div class="payment-form-row">
+            <div>
+              <label for="fecha-exp" style="font-size:0.78rem; text-transform:uppercase; font-weight:700; color:var(--text-muted); display:block; margin-bottom:0.3rem;">Vencimiento</label>
+              <input type="text" id="fecha-exp" class="checkout-input" placeholder="MM/AA" maxlength="5" required />
+            </div>
+            <div>
+              <label for="cvv" style="font-size:0.78rem; text-transform:uppercase; font-weight:700; color:var(--text-muted); display:block; margin-bottom:0.3rem;">Código CVV</label>
+              <input type="password" id="cvv" class="checkout-input" placeholder="123" maxlength="4" required />
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-pagar-submit" class="cta-button" style="width:100%">
+          <i class="fas fa-lock"></i>
+          <span>Pagar Ahora de Forma Segura</span>
+        </button>
+        <div id="pago-spinner" class="spinner" style="display:none; margin-top:1.2rem;"></div>
+      </form>
+
+      <!-- Order Confirmation Celebration View -->
+      <div id="pago-success-view" class="order-success-view" style="display:none;">
+        <div class="success-icon-box">
+          <i class="fas fa-check"></i>
+        </div>
+        <h3 style="font-family:var(--font-heading); font-size:1.6rem; color:var(--text-main); margin-bottom:0.4rem;">¡Pago Aprobado con Éxito!</h3>
+        <p style="color:var(--text-secondary); font-size:0.95rem;">Muchas gracias por tu compra. Tu pedido ya está siendo preparado.</p>
+        <div class="order-id-badge">
+          Pedido: <span id="order-id-display">MT-000000</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:1.5rem;">
+          <a id="btn-notificar-wa" href="#" target="_blank" class="cta-button" style="background:#25d366; width:100%">
+            <i class="fab fa-whatsapp"></i> Notificar Pedido por WhatsApp
+          </a>
+          <button type="button" class="cta-button cta-button-outline cerrar-modal" style="color:var(--text-main); border-color:var(--border-color); width:100%">
+            Seguir Comprando
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       FOOTER
+       ====================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h3>Sobre MiTienda</h3>
+        <p>
+          Plataforma de e-commerce moderna desarrollada con los más altos estándares de rendimiento, accesibilidad y experiencia de compra intuitiva.
+        </p>
+        <div style="display:flex; align-items:center; gap:0.6rem; margin-top:1.2rem; font-size:1.6rem; color:#64748b;">
+          <i class="fab fa-cc-visa" title="Visa"></i>
+          <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+          <i class="fab fa-cc-amex" title="American Express"></i>
+          <i class="fab fa-cc-paypal" title="PayPal"></i>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3>Navegación Rápida</h3>
+        <ul>
+          <li><a href="#hero">Inicio</a></li>
+          <li><a href="#productos">Catálogo de Productos</a></li>
+          <li><a href="#contacto">Atención al Cliente</a></li>
+          <li><a href="https://portfolio-leodoerflinger.vercel.app/" target="_blank">Portfolio del Desarrollador</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contacto & Redes</h3>
+        <p style="margin-bottom:1rem; font-size:0.88rem;">Córdoba, Argentina • Atención online 24/7</p>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/leo_doerflinger" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/543512619874" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://github.com/LeoDoerflinger" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/leopoldo-doerflinger-737570186/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
     </div>
 
-    <div id="modal-checkout" class="modal">
-        <div class="modal-contenido modal-checkout-contenido">
-            <button class="cerrar-modal" aria-label="Cerrar">&times;</button>
-            <h2>Finalizar Compra</h2>
-            <div class="checkout-grid">
-                <div class="checkout-col-izquierda">
-                    <div class="checkout-seccion">
-                        <h3>1. Tus Datos</h3>
-                        <div id="user-login-view" class="hidden"><p>Bienvenido de nuevo, <strong id="logged-in-user-name"></strong>. <button id="logout-btn" class="link-btn">Cerrar sesión</button></p></div>
-                        <div id="user-details-form"><input type="text" id="checkout-nombre" placeholder="Nombre y Apellido" required><input type="email" id="checkout-email" placeholder="Correo Electrónico" required><input type="tel" id="checkout-telefono" placeholder="Teléfono"><div class="checkbox-container"><input type="checkbox" id="save-user-data"><label for="save-user-data">Guardar mis datos para futuras compras</label></div></div>
-                    </div>
-                    <div class="checkout-seccion">
-                        <h3>2. Método de Entrega</h3>
-                        <div class="delivery-option"><input type="radio" id="delivery-pickup" name="delivery" value="pickup" checked><label for="delivery-pickup">Retirar en el local (Gratis)</label></div>
-                        <div class="delivery-option"><input type="radio" id="delivery-shipping" name="delivery" value="shipping"><label for="delivery-shipping">Envío a domicilio ($10.00)</label></div>
-                        <div id="delivery-address-container" class="hidden"><input type="text" id="checkout-direccion" placeholder="Tu Dirección de Envío"></div>
-                    </div>
-                </div>
-                <div class="checkout-col-derecha">
-                    <div class="checkout-seccion resumen-pedido">
-                        <h3>3. Resumen del Pedido</h3>
-                        <div id="resumen-items" class="resumen-items-container"></div>
-                        <div class="resumen-linea"><span>Subtotal:</span><span id="resumen-subtotal">$0.00</span></div>
-                        <div class="resumen-linea"><span>Envío:</span><span id="resumen-envio">$0.00</span></div>
-                        <div id="resumen-descuento-linea" class="resumen-linea hidden"><span>Descuento:</span><span id="resumen-descuento">$0.00</span></div>
-                        <hr>
-                        <div class="resumen-linea total"><strong>Total:</strong><strong id="resumen-total">$0.00</strong></div>
-                        <div class="cupon-container"><input type="text" id="cupon-input" placeholder="Código de descuento"><button id="aplicar-cupon-btn">Aplicar</button></div>
-                        <p id="cupon-mensaje"></p>
-                    </div>
-                    <button id="continuar-pago-btn" class="cta-button">Continuar al Pago</button>
-                </div>
-            </div>
-        </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 MiTienda. Diseñado y desarrollado por <strong>Leopoldo Doerflinger</strong>. Todos los derechos reservados.</p>
     </div>
+  </footer>
 
-    <div id="modal-pago" class="modal">
-        <div class="modal-contenido">
-            <button class="cerrar-modal" aria-label="Cerrar">&times;</button><h2>Pasarela de Pago Simulada</h2><form id="form-pago"><label for="nombre-tarjeta">Nombre en la Tarjeta</label><input type="text" id="nombre-tarjeta" placeholder="Juan Pérez" required><label for="numero-tarjeta">Número de Tarjeta</label><input type="text" id="numero-tarjeta" placeholder="1234 5678 9012 3456" required><div class="fila"><div><label for="fecha-exp">Fecha Exp.</label><input type="text" id="fecha-exp" placeholder="MM/AA" required></div><div><label for="cvv">CVV</label><input type="text" id="cvv" placeholder="123" required></div></div><button type="submit" class="btn-pagar">Pagar Ahora</button><div id="pago-spinner" class="spinner" style="display: none;"></div><p id="pago-mensaje"></p></form>
-        </div>
-    </div>
-    
-    <footer class="site-footer">
-        <div class="container footer-grid">
-            <div class="footer-col"><h3>Sobre MiTienda</h3><p>Comprometidos con la calidad y la satisfacción del cliente. Explorá nuestro catálogo y encontrá lo que buscás.</p></div>
-            <div class="footer-col"><h3>Navegación</h3><ul><li><a href="#hero">Inicio</a></li><li><a href="#productos">Productos</a></li><li><a href="#contacto">Contacto</a></li></ul></div>
-            <div class="footer-col"><h3>Seguinos!</h3><div class="social-icons"><a href="https://www.facebook.com/LeoDoerflinger" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/leo_doerflinger" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://x.com/leodoerflinger" aria-label="Twitter"><i class="fab fa-twitter"></i></a></div></div>
-        </div>
-        <div class="footer-bottom"><p>&copy; 2025 MiTienda. Todos los derechos reservados.</p></div>
-    </footer>
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container" role="alert" aria-live="polite"></div>
 
-    <script src="app.js"></script>
+  <!-- App Script -->
+  <script src="app.js"></script>
 </body>
 </html>
