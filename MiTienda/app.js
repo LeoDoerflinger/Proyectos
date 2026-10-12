@@ -923,15 +923,37 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") {
       document.querySelectorAll(".modal.visible").forEach(m => m.classList.remove("visible"));
       closeCart();
+      if (mobileMenu) mobileMenu.classList.remove("abierto");
       document.body.style.overflow = "";
     }
   });
 
   // Mobile menu events
-  if (hamburgerBtn) hamburgerBtn.addEventListener("click", () => mobileMenu.classList.add("abierto"));
-  if (cerrarMenuMovilBtn) cerrarMenuMovilBtn.addEventListener("click", () => mobileMenu.classList.remove("abierto"));
+  if (hamburgerBtn && mobileMenu) {
+    hamburgerBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("abierto");
+      document.body.style.overflow = "hidden";
+    });
+  }
+  if (cerrarMenuMovilBtn && mobileMenu) {
+    cerrarMenuMovilBtn.addEventListener("click", () => {
+      mobileMenu.classList.remove("abierto");
+      document.body.style.overflow = "";
+    });
+  }
+  if (mobileMenu) {
+    mobileMenu.addEventListener("click", (e) => {
+      if (e.target === mobileMenu) {
+        mobileMenu.classList.remove("abierto");
+        document.body.style.overflow = "";
+      }
+    });
+  }
   document.querySelectorAll(".mobile-menu a").forEach(link => {
-    link.addEventListener("click", () => mobileMenu.classList.remove("abierto"));
+    link.addEventListener("click", () => {
+      if (mobileMenu) mobileMenu.classList.remove("abierto");
+      document.body.style.overflow = "";
+    });
   });
 
   // --- 11. CONTACT FORM WITH WHATSAPP ---

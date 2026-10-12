@@ -82,16 +82,52 @@
       </div>
 
     </div>
-
-    <!-- Mobile Drawer Menu -->
-    <div class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú móvil">
-      <button class="cerrar-menu-movil" aria-label="Cerrar menú">&times;</button>
-      <a href="#hero">Inicio</a>
-      <a href="#productos">Productos</a>
-      <a href="#contacto">Contacto</a>
-      <a href="dashboard/index.html" style="color:var(--color-primary); font-weight:700;"><i class="fas fa-chart-line"></i> Dashboard CRM</a>
-    </div>
   </header>
+
+  <!-- Mobile Drawer Menu (Fuera del header para ocupar viewport completo sin superposición) -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación móvil">
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-header">
+        <a href="#" class="logo">
+          <div class="logo-icon"><i class="fas fa-bag-shopping"></i></div>
+          <h1>MiTienda<span>.</span></h1>
+        </a>
+        <button class="cerrar-menu-movil" aria-label="Cerrar menú">
+          <i class="fas fa-xmark"></i>
+        </button>
+      </div>
+
+      <nav class="mobile-menu-links">
+        <a href="#hero" class="mobile-nav-link">
+          <i class="fas fa-house"></i>
+          <span>Inicio</span>
+        </a>
+        <a href="#productos" class="mobile-nav-link">
+          <i class="fas fa-boxes-stacked"></i>
+          <span>Productos</span>
+        </a>
+        <a href="#contacto" class="mobile-nav-link">
+          <i class="fas fa-envelope"></i>
+          <span>Contacto</span>
+        </a>
+        <a href="dashboard/index.html" class="mobile-nav-link admin-pill">
+          <i class="fas fa-chart-line"></i>
+          <span>Dashboard CRM</span>
+          <span style="font-size:0.65rem; background:var(--color-primary); color:#fff; padding:0.15rem 0.45rem; border-radius:99px; margin-left:auto;">ADMIN</span>
+        </a>
+      </nav>
+
+      <div class="mobile-menu-footer">
+        <div style="font-size:0.8rem; color:var(--text-muted); text-align:center; margin-bottom:0.5rem;">
+          <i class="fas fa-shield-halved" style="color:var(--color-success); margin-right:4px;"></i> Compras 100% Protegidas
+        </div>
+        <a href="https://wa.me/5493512619874" target="_blank" rel="noopener noreferrer" class="cta-button" style="background:#25d366; width:100%; justify-content:center;">
+          <i class="fab fa-whatsapp"></i>
+          <span>Consultar por WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <main>
     <!-- ======================================================================
