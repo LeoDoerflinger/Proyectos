@@ -412,7 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
     carritoSidebar.innerHTML = `
       <div class="carrito-header">
         <h2><i class="fas fa-shopping-bag" style="color:var(--color-primary)"></i> Tu Carrito</h2>
-        <button class="cerrar-modal cerrar-carrito-btn" aria-label="Cerrar carrito">&times;</button>
+        <button class="cerrar-modal cerrar-carrito-btn" aria-label="Cerrar carrito"><i class="fas fa-xmark"></i></button>
       </div>
 
       <div class="free-shipping-ticker">
