@@ -1712,7 +1712,12 @@ a[href="#contacto"].cta-button-outline:active {
   /* Hero Section */
   .hero {
     min-height: auto;
-    padding: 3rem 0;
+    padding: 2.5rem 0;
+  }
+  .hero-overlay {
+    position: relative;
+    width: 100%;
+    padding: 0;
   }
   .hero-content {
     max-width: 100%;
