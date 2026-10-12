@@ -613,11 +613,46 @@ document.addEventListener("DOMContentLoaded", () => {
     if (currentUser && userLoginView && userDetailsForm) {
       userLoginView.classList.remove("hidden");
       document.getElementById("logged-in-user-name").textContent = currentUser.nombre;
-      ['nombre', 'email', 'telefono', 'direccion'].forEach(id => {
-        const el = document.getElementById(`checkout-${id}`);
-        if (el) el.value = currentUser[id] || '';
-      });
+      if (document.getElementById("checkout-nombre")) document.getElementById("checkout-nombre").value = currentUser.nombre || '';
+      if (document.getElementById("checkout-email")) document.getElementById("checkout-email").value = currentUser.email || '';
+      if (document.getElementById("checkout-codigo-pais")) document.getElementById("checkout-codigo-pais").value = currentUser.codigoPais || '+54';
+      if (document.getElementById("checkout-telefono-num")) document.getElementById("checkout-telefono-num").value = currentUser.telefonoNum || '';
+      if (document.getElementById("checkout-condicion-iva")) document.getElementById("checkout-condicion-iva").value = currentUser.condicionIva || 'Consumidor Final';
+      if (document.getElementById("checkout-doc-numero")) document.getElementById("checkout-doc-numero").value = currentUser.docNumero || '';
+      if (document.getElementById("checkout-razon-social")) document.getElementById("checkout-razon-social").value = currentUser.razonSocial || '';
+      if (document.getElementById("checkout-direccion")) document.getElementById("checkout-direccion").value = currentUser.direccion || '';
     }
+  }
+
+  // Toggle Razón Social según condición frente al IVA
+  const selectCondicionIva = document.getElementById("checkout-condicion-iva");
+  const razonSocialContainer = document.getElementById("checkout-razon-social-container");
+  if (selectCondicionIva && razonSocialContainer) {
+    selectCondicionIva.addEventListener("change", (e) => {
+      razonSocialContainer.style.display = e.target.value === "Responsable Inscripto" ? "block" : "none";
+    });
+  }
+
+  // Funciones de formateo y sanitización telefónica para WhatsApp
+  function formatWhatsAppPhone(codigoPais, numeroCelular) {
+    let cod = (codigoPais || "+54").replace(/\D/g, "");
+    let num = (numeroCelular || "").replace(/\D/g, "");
+    if (num.startsWith("0")) num = num.substring(1);
+
+    if (cod === "54" || cod === "") {
+      if (num.startsWith("54")) num = num.substring(2);
+      if (num.startsWith("0")) num = num.substring(1);
+      if (!num.startsWith("9")) num = "9" + num;
+      return "54" + num;
+    }
+    return cod + num;
+  }
+
+  function formatDisplayPhone(codigoPais, numeroCelular) {
+    let cod = codigoPais || "+54";
+    let num = (numeroCelular || "").replace(/\D/g, "");
+    if (num.startsWith("0")) num = num.substring(1);
+    return `${cod} ${num}`;
   }
 
   // Delivery options radio
@@ -660,9 +695,26 @@ document.addEventListener("DOMContentLoaded", () => {
     continuarPagoBtn.addEventListener("click", () => {
       const nombre = document.getElementById("checkout-nombre")?.value.trim();
       const email = document.getElementById("checkout-email")?.value.trim();
+      const codPais = document.getElementById("checkout-codigo-pais")?.value.trim() || "+54";
+      const telNum = document.getElementById("checkout-telefono-num")?.value.trim() || "";
+      const condicionIva = document.getElementById("checkout-condicion-iva")?.value || "Consumidor Final";
+      const docNumero = document.getElementById("checkout-doc-numero")?.value.trim() || "";
+      const razonSocial = document.getElementById("checkout-razon-social")?.value.trim() || "";
 
       if (!nombre || !email) {
         alert("Por favor completá tu nombre y correo electrónico para continuar.");
+        return;
+      }
+
+      if (!telNum) {
+        alert("Por favor completá tu número de celular (sin el 0, ej: 3512619874) para poder coordinar tu pedido.");
+        document.getElementById("checkout-telefono-num")?.focus();
+        return;
+      }
+
+      if (condicionIva === "Responsable Inscripto" && !razonSocial) {
+        alert("Para Factura A como Responsable Inscripto es obligatoria la Razón Social.");
+        document.getElementById("checkout-razon-social")?.focus();
         return;
       }
 
@@ -670,7 +722,11 @@ document.addEventListener("DOMContentLoaded", () => {
         currentUser = {
           nombre,
           email,
-          telefono: document.getElementById("checkout-telefono")?.value.trim() || '',
+          codigoPais: codPais,
+          telefonoNum: telNum,
+          condicionIva,
+          docNumero,
+          razonSocial,
           direccion: document.getElementById("checkout-direccion")?.value.trim() || ''
         };
         localStorage.setItem("mt_currentUser", JSON.stringify(currentUser));
@@ -759,12 +815,20 @@ document.addEventListener("DOMContentLoaded", () => {
         // Persistir la orden en mt_orders para el Dashboard CRM
         const nombreCliente = document.getElementById("checkout-nombre")?.value.trim() || "Cliente";
         const emailCliente = document.getElementById("checkout-email")?.value.trim() || "cliente@ejemplo.com";
-        const telefonoCliente = document.getElementById("checkout-telefono")?.value.trim() || "+54 9 351 000-0000";
+        const codPais = document.getElementById("checkout-codigo-pais")?.value.trim() || "+54";
+        const telNum = document.getElementById("checkout-telefono-num")?.value.trim() || "3512619874";
+        const condicionIva = document.getElementById("checkout-condicion-iva")?.value || "Consumidor Final";
+        const docNumero = document.getElementById("checkout-doc-numero")?.value.trim() || "38291044";
+        const razonSocial = document.getElementById("checkout-razon-social")?.value.trim() || "";
         const direccionCliente = document.getElementById("checkout-direccion")?.value.trim() || "Av. Colón 1234, Córdoba";
         const tipoEntrega = document.querySelector('input[name="delivery"]:checked')?.value || 'shipping';
         const cardNumRaw = document.getElementById("numero-tarjeta")?.value || "";
         const last4 = cardNumRaw.replace(/\s/g, '').slice(-4) || "8421";
         const cardHolder = document.getElementById("nombre-tarjeta")?.value || nombreCliente;
+
+        const telefonoDisplay = formatDisplayPhone(codPais, telNum);
+        const telefonoWhatsApp = formatWhatsAppPhone(codPais, telNum);
+        const tipoFacturaSugerida = condicionIva === "Responsable Inscripto" ? "Factura A" : "Factura B";
 
         const subtotalNum = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
         const descNum = subtotalNum * descuentoAplicado;
@@ -776,7 +840,14 @@ document.addEventListener("DOMContentLoaded", () => {
           cliente: {
             nombre: nombreCliente,
             email: emailCliente,
-            telefono: telefonoCliente,
+            telefono: telefonoDisplay,
+            telefonoWhatsApp: telefonoWhatsApp,
+            codigoPais: codPais,
+            telefonoNum: telNum,
+            condicionIva: condicionIva,
+            docNumero: docNumero,
+            razonSocial: razonSocial,
+            tipoFacturaSugerida: tipoFacturaSugerida,
             direccion: direccionCliente
           },
           entrega: {
@@ -821,8 +892,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (btnNotificarWA) {
           const itemsSummary = carrito.map(i => `• ${i.cantidad}x ${i.nombre}`).join('%0A');
           const totalVal = `$${totalNum.toFixed(2)}`;
-          const waMsg = `¡Hola Leo! Acabo de realizar una compra en MiTienda.%0A%0A*Pedido:* ${orderId}%0A*Cliente:* ${nombreCliente}%0A*Items:*%0A${itemsSummary}%0A%0A*Total:* ${totalVal}`;
-          btnNotificarWA.href = `https://wa.me/543512619874?text=${waMsg}`;
+          const waMsg = `¡Hola! Acabo de realizar una compra en MiTienda.%0A%0A*Pedido:* ${orderId}%0A*Cliente:* ${nombreCliente}%0A*Doc/CUIT:* ${docNumero}%0A*Comprobante:* ${tipoFacturaSugerida} (${condicionIva})%0A*Items:*%0A${itemsSummary}%0A%0A*Total:* ${totalVal}`;
+          btnNotificarWA.href = `https://wa.me/5493512619874?text=${waMsg}`;
         }
 
         // Empty cart

@@ -6,7 +6,7 @@
   <title>MiTienda — Panel Admin CRM & Órdenes en Tiempo Real</title>
 
   <!-- SEO & Metadatos -->
-  <meta name="description" content="Dashboard Ejecutivo y CRM de MiTienda. Visualización de ventas en vivo, datos de pago, logística de envíos y análisis de recurrencia de clientes." />
+  <meta name="description" content="Dashboard Ejecutivo y CRM de MiTienda. Monitoreo de ventas en vivo, facturación A/B/C, rótulos de envío MeLi, logística y análisis gráfico de clientes." />
   <meta name="author" content="Leopoldo Doerflinger" />
   <meta name="theme-color" content="#4f46e5" />
 
@@ -55,11 +55,11 @@
             <span class="count-badge" id="orders-count-badge">0</span>
           </a>
 
-          <!-- Pestaña Directorio CRM Clientes -->
+          <!-- Pestaña Directorio & Gráficos CRM Clientes -->
           <a href="#" class="nav-link" id="nav-crm-link">
             <div class="nav-link-content">
-              <i class="fas fa-users-viewfinder"></i>
-              <span>Directorio CRM</span>
+              <i class="fas fa-chart-pie"></i>
+              <span>Gráficos & CRM</span>
             </div>
             <span class="count-badge" id="customers-count-badge">0</span>
           </a>
@@ -188,7 +188,7 @@
               <div class="panel-actions-group">
                 <div class="search-input-wrap">
                   <i class="fas fa-magnifying-glass"></i>
-                  <input type="text" id="order-search-input" placeholder="Buscar por ID, cliente, email, ciudad..." autocomplete="off" />
+                  <input type="text" id="order-search-input" placeholder="Buscar por ID, cliente, ciudad..." autocomplete="off" />
                 </div>
 
                 <select id="order-status-filter" class="filter-select" aria-label="Filtrar por estado">
@@ -213,19 +213,18 @@
               </div>
             </div>
 
-            <!-- Tabla de Datos -->
+            <!-- Tabla de Datos Compacta y Proporcional -->
             <div class="table-responsive-wrapper">
               <table class="admin-data-table">
                 <thead>
                   <tr>
-                    <th>Orden</th>
-                    <th>Fecha & Hora</th>
+                    <th style="width: 140px;">Orden / Fecha</th>
                     <th>Cliente CRM</th>
                     <th>Logística & Destino</th>
-                    <th>Pago & Medio</th>
-                    <th>Total</th>
-                    <th>Estado</th>
-                    <th style="text-align: right;">Acciones</th>
+                    <th>Medio de Pago</th>
+                    <th style="width: 110px;">Total</th>
+                    <th style="width: 130px;">Estado</th>
+                    <th style="width: 100px; text-align: right;">Acciones</th>
                   </tr>
                 </thead>
                 <tbody id="orders-table-body">
@@ -236,13 +235,81 @@
           </div>
         </section>
 
-        <!-- C. SECCIÓN CRM DE CLIENTES 360° -->
-        <section class="crm-view-section" id="crm-view-section" aria-label="Directorio consolidado de clientes">
+        <!-- C. SECCIÓN CRM DE CLIENTES 360° & ANALÍTICAS GRÁFICAS -->
+        <section class="crm-view-section" id="crm-view-section" aria-label="Centro de analíticas y directorio consolidado">
+          
+          <!-- Bloque de Gráficos Visuales Interactivos -->
+          <div class="crm-analytics-container">
+            <div class="crm-charts-header">
+              <h2><i class="fas fa-chart-column" style="color:var(--color-primary);"></i> Métricas & Analíticas Visuales</h2>
+              <p>Comportamiento de ventas, ciclo de compras, retención de clientes y logística</p>
+            </div>
+
+            <div class="crm-charts-grid">
+              <!-- Gráfico 1: Evolución de Ventas -->
+              <div class="chart-card">
+                <div class="chart-card-header">
+                  <div>
+                    <h3>Ventas & Facturación Reciente</h3>
+                    <span>Evolución monetaria por orden</span>
+                  </div>
+                  <span class="chart-badge"><i class="fas fa-arrow-trend-up"></i> Ventas</span>
+                </div>
+                <div class="chart-card-body" id="chart-sales-container">
+                  <!-- Renderizado SVG interactivo -->
+                </div>
+              </div>
+
+              <!-- Gráfico 2: Estados Operativos de Pedidos -->
+              <div class="chart-card">
+                <div class="chart-card-header">
+                  <div>
+                    <h3>Pipeline de Pedidos</h3>
+                    <span>Distribución por estado</span>
+                  </div>
+                  <span class="chart-badge"><i class="fas fa-truck-fast"></i> Logística</span>
+                </div>
+                <div class="chart-card-body" id="chart-status-container">
+                  <!-- Renderizado SVG Donut -->
+                </div>
+              </div>
+
+              <!-- Gráfico 3: Segmentación de Clientes CRM -->
+              <div class="chart-card">
+                <div class="chart-card-header">
+                  <div>
+                    <h3>Segmentación de Clientes</h3>
+                    <span>VIP, Recurrentes y Nuevos</span>
+                  </div>
+                  <span class="chart-badge"><i class="fas fa-user-check"></i> Fidelización</span>
+                </div>
+                <div class="chart-card-body" id="chart-customers-container">
+                  <!-- Renderizado SVG Segmentos -->
+                </div>
+              </div>
+
+              <!-- Gráfico 4: Canales de Despacho y Facturación -->
+              <div class="chart-card">
+                <div class="chart-card-header">
+                  <div>
+                    <h3>Modalidad de Entrega & Fiscal</h3>
+                    <span>Envío vs Retiro / Facturas</span>
+                  </div>
+                  <span class="chart-badge"><i class="fas fa-boxes-packing"></i> Despacho</span>
+                </div>
+                <div class="chart-card-body" id="chart-channels-container">
+                  <!-- Renderizado SVG Barras Comparativas -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Directorio de Fichas de Clientes -->
           <div class="section-panel" style="padding-bottom: 1.5rem;">
             <div class="panel-header-row">
               <div class="panel-title-group">
-                <h2><i class="fas fa-users-gear" style="color:var(--color-primary);"></i> Directorio Consolidado CRM</h2>
-                <p>Gestión de clientes, análisis de valor de vida (LTV), tasa de repetición y contacto directo</p>
+                <h2><i class="fas fa-address-book" style="color:var(--color-primary);"></i> Directorio Consolidado de Clientes</h2>
+                <p>Gestión de clientes, análisis de valor de vida (LTV), condición fiscal e historial completo</p>
               </div>
             </div>
 
@@ -292,7 +359,24 @@
           </div>
         </div>
 
-        <!-- Bloque 2: Ficha del Cliente (CRM) -->
+        <!-- Bloque 2: Emisión de Comprobante Fiscal (Factura A, B, C o Remito) -->
+        <div class="detail-card-box" style="border-left: 3px solid var(--color-primary);">
+          <h4><i class="fas fa-file-invoice-dollar" style="color:var(--color-primary);"></i> Tipo de Comprobante para Impresión</h4>
+          <div class="detail-field">
+            <label for="detail-invoice-type-select">Elegir Formato de Impresión Oficial:</label>
+            <select id="detail-invoice-type-select" class="filter-select" style="width: 100%; margin-top: 0.35rem; font-weight:700;">
+              <option value="remito">Remito de Entrega (Hoja de Ruta / No Fiscal)</option>
+              <option value="factura-b">Factura B — Consumidor Final / Monotributo</option>
+              <option value="factura-a">Factura A — Responsable Inscripto (IVA 21% discriminado)</option>
+              <option value="factura-c">Factura C — Régimen Simplificado</option>
+            </select>
+            <small style="font-size:0.72rem; color:var(--text-muted); display:block; margin-top:4px;">
+              El tipo se preselecciona según la condición informada por el cliente al momento de comprar.
+            </small>
+          </div>
+        </div>
+
+        <!-- Bloque 3: Ficha del Cliente (CRM & Datos Fiscales) -->
         <div class="detail-card-box">
           <div style="display:flex; justify-content:space-between; align-items:center;">
             <h4><i class="fas fa-user-tag" style="color:var(--color-primary);"></i> Información del Cliente</h4>
@@ -305,7 +389,7 @@
               <span id="detail-client-name">--</span>
             </div>
             <div class="detail-field">
-              <label>Teléfono</label>
+              <label>Teléfono Móvil</label>
               <span id="detail-client-phone">--</span>
             </div>
           </div>
@@ -313,6 +397,22 @@
           <div class="detail-field">
             <label>Correo Electrónico</label>
             <span id="detail-client-email">--</span>
+          </div>
+
+          <!-- Datos Fiscales del Cliente -->
+          <div class="detail-grid-row" style="background:var(--bg-card); padding:0.65rem; border-radius:var(--radius-xs); border:1px solid var(--border-color);">
+            <div class="detail-field">
+              <label>Condición Fiscal</label>
+              <span id="detail-client-fiscal" style="color:var(--color-primary); font-weight:700;">Consumidor Final</span>
+            </div>
+            <div class="detail-field">
+              <label>DNI / CUIT</label>
+              <span id="detail-client-cuit" style="font-family:var(--font-mono);">--</span>
+            </div>
+            <div class="detail-field" id="detail-client-company-row" style="grid-column: 1 / -1; display:none;">
+              <label>Razón Social (Factura A)</label>
+              <span id="detail-client-company" style="font-weight:700;">--</span>
+            </div>
           </div>
 
           <div class="detail-grid-row" style="background:var(--bg-card); padding:0.6rem; border-radius:var(--radius-xs);">
@@ -327,7 +427,7 @@
           </div>
         </div>
 
-        <!-- Bloque 3: Datos de Pago y Facturación -->
+        <!-- Bloque 4: Datos de Pago y Facturación -->
         <div class="detail-card-box">
           <h4><i class="fas fa-credit-card" style="color:var(--color-primary);"></i> Datos de Pago</h4>
           <div class="detail-grid-row">
@@ -358,7 +458,7 @@
           </div>
         </div>
 
-        <!-- Bloque 4: Logística y Envío -->
+        <!-- Bloque 5: Logística y Envío -->
         <div class="detail-card-box">
           <h4><i class="fas fa-location-dot" style="color:var(--color-primary);"></i> Logística de Entrega</h4>
           <div class="detail-field">
@@ -375,11 +475,11 @@
           </div>
         </div>
 
-        <!-- Bloque 5: Desglose de Productos Comprados -->
+        <!-- Bloque 6: Desglose de Productos Comprados con Íconos Seguros -->
         <div class="detail-card-box">
           <h4><i class="fas fa-bag-shopping" style="color:var(--color-primary);"></i> Artículos del Pedido</h4>
           <div id="detail-items-list" class="order-items-list">
-            <!-- Listado dinámico -->
+            <!-- Listado dinámico con íconos vectoriales infalibles -->
           </div>
 
           <div class="order-totals-summary">
@@ -404,17 +504,29 @@
 
       </div>
 
-      <!-- Drawer Footer con Acciones -->
+      <!-- Drawer Footer con Acciones Profesionales -->
       <div class="slideover-footer">
-        <button id="btn-print-receipt" class="btn-print-receipt" title="Generar versión imprimible de remito o comprobante">
-          <i class="fas fa-print"></i>
-          <span>Imprimir Remito</span>
-        </button>
+        <div style="display:flex; flex-direction:column; gap:0.5rem; width:100%;">
+          <div style="display:flex; gap:0.5rem; width:100%;">
+            <!-- Imprimir Comprobante (Factura o Remito) en Ventana Limpia -->
+            <button id="btn-print-receipt" class="btn-print-receipt" style="flex:1;" title="Abrir comprobante limpio para impresión A4">
+              <i class="fas fa-print"></i>
+              <span>Imprimir Comprobante</span>
+            </button>
 
-        <a href="#" id="btn-contact-customer-wa" target="_blank" rel="noopener noreferrer" class="btn-contact-customer-wa" title="Iniciar conversación de WhatsApp con el comprador">
-          <i class="fab fa-whatsapp"></i>
-          <span>Contactar por WhatsApp</span>
-        </a>
+            <!-- Imprimir Rótulo de Envío MeLi (10x15cm) -->
+            <button id="btn-print-shipping-label" class="btn-print-receipt btn-label-meli" style="flex:1;" title="Imprimir rótulo de paquete estilo MercadoLibre">
+              <i class="fas fa-barcode"></i>
+              <span>Rótulo Envío MeLi</span>
+            </button>
+          </div>
+
+          <!-- Contactar por WhatsApp con número sanitizado sin error -->
+          <a href="#" id="btn-contact-customer-wa" target="_blank" rel="noopener noreferrer" class="btn-contact-customer-wa" style="width:100%; text-align:center; justify-content:center;" title="Iniciar conversación de WhatsApp con el comprador">
+            <i class="fab fa-whatsapp"></i>
+            <span>Contactar al Comprador por WhatsApp</span>
+          </a>
+        </div>
       </div>
 
     </aside>

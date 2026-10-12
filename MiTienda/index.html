@@ -288,7 +288,49 @@
             <div id="user-details-form" class="checkout-input-group">
               <input type="text" id="checkout-nombre" class="checkout-input" placeholder="Nombre y Apellido *" required />
               <input type="email" id="checkout-email" class="checkout-input" placeholder="Correo Electrónico *" required />
-              <input type="tel" id="checkout-telefono" class="checkout-input" placeholder="Teléfono / WhatsApp (Opcional)" />
+              
+              <!-- Teléfono Móvil con Código de País y Celular sin 0 -->
+              <div style="display:flex; gap:0.5rem; align-items:stretch;">
+                <div style="width:115px; flex-shrink:0;">
+                  <select id="checkout-codigo-pais" class="checkout-input" style="height:100%; padding:0.6rem 0.4rem; font-size:0.84rem; cursor:pointer;" aria-label="Código de País">
+                    <option value="+54" selected>🇦🇷 +54</option>
+                    <option value="+56">🇨🇱 +56</option>
+                    <option value="+55">🇧🇷 +55</option>
+                    <option value="+598">🇺🇾 +598</option>
+                    <option value="+595">🇵🇾 +595</option>
+                    <option value="+591">🇧🇴 +591</option>
+                    <option value="+1">🇺🇸 +1</option>
+                    <option value="+34">🇪🇸 +34</option>
+                  </select>
+                </div>
+                <div style="flex:1;">
+                  <input type="tel" id="checkout-telefono-num" class="checkout-input" placeholder="Celular sin 0 (ej: 3512619874)" required />
+                </div>
+              </div>
+              <small style="font-size:0.75rem; color:var(--text-muted); display:flex; align-items:center; gap:0.4rem; margin-top:-0.2rem; margin-bottom:0.25rem;">
+                <i class="fab fa-whatsapp" style="color:#25d366; font-size:0.9rem;"></i>
+                <span>Ingresá tu código de área sin el 0 (ej: <strong>0351 = 351</strong>) para recibir avisos de tu compra.</span>
+              </small>
+
+              <!-- Condición Fiscal y Datos de Facturación -->
+              <div style="margin-top:0.4rem; border-top:1px dashed var(--border-color); padding-top:0.65rem;">
+                <label style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-muted); display:block; margin-bottom:0.35rem;">
+                  <i class="fas fa-file-invoice" style="color:var(--color-primary); margin-right:4px;"></i> Condición Fiscal & Facturación
+                </label>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.5rem; margin-bottom:0.5rem;">
+                  <select id="checkout-condicion-iva" class="checkout-input" style="font-size:0.82rem; padding:0.55rem; cursor:pointer;" aria-label="Condición frente al IVA">
+                    <option value="Consumidor Final" selected>Consumidor Final (Factura B)</option>
+                    <option value="Responsable Inscripto">Resp. Inscripto (Factura A)</option>
+                    <option value="Monotributo">Monotributo (Factura B)</option>
+                    <option value="Exento">Exento (Factura B)</option>
+                  </select>
+                  <input type="text" id="checkout-doc-numero" class="checkout-input" placeholder="DNI o CUIT (sin guiones) *" maxlength="13" required />
+                </div>
+                <div id="checkout-razon-social-container" style="display:none; margin-bottom:0.5rem;">
+                  <input type="text" id="checkout-razon-social" class="checkout-input" placeholder="Razón Social / Empresa (para Factura A) *" />
+                </div>
+              </div>
+
               <div style="display:flex; align-items:center; gap:0.6rem; margin-top:0.3rem; font-size:0.85rem; color:var(--text-secondary);">
                 <input type="checkbox" id="save-user-data" checked />
                 <label for="save-user-data">Recordar mis datos para futuras compras</label>
