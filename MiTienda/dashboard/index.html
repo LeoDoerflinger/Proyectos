@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiTienda — Panel Admin CRM & Órdenes en Tiempo Real</title>
+
+  <!-- SEO & Metadatos -->
+  <meta name="description" content="Dashboard Ejecutivo y CRM de MiTienda. Visualización de ventas en vivo, datos de pago, logística de envíos y análisis de recurrencia de clientes." />
+  <meta name="author" content="Leopoldo Doerflinger" />
+  <meta name="theme-color" content="#4f46e5" />
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stylesheet del Dashboard -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-theme="dark">
+
+  <!-- ======================================================================
+       ESTRUCTURA PRINCIPAL DEL DASHBOARD
+       ====================================================================== -->
+  <div class="dashboard-layout">
+
+    <!-- 1. SIDEBAR DE NAVEGACIÓN ADMINISTRATIVA -->
+    <aside class="admin-sidebar" id="admin-sidebar" aria-label="Navegación del panel de administración">
+      <div>
+        <div class="sidebar-header">
+          <div class="brand-badge">
+            <div class="brand-icon">
+              <i class="fas fa-bag-shopping"></i>
+            </div>
+            <div class="brand-name">
+              MiTienda
+              <span>Admin & CRM</span>
+            </div>
+          </div>
+        </div>
+
+        <nav class="sidebar-menu">
+          <div class="menu-label">Panel Principal</div>
+
+          <!-- Pestaña Órdenes en Tiempo Real -->
+          <a href="#" class="nav-link active" id="nav-orders-link">
+            <div class="nav-link-content">
+              <i class="fas fa-receipt"></i>
+              <span>Órdenes en Vivo</span>
+            </div>
+            <span class="count-badge" id="orders-count-badge">0</span>
+          </a>
+
+          <!-- Pestaña Directorio CRM Clientes -->
+          <a href="#" class="nav-link" id="nav-crm-link">
+            <div class="nav-link-content">
+              <i class="fas fa-users-viewfinder"></i>
+              <span>Directorio CRM</span>
+            </div>
+            <span class="count-badge" id="customers-count-badge">0</span>
+          </a>
+
+          <div class="menu-label" style="margin-top: 1rem;">Navegación Externa</div>
+
+          <!-- Enlace directo a la tienda pública -->
+          <a href="../index.html" target="_blank" rel="noopener noreferrer" class="nav-link">
+            <div class="nav-link-content">
+              <i class="fas fa-store"></i>
+              <span>Tienda Online</span>
+            </div>
+            <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.72rem; opacity: 0.7;"></i>
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <a href="../index.html" class="btn-storefront-return">
+          <i class="fas fa-arrow-left"></i>
+          <span>Volver al Catálogo</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- 2. ÁREA DE TRABAJO PRINCIPAL (MAIN VIEWPORT) -->
+    <main class="dashboard-main-area">
+
+      <!-- TOPBAR SUPERIOR -->
+      <header class="dashboard-topbar">
+        <div class="topbar-left">
+          <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Alternar barra lateral">
+            <i class="fas fa-bars"></i>
+          </button>
+
+          <!-- Indicador Pulsante de Sincronización en Vivo -->
+          <div class="live-sync-indicator" title="Escuchando eventos de compras cross-tab mediante BroadcastChannel y Storage">
+            <span class="live-dot"></span>
+            <span>Live Sync Activo</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <!-- Botón de Simulación de Compra en Tiempo Real -->
+          <button id="btn-simulate-order" class="btn-simulate-order" title="Genera un pedido aleatorio para comprobar la reactividad">
+            <i class="fas fa-bolt"></i>
+            <span>Simular Compra</span>
+          </button>
+
+          <!-- Toggle de Modo Oscuro / Claro -->
+          <button id="theme-toggle" class="icon-control-btn" aria-label="Cambiar modo oscuro o claro" title="Cambiar tema">
+            <i class="fas fa-sun"></i>
+          </button>
+
+          <!-- Acceso rápido al catálogo -->
+          <a href="../index.html" class="icon-control-btn" title="Ir a la Tienda de MiTienda" aria-label="Catálogo">
+            <i class="fas fa-store"></i>
+          </a>
+        </div>
+      </header>
+
+      <!-- CONTENEDOR PRINCIPAL DE CONTENIDO -->
+      <div class="dashboard-content-container">
+
+        <!-- A. TIRA DE TARJETAS KPI EJECUTIVAS -->
+        <section class="kpi-metrics-grid" aria-label="Métricas clave de rendimiento">
+          <!-- KPI 1: Ingresos Totales -->
+          <article class="kpi-card">
+            <div class="kpi-info-col">
+              <span class="kpi-label">Ingresos Totales</span>
+              <span class="kpi-value" id="kpi-total-revenue">$0.00</span>
+              <span class="kpi-subtext positive"><i class="fas fa-arrow-trend-up"></i> Ventas acumuladas</span>
+            </div>
+            <div class="kpi-icon-wrap indigo">
+              <i class="fas fa-sack-dollar"></i>
+            </div>
+          </article>
+
+          <!-- KPI 2: Pedidos Registrados -->
+          <article class="kpi-card">
+            <div class="kpi-info-col">
+              <span class="kpi-label">Órdenes Totales</span>
+              <span class="kpi-value" id="kpi-total-orders">0</span>
+              <span class="kpi-subtext highlight"><i class="fas fa-calendar-day"></i> Hoy: <strong id="kpi-today-orders" style="margin-left:3px;">0</strong></span>
+            </div>
+            <div class="kpi-icon-wrap emerald">
+              <i class="fas fa-receipt"></i>
+            </div>
+          </article>
+
+          <!-- KPI 3: Clientes Registrados & Recurrencia -->
+          <article class="kpi-card">
+            <div class="kpi-info-col">
+              <span class="kpi-label">Clientes CRM</span>
+              <span class="kpi-value" id="kpi-total-customers">0</span>
+              <span class="kpi-subtext positive"><i class="fas fa-arrows-rotate"></i> Recurrencia: <strong id="kpi-recurrence-rate" style="margin-left:3px;">0%</strong></span>
+            </div>
+            <div class="kpi-icon-wrap amber">
+              <i class="fas fa-users"></i>
+            </div>
+          </article>
+
+          <!-- KPI 4: Ticket Promedio -->
+          <article class="kpi-card">
+            <div class="kpi-info-col">
+              <span class="kpi-label">Ticket Promedio</span>
+              <span class="kpi-value" id="kpi-avg-ticket">$0.00</span>
+              <span class="kpi-subtext"><i class="fas fa-chart-pie"></i> Promedio por orden</span>
+            </div>
+            <div class="kpi-icon-wrap purple">
+              <i class="fas fa-chart-line"></i>
+            </div>
+          </article>
+        </section>
+
+        <!-- B. SECCIÓN DE ÓRDENES EN TIEMPO REAL -->
+        <section class="orders-view-section" id="orders-view-section" aria-label="Listado de órdenes en tiempo real">
+          <div class="section-panel">
+            <div class="panel-header-row">
+              <div class="panel-title-group">
+                <h2><i class="fas fa-boxes-stacked" style="color:var(--color-primary);"></i> Transacciones en Tiempo Real</h2>
+                <p>Monitoreo en vivo de pagos, logística de despachos y estado del ciclo de compra</p>
+              </div>
+
+              <!-- Filtros, Buscador y Exportador -->
+              <div class="panel-actions-group">
+                <div class="search-input-wrap">
+                  <i class="fas fa-magnifying-glass"></i>
+                  <input type="text" id="order-search-input" placeholder="Buscar por ID, cliente, email, ciudad..." autocomplete="off" />
+                </div>
+
+                <select id="order-status-filter" class="filter-select" aria-label="Filtrar por estado">
+                  <option value="all">Todos los estados</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="En Preparacion">En Preparación</option>
+                  <option value="Enviado">Enviado</option>
+                  <option value="Entregado">Entregado</option>
+                  <option value="Cancelado">Cancelado</option>
+                </select>
+
+                <select id="order-delivery-filter" class="filter-select" aria-label="Filtrar por logística">
+                  <option value="all">Todas las entregas</option>
+                  <option value="shipping">Envío a Domicilio</option>
+                  <option value="pickup">Retiro en Sucursal</option>
+                </select>
+
+                <button id="btn-export-csv" class="btn-export-csv" title="Descargar órdenes en formato CSV compatible con Excel">
+                  <i class="fas fa-file-arrow-down"></i>
+                  <span>Exportar CSV</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Tabla de Datos -->
+            <div class="table-responsive-wrapper">
+              <table class="admin-data-table">
+                <thead>
+                  <tr>
+                    <th>Orden</th>
+                    <th>Fecha & Hora</th>
+                    <th>Cliente CRM</th>
+                    <th>Logística & Destino</th>
+                    <th>Pago & Medio</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                    <th style="text-align: right;">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="orders-table-body">
+                  <!-- Se inyecta dinámicamente desde script.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- C. SECCIÓN CRM DE CLIENTES 360° -->
+        <section class="crm-view-section" id="crm-view-section" aria-label="Directorio consolidado de clientes">
+          <div class="section-panel" style="padding-bottom: 1.5rem;">
+            <div class="panel-header-row">
+              <div class="panel-title-group">
+                <h2><i class="fas fa-users-gear" style="color:var(--color-primary);"></i> Directorio Consolidado CRM</h2>
+                <p>Gestión de clientes, análisis de valor de vida (LTV), tasa de repetición y contacto directo</p>
+              </div>
+            </div>
+
+            <div class="customer-cards-grid" id="customer-cards-grid" style="padding: 1.5rem;">
+              <!-- Se inyecta dinámicamente desde script.js -->
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ======================================================================
+       3. SLIDE-OVER DRAWER: DETALLE COMPLETO DE COMPRA Y LOGÍSTICA
+       ====================================================================== -->
+  <div class="slideover-backdrop" id="slideover-backdrop" aria-hidden="true">
+    <aside class="slideover-panel" id="slideover-panel" role="dialog" aria-modal="true" aria-label="Detalle de orden">
+      
+      <!-- Drawer Header -->
+      <div class="slideover-header">
+        <div>
+          <h3 id="detail-order-id">MT-000000</h3>
+          <span id="detail-order-date">--</span>
+        </div>
+        <button id="btn-close-slideover" class="btn-close-slideover" aria-label="Cerrar panel de detalles">
+          <i class="fas fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Drawer Body con Desglose -->
+      <div class="slideover-body">
+        
+        <!-- Bloque 1: Estado del Pedido y Ciclo de Vida -->
+        <div class="detail-card-box">
+          <h4><i class="fas fa-truck-ramp-box" style="color:var(--color-primary);"></i> Estado del Pedido</h4>
+          <div class="detail-field">
+            <label for="detail-order-status-select">Actualizar Estado Operativo:</label>
+            <select id="detail-order-status-select" class="filter-select" style="width: 100%; margin-top: 0.35rem;">
+              <option value="Pendiente">Pendiente</option>
+              <option value="En Preparacion">En Preparación</option>
+              <option value="Enviado">Enviado</option>
+              <option value="Entregado">Entregado</option>
+              <option value="Cancelado">Cancelado</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Bloque 2: Ficha del Cliente (CRM) -->
+        <div class="detail-card-box">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h4><i class="fas fa-user-tag" style="color:var(--color-primary);"></i> Información del Cliente</h4>
+            <span id="detail-client-badge" class="customer-badge nuevo">NUEVO</span>
+          </div>
+
+          <div class="detail-grid-row">
+            <div class="detail-field">
+              <label>Nombre y Apellido</label>
+              <span id="detail-client-name">--</span>
+            </div>
+            <div class="detail-field">
+              <label>Teléfono</label>
+              <span id="detail-client-phone">--</span>
+            </div>
+          </div>
+
+          <div class="detail-field">
+            <label>Correo Electrónico</label>
+            <span id="detail-client-email">--</span>
+          </div>
+
+          <div class="detail-grid-row" style="background:var(--bg-card); padding:0.6rem; border-radius:var(--radius-xs);">
+            <div class="detail-field">
+              <label>Compras Totales</label>
+              <span id="detail-client-orders-count">1 pedido</span>
+            </div>
+            <div class="detail-field">
+              <label>LTV (Gasto Acumulado)</label>
+              <span id="detail-client-ltv" style="font-family:var(--font-mono); color:var(--color-primary); font-weight:800;">$0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bloque 3: Datos de Pago y Facturación -->
+        <div class="detail-card-box">
+          <h4><i class="fas fa-credit-card" style="color:var(--color-primary);"></i> Datos de Pago</h4>
+          <div class="detail-grid-row">
+            <div class="detail-field">
+              <label>Método</label>
+              <span id="detail-payment-method">Tarjeta</span>
+            </div>
+            <div class="detail-field">
+              <label>Marca & Terminación</label>
+              <span id="detail-payment-card">Visa •••• 0000</span>
+            </div>
+          </div>
+
+          <div class="detail-grid-row">
+            <div class="detail-field">
+              <label>Titular Registrado</label>
+              <span id="detail-payment-holder">--</span>
+            </div>
+            <div class="detail-field">
+              <label>Plan de Cuotas</label>
+              <span id="detail-payment-installments">1 cuota</span>
+            </div>
+          </div>
+
+          <div class="detail-field">
+            <label>Estado de la Transacción</label>
+            <span id="detail-payment-status" style="color:var(--color-success); font-weight:700;"><i class="fas fa-circle-check"></i> Aprobado</span>
+          </div>
+        </div>
+
+        <!-- Bloque 4: Logística y Envío -->
+        <div class="detail-card-box">
+          <h4><i class="fas fa-location-dot" style="color:var(--color-primary);"></i> Logística de Entrega</h4>
+          <div class="detail-field">
+            <label>Modalidad de Envío</label>
+            <span id="detail-delivery-type">Envío a Domicilio</span>
+          </div>
+          <div class="detail-field">
+            <label>Dirección / Destino</label>
+            <span id="detail-delivery-address">--</span>
+          </div>
+          <div class="detail-field">
+            <label>Código de Seguimiento Logístico</label>
+            <span id="detail-delivery-tracking" style="font-family:var(--font-mono); color:var(--text-secondary);">--</span>
+          </div>
+        </div>
+
+        <!-- Bloque 5: Desglose de Productos Comprados -->
+        <div class="detail-card-box">
+          <h4><i class="fas fa-bag-shopping" style="color:var(--color-primary);"></i> Artículos del Pedido</h4>
+          <div id="detail-items-list" class="order-items-list">
+            <!-- Listado dinámico -->
+          </div>
+
+          <div class="order-totals-summary">
+            <div class="total-line">
+              <span>Subtotal:</span>
+              <span id="detail-subtotal">$0.00</span>
+            </div>
+            <div class="total-line">
+              <span>Descuento aplicado:</span>
+              <span id="detail-discount" style="color:var(--color-success);">-$0.00</span>
+            </div>
+            <div class="total-line">
+              <span>Costo de envío:</span>
+              <span id="detail-shipping-cost">$0.00</span>
+            </div>
+            <div class="total-line final">
+              <span>Total Abonado:</span>
+              <span id="detail-total-amount">$0.00</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Drawer Footer con Acciones -->
+      <div class="slideover-footer">
+        <button id="btn-print-receipt" class="btn-print-receipt" title="Generar versión imprimible de remito o comprobante">
+          <i class="fas fa-print"></i>
+          <span>Imprimir Remito</span>
+        </button>
+
+        <a href="#" id="btn-contact-customer-wa" target="_blank" rel="noopener noreferrer" class="btn-contact-customer-wa" title="Iniciar conversación de WhatsApp con el comprador">
+          <i class="fab fa-whatsapp"></i>
+          <span>Contactar por WhatsApp</span>
+        </a>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- ======================================================================
+       4. MODAL: VISTA CLIENTE 360° (HISTORIAL CONSOLIDADO)
+       ====================================================================== -->
+  <div class="customer-modal" id="customer-modal" aria-hidden="true">
+    <div class="customer-modal-content" role="dialog" aria-modal="true" aria-label="Perfil del cliente CRM">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:1rem;">
+        <h3 style="font-size:1.2rem; font-weight:800; display:flex; align-items:center; gap:0.5rem;">
+          <i class="fas fa-id-card-clip" style="color:var(--color-primary);"></i> Historial 360° del Cliente
+        </h3>
+        <button id="btn-close-customer-modal" class="btn-close-slideover" aria-label="Cerrar modal de cliente">
+          <i class="fas fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="customer-modal-body" style="display:flex; flex-direction:column; gap:1.25rem;">
+        <!-- Se inyecta dinámicamente desde script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       5. CONTENEDOR DE NOTIFICACIONES TOAST FLOTANTES
+       ====================================================================== -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- ======================================================================
+       SCRIPTS
+       ====================================================================== -->
+  <script src="script.js"></script>
+</body>
+</html>

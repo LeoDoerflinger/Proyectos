@@ -756,13 +756,72 @@ document.addEventListener("DOMContentLoaded", () => {
         if (orderIdDisplay) orderIdDisplay.textContent = orderId;
         if (successView) successView.style.display = "block";
 
+        // Persistir la orden en mt_orders para el Dashboard CRM
+        const nombreCliente = document.getElementById("checkout-nombre")?.value.trim() || "Cliente";
+        const emailCliente = document.getElementById("checkout-email")?.value.trim() || "cliente@ejemplo.com";
+        const telefonoCliente = document.getElementById("checkout-telefono")?.value.trim() || "+54 9 351 000-0000";
+        const direccionCliente = document.getElementById("checkout-direccion")?.value.trim() || "Av. Colón 1234, Córdoba";
+        const tipoEntrega = document.querySelector('input[name="delivery"]:checked')?.value || 'shipping';
+        const cardNumRaw = document.getElementById("numero-tarjeta")?.value || "";
+        const last4 = cardNumRaw.replace(/\s/g, '').slice(-4) || "8421";
+        const cardHolder = document.getElementById("nombre-tarjeta")?.value || nombreCliente;
+
+        const subtotalNum = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+        const descNum = subtotalNum * descuentoAplicado;
+        const totalNum = subtotalNum - descNum + costoEnvio;
+
+        const nuevaOrden = {
+          id: orderId,
+          fecha: new Date().toISOString(),
+          cliente: {
+            nombre: nombreCliente,
+            email: emailCliente,
+            telefono: telefonoCliente,
+            direccion: direccionCliente
+          },
+          entrega: {
+            tipo: tipoEntrega,
+            costo: costoEnvio,
+            direccion: direccionCliente
+          },
+          pago: {
+            metodo: "Tarjeta de Crédito Virtual",
+            ultimos4: last4,
+            titular: cardHolder,
+            estado: "Aprobado",
+            cuotas: 1
+          },
+          items: [...carrito],
+          totales: {
+            subtotal: subtotalNum,
+            descuento: descNum,
+            envio: costoEnvio,
+            total: totalNum
+          },
+          estado: "Pendiente"
+        };
+
+        try {
+          const existingOrders = JSON.parse(localStorage.getItem("mt_orders")) || [];
+          existingOrders.unshift(nuevaOrden);
+          localStorage.setItem("mt_orders", JSON.stringify(existingOrders));
+
+          // Notificar en tiempo real al Dashboard CRM
+          if (window.BroadcastChannel) {
+            const bc = new BroadcastChannel("mitienda_channel");
+            bc.postMessage({ tipo: "NUEVA_ORDEN", orden: nuevaOrden });
+            bc.close();
+          }
+        } catch (err) {
+          console.warn("Error guardando orden en CRM:", err);
+        }
+
         // Setup WhatsApp notification button for the order
         const btnNotificarWA = document.getElementById("btn-notificar-wa");
         if (btnNotificarWA) {
           const itemsSummary = carrito.map(i => `• ${i.cantidad}x ${i.nombre}`).join('%0A');
-          const totalVal = document.getElementById("resumen-total")?.textContent || "$0.00";
-          const clientName = document.getElementById("checkout-nombre")?.value || "Cliente";
-          const waMsg = `¡Hola Leo! Acabo de realizar una compra en MiTienda.%0A%0A*Pedido:* ${orderId}%0A*Cliente:* ${clientName}%0A*Items:*%0A${itemsSummary}%0A%0A*Total:* ${totalVal}`;
+          const totalVal = `$${totalNum.toFixed(2)}`;
+          const waMsg = `¡Hola Leo! Acabo de realizar una compra en MiTienda.%0A%0A*Pedido:* ${orderId}%0A*Cliente:* ${nombreCliente}%0A*Items:*%0A${itemsSummary}%0A%0A*Total:* ${totalVal}`;
           btnNotificarWA.href = `https://wa.me/543512619874?text=${waMsg}`;
         }
 

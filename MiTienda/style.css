@@ -256,6 +256,29 @@ header {
   width: 100%;
 }
 
+.nav-admin-link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--color-primary-dim);
+  color: var(--color-primary) !important;
+  font-weight: 700 !important;
+  padding: 0.4rem 0.9rem !important;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(79, 70, 229, 0.28);
+  font-size: 0.82rem !important;
+  transition: all var(--transition-fast) !important;
+}
+.nav-admin-link:hover {
+  background: var(--color-primary) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px var(--color-primary-glow);
+  transform: translateY(-1px);
+}
+.nav-admin-link::after {
+  display: none !important;
+}
+
 /* Nav Icons Group */
 .nav-icons {
   display: flex;
