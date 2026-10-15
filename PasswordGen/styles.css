@@ -1,96 +1,523 @@
-body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+/* ==========================================================================
+   PASSWORDGEN — BÓVEDA CRIPTOGRÁFICA DE CLAVES
+   Hardware Security Key & Tactical Vault Aesthetic
+   (No generic AI neons, no matrix gif, warm charcoal & cryptographic amber)
+   ========================================================================== */
+
+/* --- 1. DESIGN TOKENS --- */
+:root {
+  --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+
+  /* Dimensions */
+  --vault-max-width: 480px;
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Light Theme — Archival Security Dossier */
+  --bg-body: #F4F2EB;
+  --bg-surface: #FFFFFF;
+  --bg-surface-alt: #ECE8DE;
+  --bg-card: #FFFFFF;
+  --border-color: #DFDACD;
+  --border-subtle: #E8E4DA;
+  --border-focus: #C26D1A;
+
+  --color-primary: #C26D1A;
+  --color-primary-hover: #9E5610;
+  --color-primary-dim: rgba(194, 109, 26, 0.1);
+
+  --color-secure: #2E6F56;
+  --color-secure-dim: rgba(46, 111, 86, 0.12);
+  --color-moderate: #C26D1A;
+  --color-moderate-dim: rgba(194, 109, 26, 0.12);
+  --color-weak: #B83A2E;
+  --color-weak-dim: rgba(184, 58, 46, 0.12);
+
+  --text-main: #1C1B18;
+  --text-secondary: #585348;
+  --text-muted: #8C8575;
+  --text-inverse: #FFFFFF;
+
+  --shadow-sm: 0 1px 3px rgba(30, 25, 20, 0.05);
+  --shadow-md: 0 4px 14px rgba(30, 25, 20, 0.08);
+  --shadow-lg: 0 16px 32px -4px rgba(30, 25, 20, 0.12);
+}
+
+/* Dark Theme — Tactical Cryptographic Vault (Warm Obsidian Charcoal) */
+body.dark {
+  --bg-body: #131211;
+  --bg-surface: #1C1B18;
+  --bg-surface-alt: #262420;
+  --bg-card: #1E1D19;
+  --border-color: #35322B;
+  --border-subtle: #2A2823;
+  --border-focus: #E5A94C;
+
+  --color-primary: #E5A94C;
+  --color-primary-hover: #F2BD68;
+  --color-primary-dim: rgba(229, 169, 76, 0.14);
+
+  --color-secure: #4E9B7B;
+  --color-secure-dim: rgba(78, 155, 123, 0.16);
+  --color-moderate: #E5A94C;
+  --color-moderate-dim: rgba(229, 169, 76, 0.16);
+  --color-weak: #E26347;
+  --color-weak-dim: rgba(226, 99, 71, 0.16);
+
+  --text-main: #F6F2EB;
+  --text-secondary: #AAA192;
+  --text-muted: #797163;
+  --text-inverse: #131211;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 18px 38px rgba(0, 0, 0, 0.65);
+}
+
+/* --- 2. BASE & RESET --- */
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
-  background-image: url(assets/matrix.gif);
+  padding: 0;
 }
 
-.container {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 90%;
-  max-width: 400px;
+html {
+  font-size: 16px;
 }
 
-input[type="number"],
-input[type="text"] {
-  width: 90%;
-  padding: 8px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.options {
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: start;
-  margin: 10px 0;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1.25rem;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input {
+  font-family: inherit;
+  color: inherit;
 }
 
 button {
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 10px;
-  margin-top: 10px;
   cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* --- 3. VAULT SHELL & CARD --- */
+.vault-shell {
   width: 100%;
-  border-radius: 5px;
+  max-width: var(--vault-max-width);
+  margin: 0 auto;
 }
 
-button:hover {
-  background: #0056b3;
+.vault-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 2rem 1.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
 }
 
-body {
-    transition: background 0.3s, color 0.3s;
+.vault-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secure));
+  opacity: 0.8;
 }
 
-body.dark {
-    background-color: #121212;
-    color: #ffffff;
+/* --- 4. VAULT HEADER --- */
+.vault-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-body.light {
-    background-color: #f4f4f4;
-    color: #000000;
+.vault-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.container {
-    background: white;
-    transition: background 0.3s, color 0.3s;
+.vault-logo-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-dim);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-size: 1.15rem;
 }
 
-body.dark .container {
-    background: #1e1e1e;
-    color: #ffffff;
+.vault-title h1 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
 }
 
-#theme-toggle {
-    position: fixed;
-    top: 10px;
-    width: 100px;
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 5px;
+.vault-title span {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
 }
 
-#theme-toggle:hover {
-    background: #0056b3;
+.theme-toggle-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all var(--transition-fast);
 }
 
-@media (max-width: 480px) {
-  .container {
-    width: 95%;
+.theme-toggle-btn:hover {
+  background: var(--color-primary-dim);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* --- 5. PASSWORD DISPLAY & READOUT TERMINAL --- */
+.password-terminal {
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.15rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.password-display-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.password-input-field {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  background: transparent;
+  border: none;
+  outline: none;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.terminal-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.terminal-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-xs);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+.terminal-icon-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-primary-dim);
+}
+
+/* Entropy & Strength Meter */
+.entropy-panel {
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.entropy-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.74rem;
+  font-family: var(--font-mono);
+  margin-bottom: 0.4rem;
+}
+
+.entropy-label {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.entropy-value {
+  font-weight: 700;
+  color: var(--color-secure);
+}
+
+.entropy-track {
+  width: 100%;
+  height: 5px;
+  background: var(--border-subtle);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.entropy-bar {
+  height: 100%;
+  width: 75%;
+  background: var(--color-secure);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* --- 6. CONTROLS: LENGTH & SWITCHES --- */
+.controls-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Length Slider Row */
+.length-slider-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+}
+
+.slider-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.slider-label {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.length-counter {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  background: var(--color-primary-dim);
+  padding: 0.15rem 0.65rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-subtle);
+}
+
+.range-slider {
+  width: 100%;
+  height: 6px;
+  accent-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  outline: none;
+  background: var(--bg-surface-alt);
+  cursor: pointer;
+}
+
+/* Character Set Toggles (Mechanical Switches) */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+.switch-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0.95rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.switch-card:hover {
+  border-color: var(--color-primary);
+  background: var(--bg-surface-alt);
+}
+
+.switch-card.active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-dim);
+}
+
+.switch-label-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.switch-title {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.switch-specimen {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.custom-checkbox {
+  accent-color: var(--color-primary);
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* --- 7. PRIMARY ACTION BUTTONS --- */
+.action-buttons-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-primary-generate {
+  flex: 1;
+  background: var(--color-primary);
+  color: var(--text-inverse);
+  padding: 0.95rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: all var(--transition-normal);
+  box-shadow: 0 4px 12px var(--color-primary-dim);
+}
+
+.btn-primary-generate:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-copy-action {
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 0.95rem 1.4rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--transition-fast);
+}
+
+.btn-copy-action:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-primary-dim);
+}
+
+/* --- 8. FOOTER & ENCRYPTION NOTE --- */
+.vault-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.vault-footer i {
+  color: var(--color-secure);
+  margin-right: 0.35rem;
+}
+
+/* Toast alert */
+.toast-notice {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 0.75rem 1.4rem;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 999;
+}
+
+.toast-notice.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 440px) {
+  .vault-card {
+    padding: 1.5rem 1.15rem;
+  }
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+  .action-buttons-row {
+    flex-direction: column;
   }
 }

@@ -1,26 +1,148 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Contraseñas Seguras</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bóveda de Claves — Generador Criptográfico Seguro</title>
+  <meta name="description" content="Generador de contraseñas seguras con cálculo de entropía en tiempo real. Criptografía local en tu navegador sin enviar datos a la red.">
+
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
 </head>
-<body>
-    <div class="container">
-        <h1>Generador de Contraseñas</h1>
-        <label for="length">Longitud:</label>
-        <input type="number" id="length" min="6" max="50" value="12">
-        <div class="options">
-            <label><input type="checkbox" id="uppercase" checked> Mayúsculas</label>
-            <label><input type="checkbox" id="lowercase" checked> Minúsculas</label>
-            <label><input type="checkbox" id="numbers" checked> Números</label>
-            <label><input type="checkbox" id="symbols" checked> Símbolos</label>
+<body class="dark">
+  <div class="vault-shell">
+    <div class="vault-card">
+      <!-- Encabezado de la Bóveda -->
+      <header class="vault-header">
+        <div class="vault-brand">
+          <div class="vault-logo-badge">
+            <i class="fas fa-shield-halved"></i>
+          </div>
+          <div class="vault-title">
+            <h1>Bóveda de Claves</h1>
+            <span>Criptografía Local</span>
+          </div>
         </div>
-        <button id="generate">Generar Contraseña</button>
-        <input type="text" id="password" readonly>
-        <button id="copy">Copiar</button>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Cambiar tema visual" title="Alternar Modo Oscuro / Claro">
+          <i class="fas fa-moon"></i>
+        </button>
+      </header>
+
+      <!-- Terminal de Salida & Visualizador de Clave -->
+      <div class="password-terminal">
+        <div class="password-display-row">
+          <input
+            type="text"
+            id="password"
+            class="password-input-field"
+            readonly
+            placeholder="Generando clave..."
+            aria-label="Contraseña generada"
+          >
+          <div class="terminal-actions">
+            <button id="btn-regenerate" class="terminal-icon-btn" title="Generar otra clave">
+              <i class="fas fa-rotate"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Indicador de Entropía y Fortaleza -->
+        <div class="entropy-panel">
+          <div class="entropy-info-row">
+            <span class="entropy-label">Nivel de Entropía:</span>
+            <span id="entropy-text" class="entropy-value">Segura (96 bits)</span>
+          </div>
+          <div class="entropy-track">
+            <div id="entropy-bar" class="entropy-bar"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controles de Configuración -->
+      <div class="controls-group">
+        <!-- Control de Longitud -->
+        <div class="length-slider-box">
+          <div class="slider-label-row">
+            <label for="length" class="slider-label">Longitud de caracteres:</label>
+            <span id="length-display" class="length-counter">16</span>
+          </div>
+          <input
+            type="range"
+            id="length-slider"
+            min="6"
+            max="64"
+            value="16"
+            class="range-slider"
+          >
+          <!-- Input oculto para compatibilidad con código existente -->
+          <input type="number" id="length" min="6" max="64" value="16" style="display:none;">
+        </div>
+
+        <!-- Selector de Componentes -->
+        <div class="options-grid">
+          <label class="switch-card active" for="uppercase">
+            <div class="switch-label-group">
+              <span class="switch-title">Mayúsculas</span>
+              <span class="switch-specimen">A — Z</span>
+            </div>
+            <input type="checkbox" id="uppercase" class="custom-checkbox" checked>
+          </label>
+
+          <label class="switch-card active" for="lowercase">
+            <div class="switch-label-group">
+              <span class="switch-title">Minúsculas</span>
+              <span class="switch-specimen">a — z</span>
+            </div>
+            <input type="checkbox" id="lowercase" class="custom-checkbox" checked>
+          </label>
+
+          <label class="switch-card active" for="numbers">
+            <div class="switch-label-group">
+              <span class="switch-title">Números</span>
+              <span class="switch-specimen">0 — 9</span>
+            </div>
+            <input type="checkbox" id="numbers" class="custom-checkbox" checked>
+          </label>
+
+          <label class="switch-card active" for="symbols">
+            <div class="switch-label-group">
+              <span class="switch-title">Símbolos</span>
+              <span class="switch-specimen">! @ # $ % & *</span>
+            </div>
+            <input type="checkbox" id="symbols" class="custom-checkbox" checked>
+          </label>
+        </div>
+      </div>
+
+      <!-- Acciones Principales -->
+      <div class="action-buttons-row">
+        <button id="generate" class="btn-primary-generate">
+          <i class="fas fa-key"></i> Generar Contraseña
+        </button>
+        <button id="copy" class="btn-copy-action">
+          <i class="far fa-copy"></i> Copiar
+        </button>
+      </div>
+
+      <!-- Pie de Seguridad -->
+      <footer class="vault-footer">
+        <p>
+          <i class="fas fa-lock"></i> Generada de forma 100% matemática en tu dispositivo. Nada sale a la red.
+        </p>
+      </footer>
     </div>
+  </div>
+
+  <!-- Toast de Copiado -->
+  <div id="toast-notice" class="toast-notice" role="alert" aria-live="polite">
+    <i class="fas fa-check-circle" style="color:var(--color-secure);"></i>
+    <span id="toast-message">¡Clave copiada al portapapeles!</span>
+  </div>
 </body>
 </html>
