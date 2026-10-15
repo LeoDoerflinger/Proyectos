@@ -7,7 +7,8 @@
 :root {
   /* Fonts */
   --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --font-heading: 'Newsreader', Georgia, Cambria, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
 
   /* Layout */
   --container-width: 1240px;
@@ -23,67 +24,73 @@
   --transition-normal: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-  /* Light Theme (Default) */
-  --bg-body: #f8fafc;
-  --bg-surface: #ffffff;
-  --bg-surface-alt: #f1f5f9;
-  --bg-card: #ffffff;
-  --bg-glass: rgba(255, 255, 255, 0.88);
-  --bg-drawer: #ffffff;
+  /* Light Theme (Boutique Parchment & Terracotta) */
+  --bg-body: #F7F5EE;
+  --bg-surface: #FFFFFF;
+  --bg-surface-alt: #EFEBE0;
+  --bg-card: #FFFFFF;
+  --bg-glass: rgba(247, 245, 238, 0.92);
+  --bg-drawer: #FFFFFF;
 
-  --border-color: #e2e8f0;
-  --border-subtle: #edf2f7;
-  --border-focus: #6366f1;
+  --border-color: #E2DDD0;
+  --border-subtle: #EBE5D9;
+  --border-focus: #C25438;
 
-  --color-primary: #4f46e5;
-  --color-primary-hover: #4338ca;
-  --color-primary-dim: rgba(79, 70, 229, 0.08);
-  --color-primary-glow: rgba(79, 70, 229, 0.25);
+  --color-primary: #C25438;
+  --color-primary-hover: #A74229;
+  --color-primary-dim: rgba(194, 84, 56, 0.08);
+  --color-primary-glow: rgba(194, 84, 56, 0.22);
 
-  --color-accent: #06b6d4;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
-  --color-danger-dim: rgba(239, 68, 68, 0.1);
+  --color-accent: #265C42;
+  --color-success: #265C42;
+  --color-warning: #C26D1A;
+  --color-danger: #B83A2E;
+  --color-danger-dim: rgba(184, 58, 46, 0.1);
 
-  --text-main: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
-  --text-inverse: #ffffff;
+  --text-main: #1D1C19;
+  --text-secondary: #585348;
+  --text-muted: #8C8475;
+  --text-inverse: #FFFFFF;
 
-  --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 10px 25px -4px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.03);
-  --shadow-lg: 0 20px 35px -6px rgba(15, 23, 42, 0.1);
-  --shadow-card: 0 4px 20px rgba(15, 23, 42, 0.05);
+  --shadow-sm: 0 1px 3px rgba(35, 30, 20, 0.05);
+  --shadow-md: 0 6px 18px rgba(35, 30, 20, 0.07);
+  --shadow-lg: 0 16px 36px -6px rgba(35, 30, 20, 0.12);
+  --shadow-card: 0 2px 8px rgba(35, 30, 20, 0.04);
 }
 
-/* Dark Theme */
+/* Dark Theme (Warm Obsidian Charcoal & Vibrant Terracotta) */
 body[data-theme="dark"] {
-  --bg-body: #0b0f19;
-  --bg-surface: #111827;
-  --bg-surface-alt: #1a2234;
-  --bg-card: #151d2e;
-  --bg-glass: rgba(17, 24, 39, 0.88);
-  --bg-drawer: #111827;
+  --bg-body: #141312;
+  --bg-surface: #1C1B18;
+  --bg-surface-alt: #262420;
+  --bg-card: #1E1D19;
+  --bg-glass: rgba(20, 19, 18, 0.92);
+  --bg-drawer: #1A1916;
 
-  --border-color: #242f45;
-  --border-subtle: #1e293b;
-  --border-focus: #818cf8;
+  --border-color: #35322B;
+  --border-subtle: #2A2823;
+  --border-focus: #E26347;
 
-  --color-primary: #6366f1;
-  --color-primary-hover: #4f46e5;
-  --color-primary-dim: rgba(99, 102, 241, 0.12);
-  --color-primary-glow: rgba(99, 102, 241, 0.35);
+  --color-primary: #E26347;
+  --color-primary-hover: #F07A60;
+  --color-primary-dim: rgba(226, 99, 71, 0.14);
+  --color-primary-glow: rgba(226, 99, 71, 0.3);
 
-  --text-main: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --text-inverse: #ffffff;
+  --color-accent: #4E9B7B;
+  --color-success: #4E9B7B;
+  --color-warning: #E5A94C;
+  --color-danger: #E26347;
+  --color-danger-dim: rgba(226, 99, 71, 0.14);
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 10px 25px -4px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 20px 40px -6px rgba(0, 0, 0, 0.65);
-  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.35);
+  --text-main: #F6F2EB;
+  --text-secondary: #AAA192;
+  --text-muted: #797163;
+  --text-inverse: #141312;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 18px 40px rgba(0, 0, 0, 0.65);
+  --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
 /* --- 2. BASE & RESET --- */
@@ -870,10 +877,11 @@ a[href="#contacto"].cta-button-outline:active {
   margin-bottom: 1.2rem;
 }
 .precio {
-  font-family: var(--font-heading);
+  font-family: var(--font-mono);
   font-size: 1.35rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--text-main);
+  letter-spacing: -0.02em;
 }
 .precio-antiguo {
   font-size: 0.88rem;
@@ -1568,10 +1576,11 @@ a[href="#contacto"].cta-button-outline:active {
 
 /* --- 12. FOOTER --- */
 .site-footer {
-  background-color: #0f172a;
-  color: #94a3b8;
+  background-color: var(--bg-surface-alt);
+  color: var(--text-secondary);
   padding: 4.5rem 0 2rem;
-  border-top: 1px solid #1e293b;
+  border-top: 1px solid var(--border-color);
+  transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 .footer-grid {
   display: grid;
@@ -1581,8 +1590,8 @@ a[href="#contacto"].cta-button-outline:active {
 }
 .footer-col h3 {
   font-family: var(--font-heading);
-  color: #f8fafc;
-  font-size: 1.2rem;
+  color: var(--text-main);
+  font-size: 1.25rem;
   margin-bottom: 1.2rem;
 }
 .footer-col p {
@@ -1596,10 +1605,11 @@ a[href="#contacto"].cta-button-outline:active {
   gap: 0.7rem;
 }
 .footer-col ul a {
+  color: var(--text-secondary);
   transition: color var(--transition-fast);
 }
 .footer-col ul a:hover {
-  color: #fff;
+  color: var(--color-primary);
 }
 .social-icons {
   display: flex;
@@ -1609,8 +1619,9 @@ a[href="#contacto"].cta-button-outline:active {
   width: 42px;
   height: 42px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1618,13 +1629,16 @@ a[href="#contacto"].cta-button-outline:active {
 }
 .social-icons a:hover {
   background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
   transform: translateY(-2px);
 }
 .footer-bottom {
-  border-top: 1px solid #1e293b;
+  border-top: 1px solid var(--border-subtle);
   padding-top: 1.8rem;
   text-align: center;
   font-size: 0.84rem;
+  color: var(--text-muted);
 }
 
 /* --- 13. RESPONSIVE BREAKPOINTS --- */
