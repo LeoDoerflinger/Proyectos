@@ -3,43 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MiTienda — Tecnología, Indumentaria y Hogar</title>
-  <meta name="description" content="Catálogo oficial MiTienda en Córdoba, Argentina. Computación, audio, indumentaria y artículos para el hogar con envío a todo el país y facturación A/B." />
+  <title>MiTienda — Tecnología, Indumentaria y Diseño para el Hogar</title>
+  <meta name="description" content="Tienda online multimarca en Córdoba, Argentina. Computación, audio, indumentaria urbana y mobiliario con envío a todo el país y facturación A/B." />
 
   <!-- Tipografía Limpia Humanista (Plus Jakarta Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Iconografía FontAwesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body data-theme="light">
 
   <!-- BARRA SUPERIOR DE ANUNCIO -->
   <div class="utility-bar">
     <div class="utility-container">
-      <span>Envíos sin cargo a todo el país en compras superiores a $150 · Hasta 6 cuotas sin interés con todas las tarjetas</span>
+      <span>Envíos sin cargo a todo el país desde $150 · Hasta 6 cuotas sin interés con todas las tarjetas</span>
       <div class="utility-links">
+        <button type="button" class="utility-newsletter-trigger" id="btn-open-newsletter-top">
+          <i class="far fa-envelope"></i> Newsletter (15% OFF)
+        </button>
+        <span class="utility-sep">|</span>
         <a href="#contacto">Atención al cliente</a>
         <span class="utility-sep">|</span>
-        <a href="dashboard/index.html">Acceso administrativo (CRM)</a>
+        <a href="dashboard/index.html">Panel CRM</a>
       </div>
     </div>
   </div>
 
-  <!-- HEADER PRINCIPAL ESTILO CATÁLOGO RETAIL -->
+  <!-- HEADER PRINCIPAL -->
   <header class="site-header" id="main-header">
     <div class="header-container">
 
       <div class="header-left">
+        <!-- Logo Propio Original de MiTienda (Bolsa Geométrica Isometric / Bag Mark) -->
         <a href="#inicio" class="brand-logo" aria-label="MiTienda Inicio">
-          <span class="brand-squares" aria-hidden="true">
-            <span></span><span></span><span></span><span></span>
+          <span class="brand-emblem" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
           </span>
-          <span class="brand-name">MiTienda</span>
+          <span class="brand-name">MiTienda<span class="brand-dot">.</span></span>
         </a>
 
         <nav class="primary-nav" aria-label="Navegación principal">
@@ -66,6 +75,10 @@
           <span>Panel CRM</span>
         </a>
 
+        <button class="header-icon-btn" id="theme-toggle" aria-label="Cambiar modo claro u oscuro" title="Cambiar tema visual">
+          <i class="fas fa-moon"></i>
+        </button>
+
         <button class="header-icon-btn" id="icono-favoritos" aria-label="Ver favoritos" title="Favoritos">
           <i class="far fa-heart"></i>
           <span class="badge-counter" id="favoritos-contador">0</span>
@@ -88,7 +101,7 @@
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
     <div class="mobile-menu-panel">
       <div class="mobile-menu-top">
-        <span class="brand-name">MiTienda</span>
+        <span class="brand-name">MiTienda<span class="brand-dot">.</span></span>
         <button class="cerrar-menu-movil" id="cerrar-menu-movil" aria-label="Cerrar menú">
           <i class="fas fa-xmark"></i>
         </button>
@@ -96,11 +109,14 @@
       <nav class="mobile-nav-links">
         <a href="#inicio">Inicio</a>
         <a href="#productos" data-QuickCat="all">Catálogo Completo</a>
-        <a href="#productos" data-QuickCat="tecnologia">Tecnología</a>
-        <a href="#productos" data-QuickCat="moda">Indumentaria</a>
-        <a href="#productos" data-QuickCat="hogar">Hogar y Deco</a>
+        <a href="#productos" data-QuickCat="tecnologia">Tecnología y Audio</a>
+        <a href="#productos" data-QuickCat="moda">Indumentaria y Calzado</a>
+        <a href="#productos" data-QuickCat="hogar">Hogar y Mobiliario</a>
         <a href="#productos" data-QuickCat="ofertas">Ofertas de la semana</a>
         <a href="#contacto">Contacto</a>
+        <button type="button" class="mobile-newsletter-btn" id="btn-open-newsletter-mobile">
+          <i class="far fa-envelope"></i> Suscribirme al Newsletter (15% OFF)
+        </button>
         <a href="dashboard/index.html" class="mobile-crm-link">
           <i class="fas fa-table-columns"></i> Ir al Panel CRM
         </a>
@@ -108,47 +124,176 @@
     </div>
   </div>
 
-  <!-- HERO SHOWCASE (REFERENCIA RETAIL CON TARJETA BLANCA SUPERPUESTA) -->
+  <!-- HERO DINÁMICO INTERACTIVO POR CATEGORÍAS (CON TRANSICIONES SUAVES) -->
   <section id="inicio" class="hero-showcase-section">
     <div class="hero-showcase-container">
-      <div class="hero-banner-box">
-        
-        <!-- Tarjeta Blanca Superpuesta a la Izquierda -->
-        <div class="hero-overlay-card">
-          <span class="hero-tag">DESTACADOS DE TEMPORADA</span>
-          <h1>Equipamiento pensado para rendir todos los días</h1>
-          <p>
-            Encontrá notebooks, audio profesional, indumentaria técnica y diseño para tu casa. Stock físico en Córdoba con despacho inmediato a todo el país.
-          </p>
-          <div class="hero-card-actions">
-            <a href="#productos" class="btn-primary-blue">Explorar catálogo</a>
-            <a href="#productos" class="btn-link-chevron" data-QuickCat="ofertas">
-              <span>Ver ofertas vigentes</span>
-              <i class="fas fa-chevron-right"></i>
-            </a>
+      <div class="hero-carousel-wrapper" id="hero-carousel">
+
+        <!-- SLIDE 1: TECNOLOGÍA & AUDIO -->
+        <div class="hero-slide active" data-slide="0">
+          <div class="hero-banner-box">
+            <div class="hero-overlay-card">
+              <span class="hero-tag"><i class="fas fa-microchip"></i> CATEGORÍA 01 · TECNOLOGÍA Y AUDIO</span>
+              <h1>Potenciá tu setup para trabajar, crear o jugar</h1>
+              <p>
+                Notebooks con gráficas RTX a 144Hz, iPhone 15 Pro, iPad Pro M2 y auriculares Sony con cancelación activa. Stock físico en Córdoba con garantía oficial.
+              </p>
+              <div class="hero-card-actions">
+                <a href="#productos" class="btn-primary-blue" data-QuickCat="tecnologia">
+                  <span>Ver Tecnología</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#productos" class="btn-link-chevron" data-QuickCat="ofertas">
+                  <span>Explorar ofertas vigentes</span>
+                  <i class="fas fa-chevron-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="hero-visual-stage">
+              <div class="hero-product-composition">
+                <div class="hero-main-img-card" data-QuickCat="tecnologia">
+                  <span class="floating-price-pill">$1.250</span>
+                  <img src="./assets/laptop.jpg" alt="Notebook HP Victus 15.6 RTX" />
+                  <div class="hero-img-caption">
+                    <strong>HP Victus 15.6" Ryzen 5 + RTX</strong>
+                    <span>Pantalla 144Hz · 16GB DDR5 · SSD 512GB</span>
+                  </div>
+                </div>
+                <div class="hero-side-img-stack">
+                  <div class="hero-mini-card" data-QuickCat="tecnologia">
+                    <img src="./assets/phone.jpg" alt="iPhone 15 Pro" />
+                    <span>iPhone 15 Pro Titanio</span>
+                  </div>
+                  <div class="hero-mini-card" data-QuickCat="tecnologia">
+                    <img src="./assets/headphones.jpg" alt="Auriculares Sony WH-1000XM5" />
+                    <span>Sony WH-1000XM5 ANC</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Composición de Producto Limpia a la Derecha -->
-        <div class="hero-visual-stage">
-          <div class="hero-product-composition">
-            <div class="hero-main-img-card">
-              <img src="./assets/laptop.jpg" alt="Notebook HP Victus 15.6 RTX" />
-              <div class="hero-img-caption">
-                <strong>HP Victus 15.6" Ryzen 5 + RTX</strong>
-                <span>12 cuotas o 15% OFF por transferencia</span>
+        <!-- SLIDE 2: INDUMENTARIA & URBANO -->
+        <div class="hero-slide" data-slide="1">
+          <div class="hero-banner-box">
+            <div class="hero-overlay-card">
+              <span class="hero-tag"><i class="fas fa-shirt"></i> CATEGORÍA 02 · INDUMENTARIA Y CALZADO</span>
+              <h1>Prendas técnicas y calzado listo para la calle</h1>
+              <p>
+                Zapatillas Nike Air Max originales, camperas bomber impermeables, mochilas porta notebook de cordura y anteojos con filtro UV400 para todos los días.
+              </p>
+              <div class="hero-card-actions">
+                <a href="#productos" class="btn-primary-blue" data-QuickCat="moda">
+                  <span>Ver Indumentaria</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#productos" class="btn-link-chevron" data-QuickCat="all">
+                  <span>Ver catálogo completo</span>
+                  <i class="fas fa-chevron-right"></i>
+                </a>
               </div>
             </div>
-            <div class="hero-side-img-stack">
-              <div class="hero-mini-card">
-                <img src="./assets/phone.jpg" alt="iPhone 15 Pro" />
-                <span>iPhone 15 Pro 256GB</span>
-              </div>
-              <div class="hero-mini-card">
-                <img src="./assets/headphones.jpg" alt="Auriculares Sony WH-1000XM5" />
-                <span>Sony WH-1000XM5</span>
+
+            <div class="hero-visual-stage">
+              <div class="hero-product-composition">
+                <div class="hero-main-img-card" data-QuickCat="moda">
+                  <span class="floating-price-pill">$180.50</span>
+                  <img src="./assets/shoes.jpg" alt="Zapatillas Nike Air Max Excee" />
+                  <div class="hero-img-caption">
+                    <strong>Nike Air Max Excee Urbano</strong>
+                    <span>Cámara Air-Sole visible · Talles 38 al 45</span>
+                  </div>
+                </div>
+                <div class="hero-side-img-stack">
+                  <div class="hero-mini-card" data-QuickCat="moda">
+                    <img src="./assets/jacket.jpg" alt="Campera Bomber Impermeable" />
+                    <span>Campera Bomber Técnica</span>
+                  </div>
+                  <div class="hero-mini-card" data-QuickCat="moda">
+                    <img src="./assets/backpack.jpg" alt="Mochila Porta Notebook 16" />
+                    <span>Mochila Cordura 16"</span>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 3: HOGAR & MOBILIARIO -->
+        <div class="hero-slide" data-slide="2">
+          <div class="hero-banner-box">
+            <div class="hero-overlay-card">
+              <span class="hero-tag"><i class="fas fa-couch"></i> CATEGORÍA 03 · HOGAR Y MOBILIARIO</span>
+              <h1>Renová tus ambientes con diseño cálido y duradero</h1>
+              <p>
+                Sofás escandinavos en lino antimanchas, butacas de lectura capitonnée, mesas en madera de paraíso maciza e iluminación ambiental para tu casa.
+              </p>
+              <div class="hero-card-actions">
+                <a href="#productos" class="btn-primary-blue" data-QuickCat="hogar">
+                  <span>Ver Hogar y Deco</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#productos" class="btn-link-chevron" data-QuickCat="ofertas">
+                  <span>Descuentos en muebles</span>
+                  <i class="fas fa-chevron-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="hero-visual-stage">
+              <div class="hero-product-composition">
+                <div class="hero-main-img-card" data-QuickCat="hogar">
+                  <span class="floating-price-pill">$790</span>
+                  <img src="./assets/sofa.jpg" alt="Sofá Escandinavo 2 Cuerpos Lino" />
+                  <div class="hero-img-caption">
+                    <strong>Sofá Escandinavo 2 Cuerpos Lino</strong>
+                    <span>Madera maciza · Fundas lavables antimanchas</span>
+                  </div>
+                </div>
+                <div class="hero-side-img-stack">
+                  <div class="hero-mini-card" data-QuickCat="hogar">
+                    <img src="./assets/chair.jpg" alt="Sillón Individual Capitonnée" />
+                    <span>Butaca Capitonnée</span>
+                  </div>
+                  <div class="hero-mini-card" data-QuickCat="hogar">
+                    <img src="./assets/table.jpg" alt="Mesa de Luz Nórdica Madera" />
+                    <span>Mesa Paraíso Macizo</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BARRA DE CONTROL Y TRANSICIÓN DEL HERO -->
+        <div class="hero-controls-bar">
+          <div class="hero-slide-tabs" role="tablist" aria-label="Categorías destacadas">
+            <button type="button" class="hero-tab-btn active" data-goto-slide="0">
+              <span class="hero-tab-num">01</span>
+              <span class="hero-tab-label">Tecnología y Audio</span>
+              <span class="hero-tab-progress"></span>
+            </button>
+            <button type="button" class="hero-tab-btn" data-goto-slide="1">
+              <span class="hero-tab-num">02</span>
+              <span class="hero-tab-label">Indumentaria Urbana</span>
+              <span class="hero-tab-progress"></span>
+            </button>
+            <button type="button" class="hero-tab-btn" data-goto-slide="2">
+              <span class="hero-tab-num">03</span>
+              <span class="hero-tab-label">Hogar y Mobiliario</span>
+              <span class="hero-tab-progress"></span>
+            </button>
+          </div>
+
+          <div class="hero-arrows">
+            <button type="button" class="hero-arrow-btn" id="hero-prev-btn" aria-label="Anterior categoría">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button type="button" class="hero-arrow-btn" id="hero-next-btn" aria-label="Siguiente categoría">
+              <i class="fas fa-chevron-right"></i>
+            </button>
           </div>
         </div>
 
@@ -156,7 +301,7 @@
     </div>
   </section>
 
-  <!-- TIRA DE ACCESOS RÁPIDOS POR CATEGORÍA (ICON ROW REFERENCIA) -->
+  <!-- TIRA DE ACCESOS RÁPIDOS POR CATEGORÍA -->
   <section class="quick-categories-strip" aria-label="Accesos rápidos por categoría">
     <div class="quick-categories-container">
       <button type="button" class="quick-cat-item" data-QuickCat="tecnologia">
@@ -175,10 +320,10 @@
         <div class="quick-cat-icon"><i class="fas fa-tag"></i></div>
         <span>Precios Especiales</span>
       </button>
-      <a href="dashboard/index.html" class="quick-cat-item">
-        <div class="quick-cat-icon"><i class="fas fa-file-invoice"></i></div>
-        <span>Gestión y Facturación</span>
-      </a>
+      <button type="button" class="quick-cat-item" id="btn-open-newsletter-strip">
+        <div class="quick-cat-icon"><i class="far fa-envelope-open"></i></div>
+        <span>Club Newsletter (-15%)</span>
+      </button>
     </div>
   </section>
 
@@ -222,18 +367,21 @@
     </div>
   </section>
 
-  <!-- BANNER EDITORIAL INTERMEDIO (ESTILO SHOWCASE HORIZONTAL) -->
+  <!-- BANNER EDITORIAL INTERMEDIO -->
   <section class="mid-showcase-section">
     <div class="mid-showcase-container">
       <div class="mid-showcase-box">
         <div class="mid-showcase-content">
-          <span class="mid-tag">BENEFICIO EN TIENDA</span>
-          <h2>Renová tu espacio o tu equipo con descuento directo</h2>
+          <span class="mid-tag">CLUB MITIENDA</span>
+          <h2>Sumate al newsletter y recibí un 15% de descuento directo</h2>
           <p>
-            Sumando el código <strong>MITIENDA10</strong> en el checkout tenés un 10% de descuento adicional acumulable con envío gratis en compras mayores a $150. Emitimos Factura A y B al instante.
+            Suscribiéndote a nuestras novedades semanales desbloqueás el cupón <strong>BIENVENIDO</strong> (15% OFF) acumulable con envío bonificado en pedidos superiores a $150. Emitimos Factura A y B al instante.
           </p>
           <div class="mid-showcase-actions">
-            <a href="#productos" class="btn-primary-blue" data-QuickCat="hogar">Ver línea Hogar</a>
+            <button type="button" class="btn-primary-blue" id="btn-open-newsletter-mid">
+              <i class="far fa-envelope"></i>
+              <span>Quiero mi cupón del 15% OFF</span>
+            </button>
             <a href="dashboard/index.html" class="btn-link-chevron">
               <span>Ver órdenes en el CRM</span>
               <i class="fas fa-chevron-right"></i>
@@ -247,7 +395,7 @@
     </div>
   </section>
 
-  <!-- PILARES DE SERVICIO (4 COLUMNAS PLANAS) -->
+  <!-- PILARES DE SERVICIO (4 COLUMNAS) -->
   <section class="service-pillars-section">
     <div class="service-pillars-container">
       <div class="service-pillar">
@@ -323,7 +471,7 @@
     </div>
   </section>
 
-  <!-- FOOTER MULTI-COLUMNA (ESTILO CATÁLOGO CORPORATIVO #F2F2F2) -->
+  <!-- FOOTER MULTI-COLUMNA -->
   <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-columns">
@@ -338,10 +486,10 @@
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Compra y Envíos</h4>
+          <h4>Compra y Beneficios</h4>
           <ul>
-            <li><a href="#productos">Seguimiento de pedidos</a></li>
-            <li><a href="#productos">Medios de pago habilitados</a></li>
+            <li><button type="button" class="footer-link-btn" id="btn-open-newsletter-footer">Suscribirse al Newsletter (-15%)</button></li>
+            <li><a href="#productos">Envíos a todo el país</a></li>
             <li><a href="#productos">Retiro en sucursal Córdoba</a></li>
             <li><a href="#productos">Cambios y devoluciones</a></li>
           </ul>
@@ -368,10 +516,10 @@
       <div class="footer-bottom">
         <div class="footer-locale">
           <i class="fas fa-earth-americas"></i>
-          <span>Español (Argentina) · Precios expresados en USD / ARS referencial</span>
+          <span>Español (Argentina) · Córdoba Capital</span>
         </div>
         <div class="footer-legal">
-          <span>© 2026 MiTienda S.R.L. · Desarrollado por Leo Doerflinger en Córdoba, Argentina.</span>
+          <span>© 2026 MiTienda S.R.L. · Desarrollado por Leo Doerflinger.</span>
         </div>
       </div>
     </div>
@@ -423,7 +571,6 @@
       </div>
 
       <div class="checkout-layout">
-        <!-- Columna Izquierda: Formulario -->
         <div class="checkout-form-col">
           <div id="user-login-view" class="saved-user-banner hidden">
             <i class="fas fa-user-check"></i>
@@ -509,7 +656,6 @@
           </div>
         </div>
 
-        <!-- Columna Derecha: Resumen y Cupón -->
         <div class="checkout-summary-col">
           <div class="summary-card">
             <h3>Resumen de compra</h3>
@@ -518,7 +664,7 @@
             <div class="coupon-box">
               <label for="cupon-input">Código de descuento</label>
               <div class="coupon-row">
-                <input type="text" id="cupon-input" placeholder="MITIENDA10 o PROMO20" />
+                <input type="text" id="cupon-input" placeholder="BIENVENIDO o MITIENDA10" />
                 <button type="button" id="aplicar-cupon-btn" class="btn-outline-dark">Aplicar</button>
               </div>
               <small id="cupon-mensaje"></small>
@@ -558,14 +704,12 @@
     <div class="modal-content modal-payment-box">
       <button class="cerrar-modal" aria-label="Cerrar ventana de pago"><i class="fas fa-xmark"></i></button>
 
-      <!-- Formulario de Tarjeta -->
       <form id="form-pago">
         <div class="modal-header-clean">
           <span class="hero-tag">PASO 2 DE 2</span>
           <h2 id="pago-title">Pago con tarjeta de crédito o débito</h2>
         </div>
 
-        <!-- Tarjeta Sobria Corporativa (Sin gradientes neón) -->
         <div class="credit-card-preview">
           <div class="card-top-row">
             <span class="card-chip"></span>
@@ -616,14 +760,13 @@
         </button>
       </form>
 
-      <!-- Vista de Orden Confirmada -->
       <div id="pago-success-view" class="order-success-box" style="display: none;">
         <div class="success-icon-circle">
           <i class="fas fa-check"></i>
         </div>
         <h2>¡Tu compra fue registrada con éxito!</h2>
         <p>Ya ingresamos tu pedido en nuestro sistema de despacho y facturación.</p>
-        
+
         <div class="order-code-box">
           <span>CÓDIGO DE SEGUIMIENTO</span>
           <strong id="order-id-display">MT-000000</strong>
@@ -641,6 +784,77 @@
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- MODAL 4: POPUP DE SUSCRIPCIÓN AL NEWSLETTER -->
+  <div id="modal-newsletter" class="modal" role="dialog" aria-modal="true" aria-labelledby="newsletter-title">
+    <div class="modal-content modal-newsletter-box">
+      <button class="cerrar-modal" id="btn-close-newsletter" aria-label="Cerrar newsletter"><i class="fas fa-xmark"></i></button>
+
+      <div class="newsletter-grid">
+        <div class="newsletter-visual">
+          <div class="newsletter-badge-pill">15% OFF EN TU COMPRA</div>
+          <img src="./assets/headphones.jpg" alt="Auriculares Sony WH-1000XM5" />
+          <p>Lanzamientos de tecnología, ingresos de indumentaria y descuentos exclusivos para suscriptores.</p>
+        </div>
+
+        <div class="newsletter-body">
+          <div id="newsletter-form-view">
+            <span class="hero-tag">CLUB MITIENDA</span>
+            <h2 id="newsletter-title">Recibí novedades y desbloqueá un 15% de descuento</h2>
+            <p class="newsletter-sub">
+              Dejanos tu correo para enterarte cuando entran productos nuevos y obtené al instante tu cupón de bienvenida.
+            </p>
+
+            <form id="form-newsletter">
+              <div class="form-group">
+                <label for="newsletter-name">Tu nombre</label>
+                <input type="text" id="newsletter-name" placeholder="Ej: Sofía" required />
+              </div>
+              <div class="form-group">
+                <label for="newsletter-email">Tu correo electrónico</label>
+                <input type="email" id="newsletter-email" placeholder="sofia@correo.com" required />
+              </div>
+
+              <div class="newsletter-interests">
+                <label class="interest-check">
+                  <input type="checkbox" checked />
+                  <span>Tecnología y Audio</span>
+                </label>
+                <label class="interest-check">
+                  <input type="checkbox" checked />
+                  <span>Indumentaria y Hogar</span>
+                </label>
+              </div>
+
+              <button type="submit" class="btn-primary-blue btn-full">
+                <span>Suscribirme y obtener 15% OFF</span>
+                <i class="fas fa-arrow-right"></i>
+              </button>
+              <button type="button" class="newsletter-dismiss-link" id="btn-dismiss-newsletter">
+                Prefiero mirar el catálogo sin descuento por ahora
+              </button>
+            </form>
+          </div>
+
+          <div id="newsletter-success-view" class="newsletter-success-view hidden">
+            <div class="success-icon-circle">
+              <i class="fas fa-envelope-circle-check"></i>
+            </div>
+            <h3>¡Listo, ya sos parte del Club!</h3>
+            <p>Ya activamos automáticamente tu descuento del 15% para usar en cualquier producto de la tienda:</p>
+            <div class="newsletter-coupon-reveal">
+              <span>CÓDIGO DE BIENVENIDA</span>
+              <strong>BIENVENIDO</strong>
+            </div>
+            <button type="button" id="btn-apply-newsletter-coupon" class="btn-primary-blue btn-full">
+              <i class="fas fa-check"></i>
+              <span>Dejar cupón aplicado y seguir comprando</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

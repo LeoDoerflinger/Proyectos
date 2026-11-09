@@ -430,10 +430,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    productosContainer.innerHTML = filtered.map(item => {
+    productosContainer.innerHTML = filtered.map((item, idx) => {
       const isFav = favoritos.includes(item.id);
       return `
-        <article class="producto" data-id="${item.id}">
+        <article class="producto" data-id="${item.id}" style="animation-delay: ${idx * 35}ms">
           <div class="product-image-wrap">
             <img src="${item.imagen}" alt="${item.nombre}" loading="lazy" />
             ${item.badge ? `<span class="product-badge ${item.badgeClass}">${item.badge}</span>` : ""}
@@ -1176,7 +1176,208 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- 13. INICIALIZACIÓN ---
+  // --- 13. TEMA CLARO / OSCURO (DARK MODE) ---
+  const themeToggleBtn = document.getElementById("theme-toggle");
+
+  function applyTheme(theme) {
+    document.body.setAttribute("data-theme", theme);
+    if (themeToggleBtn) {
+      const icon = themeToggleBtn.querySelector("i");
+      if (icon) {
+        icon.className = theme === "dark" ? "fas fa-sun" : "fas fa-moon";
+      }
+      themeToggleBtn.title = theme === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro";
+      themeToggleBtn.setAttribute("aria-label", themeToggleBtn.title);
+    }
+    try {
+      localStorage.setItem("mt_theme", theme);
+    } catch (e) {
+      // ignore storage errors
+    }
+  }
+
+  const savedTheme = localStorage.getItem("mt_theme") || "light";
+  applyTheme(savedTheme);
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", () => {
+      const current = document.body.getAttribute("data-theme") || "light";
+      const next = current === "dark" ? "light" : "dark";
+      applyTheme(next);
+      showToast(next === "dark" ? "Modo oscuro activado" : "Modo claro activado", next === "dark" ? "fa-moon" : "fa-sun");
+    });
+  }
+
+  // --- 14. CARRUSEL DINÁMICO DEL HERO POR CATEGORÍAS ---
+  const heroCarousel = document.getElementById("hero-carousel");
+  const heroSlides = document.querySelectorAll(".hero-slide");
+  const heroTabBtns = document.querySelectorAll(".hero-tab-btn");
+  const heroPrevBtn = document.getElementById("hero-prev-btn");
+  const heroNextBtn = document.getElementById("hero-next-btn");
+
+  let currentSlideIdx = 0;
+  let heroInterval = null;
+  const HERO_SLIDE_DURATION = 5500;
+
+  function goToHeroSlide(index) {
+    if (!heroSlides.length) return;
+    currentSlideIdx = (index + heroSlides.length) % heroSlides.length;
+
+    heroSlides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === currentSlideIdx);
+    });
+
+    heroTabBtns.forEach((tab, i) => {
+      const isActive = i === currentSlideIdx;
+      tab.classList.toggle("active", isActive);
+      // Reiniciar animación de barra de progreso
+      const progressFill = tab.querySelector(".tab-progress-fill");
+      if (progressFill) {
+        progressFill.style.animation = "none";
+        void progressFill.offsetWidth;
+        progressFill.style.animation = isActive ? "" : "none";
+      }
+    });
+  }
+
+  function startHeroAutoPlay() {
+    stopHeroAutoPlay();
+    heroInterval = setInterval(() => {
+      goToHeroSlide(currentSlideIdx + 1);
+    }, HERO_SLIDE_DURATION);
+  }
+
+  function stopHeroAutoPlay() {
+    if (heroInterval) {
+      clearInterval(heroInterval);
+      heroInterval = null;
+    }
+  }
+
+  heroTabBtns.forEach(tab => {
+    tab.addEventListener("click", () => {
+      const idx = parseInt(tab.getAttribute("data-goto-slide"), 10);
+      if (!isNaN(idx)) {
+        goToHeroSlide(idx);
+        startHeroAutoPlay();
+      }
+    });
+  });
+
+  if (heroPrevBtn) {
+    heroPrevBtn.addEventListener("click", () => {
+      goToHeroSlide(currentSlideIdx - 1);
+      startHeroAutoPlay();
+    });
+  }
+
+  if (heroNextBtn) {
+    heroNextBtn.addEventListener("click", () => {
+      goToHeroSlide(currentSlideIdx + 1);
+      startHeroAutoPlay();
+    });
+  }
+
+  if (heroCarousel) {
+    heroCarousel.addEventListener("mouseenter", stopHeroAutoPlay);
+    heroCarousel.addEventListener("mouseleave", startHeroAutoPlay);
+    startHeroAutoPlay();
+  }
+
+  // --- 15. POPUP DE SUSCRIPCIÓN AL NEWSLETTER ---
+  const modalNewsletter = document.getElementById("modal-newsletter");
+  const formNewsletter = document.getElementById("form-newsletter");
+  const newsletterFormView = document.getElementById("newsletter-form-view");
+  const newsletterSuccessView = document.getElementById("newsletter-success-view");
+  const btnDismissNewsletter = document.getElementById("btn-dismiss-newsletter");
+  const btnApplyNewsletterCoupon = document.getElementById("btn-apply-newsletter-coupon");
+
+  function openNewsletterModal() {
+    if (!modalNewsletter) return;
+    if (mobileMenu) mobileMenu.classList.remove("abierto");
+    modalNewsletter.classList.add("visible");
+    document.body.style.overflow = "hidden";
+    try {
+      sessionStorage.setItem("mt_newsletter_shown", "1");
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  function closeNewsletterModal() {
+    if (!modalNewsletter) return;
+    modalNewsletter.classList.remove("visible");
+    document.body.style.overflow = "";
+  }
+
+  [
+    "btn-open-newsletter-top",
+    "btn-open-newsletter-mobile",
+    "btn-open-newsletter-strip",
+    "btn-open-newsletter-mid",
+    "btn-open-newsletter-footer"
+  ].forEach(btnId => {
+    const el = document.getElementById(btnId);
+    if (el) {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        openNewsletterModal();
+      });
+    }
+  });
+
+  if (btnDismissNewsletter) {
+    btnDismissNewsletter.addEventListener("click", closeNewsletterModal);
+  }
+
+  if (formNewsletter) {
+    formNewsletter.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("newsletter-email")?.value.trim();
+      if (!email) return;
+
+      const selectedCats = Array.from(formNewsletter.querySelectorAll('input[name="nl-cat"]:checked')).map(c => c.value);
+      try {
+        const subs = JSON.parse(localStorage.getItem("mt_newsletter_subs")) || [];
+        subs.push({ email, categorias: selectedCats, fecha: new Date().toISOString() });
+        localStorage.setItem("mt_newsletter_subs", JSON.stringify(subs));
+      } catch (err) {
+        // ignore
+      }
+
+      if (newsletterFormView) newsletterFormView.classList.add("hidden");
+      if (newsletterSuccessView) newsletterSuccessView.classList.remove("hidden");
+      showToast("Suscripción confirmada: cupón BIENVENIDO habilitado", "fa-envelope-open-text");
+    });
+  }
+
+  if (btnApplyNewsletterCoupon) {
+    btnApplyNewsletterCoupon.addEventListener("click", () => {
+      descuentoAplicado = CUPONES["BIENVENIDO"] || 0.15;
+      const cuponInput = document.getElementById("cupon-input");
+      const cuponMensaje = document.getElementById("cupon-mensaje");
+      if (cuponInput) cuponInput.value = "BIENVENIDO";
+      if (cuponMensaje) {
+        cuponMensaje.textContent = 'Código "BIENVENIDO" aplicado (15% de descuento)';
+        cuponMensaje.className = "exito";
+      }
+      actualizarResumenPedido();
+      closeNewsletterModal();
+      showToast("Cupón BIENVENIDO (15% OFF) activado para tu compra", "fa-tag");
+    });
+  }
+
+  // Mostrar popup de Newsletter automáticamente una vez por sesión tras 4 segundos (salvo ?no_popup=1)
+  if (!window.location.search.includes("no_popup=1") && !sessionStorage.getItem("mt_newsletter_shown")) {
+    setTimeout(() => {
+      const anyModalOpen = document.querySelector(".modal.visible") || carritoSidebar?.classList.contains("abierto");
+      if (!anyModalOpen) {
+        openNewsletterModal();
+      }
+    }, 4000);
+  }
+
+  // --- 16. INICIALIZACIÓN ---
   renderProducts();
   updateWishlistBadge();
   actualizarCarrito();
