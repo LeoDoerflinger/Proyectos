@@ -3,80 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MiTienda — E-Commerce Moderno & Exclusivo</title>
+  <title>MiTienda — Tecnología, Indumentaria y Hogar</title>
+  <meta name="description" content="Catálogo oficial MiTienda en Córdoba, Argentina. Computación, audio, indumentaria y artículos para el hogar con envío a todo el país y facturación A/B." />
 
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="MiTienda — Descubrí lo mejor en tecnología, calzado, moda urbana y artículos para el hogar con envíos a todo el país y cuotas sin interés." />
-  <meta name="author" content="Leopoldo Doerflinger" />
-  <meta name="theme-color" content="#C25438" />
-
-  <!-- Google Fonts: Newsreader, JetBrains Mono, Plus Jakarta Sans -->
+  <!-- Tipografía Limpia Humanista (Plus Jakarta Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Iconografía FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- Modern Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
-<body data-theme="light">
+<body>
 
-  <!-- ======================================================================
-       ANNOUNCEMENT BAR
-       ====================================================================== -->
-  <div class="announcement-bar">
-    <span class="announcement-badge">OFERTAS 2026</span>
-    <span>Envío Gratis a partir de $500 • Usá el cupón <strong>SOYDEV</strong> para un 20% OFF</span>
+  <!-- BARRA SUPERIOR DE ANUNCIO -->
+  <div class="utility-bar">
+    <div class="utility-container">
+      <span>Envíos sin cargo a todo el país en compras superiores a $150 · Hasta 6 cuotas sin interés con todas las tarjetas</span>
+      <div class="utility-links">
+        <a href="#contacto">Atención al cliente</a>
+        <span class="utility-sep">|</span>
+        <a href="dashboard/index.html">Acceso administrativo (CRM)</a>
+      </div>
+    </div>
   </div>
 
-  <!-- ======================================================================
-       HEADER & NAVIGATION
-       ====================================================================== -->
-  <header>
-    <div class="container header-container">
+  <!-- HEADER PRINCIPAL ESTILO CATÁLOGO RETAIL -->
+  <header class="site-header" id="main-header">
+    <div class="header-container">
 
-      <!-- Brand Logo -->
-      <a href="#" class="logo" aria-label="Ir al inicio de MiTienda">
-        <div class="logo-icon">
-          <i class="fas fa-bag-shopping"></i>
-        </div>
-        <h1>MiTienda<span>.</span></h1>
-      </a>
-
-      <!-- Desktop Nav -->
-      <nav class="desktop-nav" aria-label="Navegación principal">
-        <a href="#hero" class="active">Inicio</a>
-        <a href="#productos">Productos</a>
-        <a href="#contacto">Contacto</a>
-        <a href="dashboard/index.html" class="nav-admin-link" title="Panel de Gestión de Órdenes y CRM en Tiempo Real">
-          <i class="fas fa-chart-line"></i> Dashboard CRM
+      <div class="header-left">
+        <a href="#inicio" class="brand-logo" aria-label="MiTienda Inicio">
+          <span class="brand-squares" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </span>
+          <span class="brand-name">MiTienda</span>
         </a>
-      </nav>
 
-      <!-- Nav Icons Group -->
-      <div class="nav-icons">
-        <!-- Theme Toggle -->
-        <button id="theme-toggle" class="icon-btn theme-toggle" aria-label="Cambiar tema de color" title="Alternar tema claro/oscuro">
-          <i class="fas fa-sun"></i>
-          <i class="fas fa-moon"></i>
-        </button>
+        <nav class="primary-nav" aria-label="Navegación principal">
+          <ul>
+            <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+            <li><a href="#productos" class="nav-link" data-QuickCat="all">Catálogo</a></li>
+            <li><a href="#productos" class="nav-link" data-QuickCat="tecnologia">Tecnología</a></li>
+            <li><a href="#productos" class="nav-link" data-QuickCat="moda">Indumentaria</a></li>
+            <li><a href="#productos" class="nav-link" data-QuickCat="hogar">Hogar</a></li>
+            <li><a href="#productos" class="nav-link" data-QuickCat="ofertas">Ofertas</a></li>
+            <li><a href="#contacto" class="nav-link">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
 
-        <!-- Wishlist Button -->
-        <button id="icono-favoritos-btn" class="icon-btn" aria-label="Ver productos favoritos" title="Tus Favoritos">
+      <div class="header-right">
+        <div class="header-search">
+          <i class="fas fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="Buscar productos, marcas..." aria-label="Buscar productos" />
+        </div>
+
+        <a href="dashboard/index.html" class="header-crm-btn" title="Abrir Panel de Gestión CRM">
+          <i class="fas fa-table-columns"></i>
+          <span>Panel CRM</span>
+        </a>
+
+        <button class="header-icon-btn" id="icono-favoritos" aria-label="Ver favoritos" title="Favoritos">
           <i class="far fa-heart"></i>
-          <span id="favoritos-contador" class="badge-count">0</span>
+          <span class="badge-counter" id="favoritos-contador">0</span>
         </button>
 
-        <!-- Shopping Cart Button -->
-        <button id="icono-carrito-btn" class="icon-btn" aria-label="Abrir carrito de compras" title="Tu Carrito">
-          <i class="fas fa-shopping-cart"></i>
-          <span id="carrito-contador" class="badge-count">0</span>
+        <button class="header-icon-btn" id="icono-carrito" aria-label="Abrir carrito de compras" title="Carrito">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="badge-counter" id="carrito-contador">0</span>
         </button>
 
-        <!-- Mobile Menu Toggle -->
-        <button class="icon-btn hamburger" aria-label="Abrir menú para móviles">
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú de navegación">
           <i class="fas fa-bars"></i>
         </button>
       </div>
@@ -84,494 +84,569 @@
     </div>
   </header>
 
-  <!-- Mobile Drawer Menu (Fuera del header para ocupar viewport completo sin superposición) -->
-  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación móvil">
-    <div class="mobile-menu-inner">
-      <div class="mobile-menu-header">
-        <a href="#" class="logo">
-          <div class="logo-icon"><i class="fas fa-bag-shopping"></i></div>
-          <h1>MiTienda<span>.</span></h1>
-        </a>
-        <button class="cerrar-menu-movil" aria-label="Cerrar menú">
+  <!-- MENÚ MÓVIL -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-panel">
+      <div class="mobile-menu-top">
+        <span class="brand-name">MiTienda</span>
+        <button class="cerrar-menu-movil" id="cerrar-menu-movil" aria-label="Cerrar menú">
           <i class="fas fa-xmark"></i>
         </button>
       </div>
-
-      <nav class="mobile-menu-links">
-        <a href="#hero" class="mobile-nav-link">
-          <i class="fas fa-house"></i>
-          <span>Inicio</span>
-        </a>
-        <a href="#productos" class="mobile-nav-link">
-          <i class="fas fa-boxes-stacked"></i>
-          <span>Productos</span>
-        </a>
-        <a href="#contacto" class="mobile-nav-link">
-          <i class="fas fa-envelope"></i>
-          <span>Contacto</span>
-        </a>
-        <a href="dashboard/index.html" class="mobile-nav-link admin-pill">
-          <i class="fas fa-chart-line"></i>
-          <span>Dashboard CRM</span>
-          <span style="font-size:0.65rem; background:var(--color-primary); color:#fff; padding:0.15rem 0.45rem; border-radius:99px; margin-left:auto;">ADMIN</span>
+      <nav class="mobile-nav-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#productos" data-QuickCat="all">Catálogo Completo</a>
+        <a href="#productos" data-QuickCat="tecnologia">Tecnología</a>
+        <a href="#productos" data-QuickCat="moda">Indumentaria</a>
+        <a href="#productos" data-QuickCat="hogar">Hogar y Deco</a>
+        <a href="#productos" data-QuickCat="ofertas">Ofertas de la semana</a>
+        <a href="#contacto">Contacto</a>
+        <a href="dashboard/index.html" class="mobile-crm-link">
+          <i class="fas fa-table-columns"></i> Ir al Panel CRM
         </a>
       </nav>
-
-      <div class="mobile-menu-footer">
-        <div style="font-size:0.8rem; color:var(--text-muted); text-align:center; margin-bottom:0.5rem;">
-          <i class="fas fa-shield-halved" style="color:var(--color-success); margin-right:4px;"></i> Compras 100% Protegidas
-        </div>
-        <a href="https://wa.me/5493512619874" target="_blank" rel="noopener noreferrer" class="cta-button" style="background:#25d366; width:100%; justify-content:center;">
-          <i class="fab fa-whatsapp"></i>
-          <span>Consultar por WhatsApp</span>
-        </a>
-      </div>
     </div>
   </div>
 
-  <main>
-    <!-- ======================================================================
-         HERO SECTION
-         ====================================================================== -->
-    <section id="hero" class="hero">
-      <div class="hero-overlay">
-        <div class="container">
-          <div class="hero-content">
-            <div class="hero-tag">
-              <i class="fas fa-bolt"></i> Nueva Colección Exclusiva
-            </div>
-            <h2>Calidad Premium,<br><span>tecnología y estilo</span>.</h2>
-            <p>
-              Explorá nuestro catálogo curado con los mejores productos de tecnología, indumentaria y diseño para tu hogar. Compras seguras con entrega rápida.
-            </p>
-            <div class="hero-actions">
-              <a href="#productos" class="cta-button">
-                <span>Ver Productos</span>
-                <i class="fas fa-arrow-down"></i>
-              </a>
-              <a href="#contacto" class="cta-button cta-button-outline">
-                <span>Consultar Dudas</span>
-                <i class="fab fa-whatsapp"></i>
-              </a>
-            </div>
+  <!-- HERO SHOWCASE (REFERENCIA RETAIL CON TARJETA BLANCA SUPERPUESTA) -->
+  <section id="inicio" class="hero-showcase-section">
+    <div class="hero-showcase-container">
+      <div class="hero-banner-box">
+        
+        <!-- Tarjeta Blanca Superpuesta a la Izquierda -->
+        <div class="hero-overlay-card">
+          <span class="hero-tag">DESTACADOS DE TEMPORADA</span>
+          <h1>Equipamiento pensado para rendir todos los días</h1>
+          <p>
+            Encontrá notebooks, audio profesional, indumentaria técnica y diseño para tu casa. Stock físico en Córdoba con despacho inmediato a todo el país.
+          </p>
+          <div class="hero-card-actions">
+            <a href="#productos" class="btn-primary-blue">Explorar catálogo</a>
+            <a href="#productos" class="btn-link-chevron" data-QuickCat="ofertas">
+              <span>Ver ofertas vigentes</span>
+              <i class="fas fa-chevron-right"></i>
+            </a>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Trust / Value Propositions Strip -->
-    <section class="trust-strip">
-      <div class="container trust-grid">
-        <div class="trust-item">
-          <div class="trust-icon"><i class="fas fa-truck-fast"></i></div>
-          <div class="trust-text">
-            <h4>Envío Rápido y Seguro</h4>
-            <p>Gratis en compras mayores a $500</p>
+        <!-- Composición de Producto Limpia a la Derecha -->
+        <div class="hero-visual-stage">
+          <div class="hero-product-composition">
+            <div class="hero-main-img-card">
+              <img src="./assets/laptop.jpg" alt="Notebook HP Victus 15.6 RTX" />
+              <div class="hero-img-caption">
+                <strong>HP Victus 15.6" Ryzen 5 + RTX</strong>
+                <span>12 cuotas o 15% OFF por transferencia</span>
+              </div>
+            </div>
+            <div class="hero-side-img-stack">
+              <div class="hero-mini-card">
+                <img src="./assets/phone.jpg" alt="iPhone 15 Pro" />
+                <span>iPhone 15 Pro 256GB</span>
+              </div>
+              <div class="hero-mini-card">
+                <img src="./assets/headphones.jpg" alt="Auriculares Sony WH-1000XM5" />
+                <span>Sony WH-1000XM5</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="trust-item">
-          <div class="trust-icon"><i class="fas fa-credit-card"></i></div>
-          <div class="trust-text">
-            <h4>Hasta 6 Cuotas Sin Interés</h4>
-            <p>Todas las tarjetas y Mercado Pago</p>
-          </div>
-        </div>
-        <div class="trust-item">
-          <div class="trust-icon"><i class="fas fa-shield-halved"></i></div>
-          <div class="trust-text">
-            <h4>Compra 100% Protegida</h4>
-            <p>Garantía de devolución de 30 días</p>
-          </div>
-        </div>
-        <div class="trust-item">
-          <div class="trust-icon"><i class="fas fa-headset"></i></div>
-          <div class="trust-text">
-            <h4>Soporte Inmediato</h4>
-            <p>Atención personalizada por WhatsApp</p>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ======================================================================
-         PRODUCTS CATALOG SECTION
-         ====================================================================== -->
-    <section id="productos" class="container section-padding">
+      </div>
+    </div>
+  </section>
+
+  <!-- TIRA DE ACCESOS RÁPIDOS POR CATEGORÍA (ICON ROW REFERENCIA) -->
+  <section class="quick-categories-strip" aria-label="Accesos rápidos por categoría">
+    <div class="quick-categories-container">
+      <button type="button" class="quick-cat-item" data-QuickCat="tecnologia">
+        <div class="quick-cat-icon"><i class="fas fa-laptop"></i></div>
+        <span>Computación y Móviles</span>
+      </button>
+      <button type="button" class="quick-cat-item" data-QuickCat="moda">
+        <div class="quick-cat-icon"><i class="fas fa-shirt"></i></div>
+        <span>Indumentaria y Calzado</span>
+      </button>
+      <button type="button" class="quick-cat-item" data-QuickCat="hogar">
+        <div class="quick-cat-icon"><i class="fas fa-couch"></i></div>
+        <span>Hogar y Mobiliario</span>
+      </button>
+      <button type="button" class="quick-cat-item" data-QuickCat="ofertas">
+        <div class="quick-cat-icon"><i class="fas fa-tag"></i></div>
+        <span>Precios Especiales</span>
+      </button>
+      <a href="dashboard/index.html" class="quick-cat-item">
+        <div class="quick-cat-icon"><i class="fas fa-file-invoice"></i></div>
+        <span>Gestión y Facturación</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- SECCIÓN PRINCIPAL DE CATÁLOGO (GRILLA DE 4 COLUMNAS) -->
+  <section id="productos" class="catalog-section">
+    <div class="catalog-container">
 
       <div class="catalog-header">
-        <div class="catalog-title-wrap">
-          <h2>Catálogo Destacado</h2>
-          <p id="productos-count">Cargando productos...</p>
+        <div class="catalog-title-block">
+          <h2>Catálogo de Productos</h2>
+          <p id="total-products-count">Mostrando 16 productos disponibles</p>
+        </div>
+
+        <div class="catalog-controls">
+          <div class="category-tabs" role="tablist" aria-label="Filtrar por categoría">
+            <button class="cat-tab active" data-category="all">Todos</button>
+            <button class="cat-tab" data-category="tecnologia">Tecnología</button>
+            <button class="cat-tab" data-category="moda">Indumentaria</button>
+            <button class="cat-tab" data-category="hogar">Hogar</button>
+            <button class="cat-tab" data-category="ofertas">Ofertas</button>
+          </div>
+
+          <div class="sort-box">
+            <label for="sort-select" class="sr-only">Ordenar por</label>
+            <select id="sort-select" class="sort-select" aria-label="Ordenar productos">
+              <option value="featured">Ordenar: Destacados</option>
+              <option value="price-asc">Precio: Menor a Mayor</option>
+              <option value="price-desc">Precio: Mayor a Menor</option>
+              <option value="rating">Mejor Valorados</option>
+              <option value="name">Nombre (A - Z)</option>
+            </select>
+          </div>
         </div>
       </div>
 
-      <!-- Filter & Search Toolbar -->
-      <div class="catalog-toolbar">
-        <div class="category-tabs">
-          <button type="button" class="tab-btn active" data-category="all">Todos</button>
-          <button type="button" class="tab-btn" data-category="tecnologia">Tecnología</button>
-          <button type="button" class="tab-btn" data-category="moda">Moda & Calzado</button>
-          <button type="button" class="tab-btn" data-category="hogar">Hogar & Deco</button>
-          <button type="button" class="tab-btn" data-category="ofertas">Ofertas 🔥</button>
-        </div>
-
-        <div class="toolbar-controls">
-          <!-- Search Input -->
-          <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" id="search-input" class="search-input" placeholder="Buscar producto..." aria-label="Buscar producto" />
-          </div>
-
-          <!-- Sort Select -->
-          <select id="sort-select" class="sort-select" aria-label="Ordenar productos">
-            <option value="featured">Destacados</option>
-            <option value="price-asc">Precio: Menor a Mayor</option>
-            <option value="price-desc">Precio: Mayor a Menor</option>
-            <option value="rating">Mejor Calificados</option>
-            <option value="name">Nombre: A - Z</option>
-          </select>
-        </div>
+      <!-- Grilla de 4 Columnas -->
+      <div class="productos-grid" id="productos-container">
+        <!-- Se inyectan los 16 productos desde app.js -->
       </div>
 
-      <!-- Products Grid Container (Populated by app.js) -->
-      <div id="productos-container" class="productos-grid">
-        <!-- Rendered dynamically -->
+    </div>
+  </section>
+
+  <!-- BANNER EDITORIAL INTERMEDIO (ESTILO SHOWCASE HORIZONTAL) -->
+  <section class="mid-showcase-section">
+    <div class="mid-showcase-container">
+      <div class="mid-showcase-box">
+        <div class="mid-showcase-content">
+          <span class="mid-tag">BENEFICIO EN TIENDA</span>
+          <h2>Renová tu espacio o tu equipo con descuento directo</h2>
+          <p>
+            Sumando el código <strong>MITIENDA10</strong> en el checkout tenés un 10% de descuento adicional acumulable con envío gratis en compras mayores a $150. Emitimos Factura A y B al instante.
+          </p>
+          <div class="mid-showcase-actions">
+            <a href="#productos" class="btn-primary-blue" data-QuickCat="hogar">Ver línea Hogar</a>
+            <a href="dashboard/index.html" class="btn-link-chevron">
+              <span>Ver órdenes en el CRM</span>
+              <i class="fas fa-chevron-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="mid-showcase-image">
+          <img src="./assets/sofa.jpg" alt="Sofá Escandinavo Minimalista" />
+        </div>
       </div>
+    </div>
+  </section>
 
-    </section>
+  <!-- PILARES DE SERVICIO (4 COLUMNAS PLANAS) -->
+  <section class="service-pillars-section">
+    <div class="service-pillars-container">
+      <div class="service-pillar">
+        <i class="fas fa-truck"></i>
+        <h3>Despacho en 24 hs</h3>
+        <p>Envíos a domicilio a todo el país o retiro sin cargo por nuestro local en Av. Colón 1234, Córdoba.</p>
+      </div>
+      <div class="service-pillar">
+        <i class="fas fa-credit-card"></i>
+        <h3>Pagos y Cuotas</h3>
+        <p>Aceptamos tarjetas de débito y crédito Visa, Mastercard y Amex con acreditación inmediata.</p>
+      </div>
+      <div class="service-pillar">
+        <i class="fas fa-file-invoice-dollar"></i>
+        <h3>Facturación A y B</h3>
+        <p>Comprobantes fiscales electrónicos automáticos para consumidores finales, monotributistas y empresas.</p>
+      </div>
+      <div class="service-pillar">
+        <i class="fas fa-shield-halved"></i>
+        <h3>Garantía Escrita</h3>
+        <p>Todos nuestros productos cuentan con 12 meses de garantía oficial y cambio directo por 30 días.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- ======================================================================
-         CONTACT SECTION
-         ====================================================================== -->
-    <section id="contacto" class="contacto-section section-padding">
-      <div class="container contact-container">
-        <h2>¿Tenés alguna consulta?</h2>
-        <p>Escribinos y te responderemos al instante por WhatsApp o correo electrónico.</p>
-        
-        <form id="form-contacto">
-          <div>
-            <input type="text" placeholder="Tu Nombre Completo" required aria-label="Tu Nombre" />
+  <!-- SECCIÓN DE CONTACTO -->
+  <section id="contacto" class="contact-section">
+    <div class="contact-container">
+      <div class="contact-grid">
+        <div class="contact-info-col">
+          <span class="hero-tag">ATENCIÓN COMERCIAL</span>
+          <h2>¿Tenés dudas sobre algún producto o presupuesto?</h2>
+          <p>
+            Escribinos por consultas de stock mayorista, facturación para empresas o seguimiento de envíos. Te respondemos directo por WhatsApp desde Córdoba.
+          </p>
+          <ul class="contact-details-list">
+            <li>
+              <i class="fas fa-location-dot"></i>
+              <span>Av. Colón 1234, Centro — Córdoba, Argentina (CP 5000)</span>
+            </li>
+            <li>
+              <i class="fas fa-phone"></i>
+              <span>+54 9 351 261-9874 (Lunes a Sábados de 9:00 a 19:00 hs)</span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span>ventas@mitienda.com.ar</span>
+            </li>
+          </ul>
+        </div>
+
+        <form id="form-contacto" class="contact-form-box">
+          <h3>Enviar consulta</h3>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="contacto-nombre">Nombre y apellido</label>
+              <input type="text" id="contacto-nombre" placeholder="Ej: Martín Gómez" required />
+            </div>
+            <div class="form-group">
+              <label for="contacto-email">Correo electrónico</label>
+              <input type="email" id="contacto-email" placeholder="martin@correo.com" required />
+            </div>
           </div>
-          <div>
-            <input type="email" placeholder="Tu Correo Electrónico" required aria-label="Tu Email" />
+          <div class="form-group">
+            <label for="contacto-mensaje">Mensaje o consulta</label>
+            <textarea id="contacto-mensaje" rows="4" placeholder="Contanos en qué podemos ayudarte..." required></textarea>
           </div>
-          <div>
-            <textarea rows="4" placeholder="¿En qué te podemos ayudar? (Consultas sobre stock, envíos, formas de pago...)" required aria-label="Mensaje"></textarea>
-          </div>
-          <button type="submit" class="cta-button btn-whatsapp-submit" style="width:100%">
-            <span>Enviar Consulta por WhatsApp</span>
-            <i class="fab fa-whatsapp"></i>
+          <button type="submit" class="btn-primary-blue">
+            <span>Enviar por WhatsApp</span>
           </button>
-          <p id="contacto-mensaje"></p>
         </form>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <!-- ======================================================================
-       CART SLIDE-OVER DRAWER & BACKDROP
-       ====================================================================== -->
-  <div id="cart-backdrop" class="cart-backdrop"></div>
-  <aside id="carrito-sidebar" class="carrito-sidebar" role="dialog" aria-modal="true" aria-label="Carrito de compras">
-    <!-- Populated by app.js -->
-  </aside>
+  <!-- FOOTER MULTI-COLUMNA (ESTILO CATÁLOGO CORPORATIVO #F2F2F2) -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h4>Novedades y Catálogo</h4>
+          <ul>
+            <li><a href="#productos" data-QuickCat="tecnologia">Notebooks y Computación</a></li>
+            <li><a href="#productos" data-QuickCat="tecnologia">Smartphones y Audio</a></li>
+            <li><a href="#productos" data-QuickCat="moda">Indumentaria y Calzado</a></li>
+            <li><a href="#productos" data-QuickCat="hogar">Muebles e Iluminación</a></li>
+            <li><a href="#productos" data-QuickCat="ofertas">Promociones Vigentes</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Compra y Envíos</h4>
+          <ul>
+            <li><a href="#productos">Seguimiento de pedidos</a></li>
+            <li><a href="#productos">Medios de pago habilitados</a></li>
+            <li><a href="#productos">Retiro en sucursal Córdoba</a></li>
+            <li><a href="#productos">Cambios y devoluciones</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Empresas y Gestión</h4>
+          <ul>
+            <li><a href="dashboard/index.html">Panel Administrativo CRM</a></li>
+            <li><a href="dashboard/index.html">Emisión de Factura A y B</a></li>
+            <li><a href="dashboard/index.html">Rótulos de despacho logístico</a></li>
+            <li><a href="dashboard/index.html">Métricas comerciales</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Desarrollador</h4>
+          <ul>
+            <li><a href="https://github.com/LeoDoerflinger" target="_blank" rel="noopener">GitHub — LeoDoerflinger</a></li>
+            <li><a href="https://linkedin.com/in/leopoldo-doerflinger" target="_blank" rel="noopener">LinkedIn Oficial</a></li>
+            <li><a href="https://wa.me/5493512619874" target="_blank" rel="noopener">WhatsApp Directo</a></li>
+          </ul>
+        </div>
+      </div>
 
-  <!-- ======================================================================
-       MODAL: PRODUCT DETAILS
-       ====================================================================== -->
+      <div class="footer-bottom">
+        <div class="footer-locale">
+          <i class="fas fa-earth-americas"></i>
+          <span>Español (Argentina) · Precios expresados en USD / ARS referencial</span>
+        </div>
+        <div class="footer-legal">
+          <span>© 2026 MiTienda S.R.L. · Desarrollado por Leo Doerflinger en Córdoba, Argentina.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DRAWER LATERAL DEL CARRITO -->
+  <div class="cart-backdrop" id="cart-backdrop"></div>
+  <aside id="carrito-sidebar" class="carrito-sidebar" aria-label="Carrito de compras"></aside>
+
+  <!-- MODAL 1: FICHA TÉCNICA DE PRODUCTO -->
   <div id="modal-producto" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-producto-nombre">
-    <div class="modal-contenido">
+    <div class="modal-content modal-product-box">
       <button class="cerrar-modal" aria-label="Cerrar ventana"><i class="fas fa-xmark"></i></button>
-      <div class="modal-producto-grid">
-        <div class="modal-product-img-box">
-          <img id="modal-producto-img" src="" alt="Imagen de producto" />
+      <div class="modal-product-grid">
+        <div class="modal-product-image">
+          <img id="modal-producto-img" src="./assets/phone.jpg" alt="Vista previa de producto" />
         </div>
-        <div class="modal-producto-info">
-          <span class="modal-stock-badge">En Stock — Envío Inmediato</span>
-          <h2 id="modal-producto-nombre"></h2>
-          <div id="modal-producto-precio" class="modal-producto-precio"></div>
-          <p id="modal-producto-descripcion"></p>
-          <ul id="modal-producto-specs" style="list-style:none; display:flex; flex-direction:column; gap:0.4rem; font-size:0.88rem; color:var(--text-secondary); margin-bottom:1.5rem;"></ul>
-          <button id="modal-agregar-carrito" class="cta-button" style="width:100%">
-            <i class="fas fa-shopping-cart"></i> Añadir al Carrito
+        <div class="modal-product-info">
+          <span id="modal-producto-cat" class="hero-tag">CATEGORÍA</span>
+          <h2 id="modal-producto-nombre">Nombre del Producto</h2>
+          <p id="modal-producto-descripcion" class="modal-desc"></p>
+
+          <div class="modal-specs-block">
+            <h4>Especificaciones principales</h4>
+            <ul id="modal-producto-specs" class="specs-list"></ul>
+          </div>
+
+          <div class="modal-price-box">
+            <span id="modal-producto-precio" class="precio-grande">$0.00</span>
+            <span class="iva-note">IVA incluido · Stock disponible</span>
+          </div>
+
+          <button id="modal-agregar-carrito" class="btn-primary-blue btn-full">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Sumar al carrito</span>
           </button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ======================================================================
-       MODAL: CHECKOUT
-       ====================================================================== -->
+  <!-- MODAL 2: CHECKOUT Y DATOS DE FACTURACIÓN / ENVÍO -->
   <div id="modal-checkout" class="modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
-    <div class="modal-contenido modal-checkout-contenido">
-      <button class="cerrar-modal" aria-label="Cerrar"><i class="fas fa-xmark"></i></button>
-      <div class="checkout-header">
-        <h2 id="checkout-title">Finalizar tu Pedido</h2>
+    <div class="modal-content modal-checkout-box">
+      <button class="cerrar-modal" aria-label="Cerrar checkout"><i class="fas fa-xmark"></i></button>
+      <div class="modal-header-clean">
+        <span class="hero-tag">PASO 1 DE 2</span>
+        <h2 id="checkout-title">Datos de entrega y facturación</h2>
       </div>
 
-      <div class="checkout-grid">
-        <!-- Col Izquierda: Datos y Entrega -->
-        <div>
-          <div class="checkout-seccion">
-            <h3><i class="fas fa-user-circle" style="color:var(--color-primary);margin-right:6px"></i> 1. Tus Datos</h3>
-            <div id="user-login-view" class="hidden">
-              <p style="font-size:0.9rem; margin-bottom:0.8rem;">
-                Hola, <strong id="logged-in-user-name"></strong>. 
-                <button type="button" id="logout-btn" class="link-btn" style="color:var(--color-primary);font-size:0.85rem;">(Cerrar sesión)</button>
-              </p>
-            </div>
-            <div id="user-details-form" class="checkout-input-group">
-              <input type="text" id="checkout-nombre" class="checkout-input" placeholder="Nombre y Apellido *" required />
-              <input type="email" id="checkout-email" class="checkout-input" placeholder="Correo Electrónico *" required />
-              
-              <!-- Teléfono Móvil con Código de País y Celular sin 0 -->
-              <div style="display:flex; gap:0.5rem; align-items:stretch;">
-                <div style="width:115px; flex-shrink:0;">
-                  <select id="checkout-codigo-pais" class="checkout-input" style="height:100%; padding:0.6rem 0.4rem; font-size:0.84rem; cursor:pointer;" aria-label="Código de País">
-                    <option value="+54" selected>🇦🇷 +54</option>
-                    <option value="+56">🇨🇱 +56</option>
-                    <option value="+55">🇧🇷 +55</option>
-                    <option value="+598">🇺🇾 +598</option>
-                    <option value="+595">🇵🇾 +595</option>
-                    <option value="+591">🇧🇴 +591</option>
-                    <option value="+1">🇺🇸 +1</option>
-                    <option value="+34">🇪🇸 +34</option>
-                  </select>
-                </div>
-                <div style="flex:1;">
-                  <input type="tel" id="checkout-telefono-num" class="checkout-input" placeholder="Celular sin 0 (ej: 3512619874)" required />
-                </div>
-              </div>
-              <small style="font-size:0.75rem; color:var(--text-muted); display:flex; align-items:center; gap:0.4rem; margin-top:-0.2rem; margin-bottom:0.25rem;">
-                <i class="fab fa-whatsapp" style="color:#25d366; font-size:0.9rem;"></i>
-                <span>Ingresá tu código de área sin el 0 (ej: <strong>0351 = 351</strong>) para recibir avisos de tu compra.</span>
-              </small>
+      <div class="checkout-layout">
+        <!-- Columna Izquierda: Formulario -->
+        <div class="checkout-form-col">
+          <div id="user-login-view" class="saved-user-banner hidden">
+            <i class="fas fa-user-check"></i>
+            <span>Datos autocompletados para <strong id="logged-in-user-name"></strong></span>
+          </div>
 
-              <!-- Condición Fiscal y Datos de Facturación -->
-              <div style="margin-top:0.4rem; border-top:1px dashed var(--border-color); padding-top:0.65rem;">
-                <label style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-muted); display:block; margin-bottom:0.35rem;">
-                  <i class="fas fa-file-invoice" style="color:var(--color-primary); margin-right:4px;"></i> Condición Fiscal & Facturación
+          <div id="user-details-form">
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="checkout-nombre">Nombre y Apellido *</label>
+                <input type="text" id="checkout-nombre" placeholder="Ej: Valentina Rossi" required />
+              </div>
+              <div class="form-group">
+                <label for="checkout-email">Correo electrónico *</label>
+                <input type="email" id="checkout-email" placeholder="valentina@gmail.com" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="checkout-telefono-num">Teléfono móvil (WhatsApp) *</label>
+              <div class="phone-input-group">
+                <select id="checkout-codigo-pais" aria-label="Código de país">
+                  <option value="+54" selected>AR +54</option>
+                  <option value="+598">UY +598</option>
+                  <option value="+56">CL +56</option>
+                  <option value="+55">BR +55</option>
+                  <option value="+1">US +1</option>
+                </select>
+                <input type="tel" id="checkout-telefono-num" placeholder="3512619874 (sin 0 ni 15)" required />
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="checkout-condicion-iva">Condición frente al IVA</label>
+                <select id="checkout-condicion-iva">
+                  <option value="Consumidor Final" selected>Consumidor Final (Factura B)</option>
+                  <option value="Monotributo">Monotributo (Factura B)</option>
+                  <option value="Responsable Inscripto">Responsable Inscripto (Factura A)</option>
+                  <option value="Exento">IVA Exento (Factura B)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="checkout-doc-numero">DNI o CUIT *</label>
+                <input type="text" id="checkout-doc-numero" placeholder="Ej: 38920145 o 30-71829401-4" required />
+              </div>
+            </div>
+
+            <div class="form-group" id="checkout-razon-social-container" style="display: none;">
+              <label for="checkout-razon-social">Razón Social / Empresa (Obligatorio para Factura A) *</label>
+              <input type="text" id="checkout-razon-social" placeholder="Ej: Soluciones Industriales S.R.L." />
+            </div>
+
+            <div class="delivery-selector">
+              <label class="section-sub-label">Modalidad de entrega</label>
+              <div class="delivery-options-row">
+                <label class="radio-card">
+                  <input type="radio" name="delivery" value="shipping" checked />
+                  <div>
+                    <strong>Envío a domicilio ($10.00)</strong>
+                    <span>Correo prioritario a todo el país</span>
+                  </div>
                 </label>
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.5rem; margin-bottom:0.5rem;">
-                  <select id="checkout-condicion-iva" class="checkout-input" style="font-size:0.82rem; padding:0.55rem; cursor:pointer;" aria-label="Condición frente al IVA">
-                    <option value="Consumidor Final" selected>Consumidor Final (Factura B)</option>
-                    <option value="Responsable Inscripto">Resp. Inscripto (Factura A)</option>
-                    <option value="Monotributo">Monotributo (Factura B)</option>
-                    <option value="Exento">Exento (Factura B)</option>
-                  </select>
-                  <input type="text" id="checkout-doc-numero" class="checkout-input" placeholder="DNI o CUIT (sin guiones) *" maxlength="13" required />
-                </div>
-                <div id="checkout-razon-social-container" style="display:none; margin-bottom:0.5rem;">
-                  <input type="text" id="checkout-razon-social" class="checkout-input" placeholder="Razón Social / Empresa (para Factura A) *" />
-                </div>
-              </div>
-
-              <div style="display:flex; align-items:center; gap:0.6rem; margin-top:0.3rem; font-size:0.85rem; color:var(--text-secondary);">
-                <input type="checkbox" id="save-user-data" checked />
-                <label for="save-user-data">Recordar mis datos para futuras compras</label>
+                <label class="radio-card">
+                  <input type="radio" name="delivery" value="pickup" />
+                  <div>
+                    <strong>Retiro en sucursal (Gratis)</strong>
+                    <span>Av. Colón 1234, Córdoba</span>
+                  </div>
+                </label>
               </div>
             </div>
-          </div>
 
-          <div class="checkout-seccion">
-            <h3><i class="fas fa-truck" style="color:var(--color-primary);margin-right:6px"></i> 2. Método de Entrega</h3>
-            <div class="delivery-options">
-              <label class="delivery-card" for="delivery-pickup">
-                <input type="radio" id="delivery-pickup" name="delivery" value="pickup" checked />
-                <div>
-                  <strong style="color:var(--text-main);display:block">Retirar en el Local</strong>
-                  <span style="font-size:0.82rem;color:var(--color-success)">Gratis — Listo en 24 horas</span>
-                </div>
-              </label>
-
-              <label class="delivery-card" for="delivery-shipping">
-                <input type="radio" id="delivery-shipping" name="delivery" value="shipping" />
-                <div>
-                  <strong style="color:var(--text-main);display:block">Envío Estándar a Domicilio</strong>
-                  <span style="font-size:0.82rem;color:var(--text-muted)">Costo: $10.00 (Gratis superando $500)</span>
-                </div>
-              </label>
-
-              <div id="delivery-address-container" class="hidden" style="margin-top:0.6rem;">
-                <input type="text" id="checkout-direccion" class="checkout-input" placeholder="Calle, Número, Piso/Depto, Ciudad" />
-              </div>
+            <div class="form-group" id="delivery-address-container">
+              <label for="checkout-direccion">Dirección completa de entrega</label>
+              <input type="text" id="checkout-direccion" placeholder="Calle, número, piso/depto, localidad y código postal" />
             </div>
+
+            <label class="checkbox-save-line">
+              <input type="checkbox" id="save-user-data" checked />
+              <span>Recordar mis datos en este navegador para futuras compras</span>
+            </label>
           </div>
         </div>
 
-        <!-- Col Derecha: Resumen de Pedido & Cupón -->
-        <div>
-          <div class="checkout-seccion resumen-pedido">
-            <h3><i class="fas fa-receipt" style="color:var(--color-primary);margin-right:6px"></i> 3. Resumen del Pedido</h3>
-            <div id="resumen-items" style="max-height:160px; overflow-y:auto; margin-bottom:1rem; border-bottom:1px solid var(--border-color); padding-bottom:0.6rem;"></div>
-            
-            <div style="display:flex; justify-content:space-between; font-size:0.88rem; color:var(--text-secondary); margin-bottom:0.4rem;">
-              <span>Subtotal:</span>
-              <span id="resumen-subtotal" style="font-weight:600;color:var(--text-main)">$0.00</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.88rem; color:var(--text-secondary); margin-bottom:0.4rem;">
-              <span>Envío:</span>
-              <span id="resumen-envio" style="font-weight:600;color:var(--text-main)">$0.00</span>
-            </div>
-            <div id="resumen-descuento-linea" class="hidden" style="display:flex; justify-content:space-between; font-size:0.88rem; color:var(--color-success); margin-bottom:0.4rem;">
-              <span>Descuento aplicado:</span>
-              <span id="resumen-descuento">-$0.00</span>
-            </div>
-            <hr style="border:none; border-top:1px solid var(--border-color); margin:0.8rem 0;" />
-            <div style="display:flex; justify-content:space-between; font-size:1.25rem; font-weight:800; color:var(--text-main); margin-bottom:1.2rem;">
-              <span>Total:</span>
-              <span id="resumen-total" style="color:var(--color-primary)">$0.00</span>
-            </div>
+        <!-- Columna Derecha: Resumen y Cupón -->
+        <div class="checkout-summary-col">
+          <div class="summary-card">
+            <h3>Resumen de compra</h3>
+            <div id="resumen-items" class="summary-items-list"></div>
 
-            <!-- Coupon Box -->
             <div class="coupon-box">
-              <input type="text" id="cupon-input" class="coupon-input" placeholder="CUPÓN (Ej: SOYDEV)" aria-label="Cupón de descuento" />
-              <button type="button" id="aplicar-cupon-btn" class="coupon-btn">Aplicar</button>
+              <label for="cupon-input">Código de descuento</label>
+              <div class="coupon-row">
+                <input type="text" id="cupon-input" placeholder="MITIENDA10 o PROMO20" />
+                <button type="button" id="aplicar-cupon-btn" class="btn-outline-dark">Aplicar</button>
+              </div>
+              <small id="cupon-mensaje"></small>
             </div>
-            <p id="cupon-mensaje"></p>
-          </div>
 
-          <button type="button" id="continuar-pago-btn" class="cta-button" style="width:100%">
-            <span>Continuar al Pago</span>
-            <i class="fas fa-arrow-right"></i>
-          </button>
+            <div class="summary-totals">
+              <div class="summary-line">
+                <span>Subtotal</span>
+                <span id="resumen-subtotal">$0.00</span>
+              </div>
+              <div class="summary-line hidden" id="resumen-descuento-linea">
+                <span>Descuento aplicado</span>
+                <span id="resumen-descuento" class="discount-val">-$0.00</span>
+              </div>
+              <div class="summary-line">
+                <span>Costo de envío</span>
+                <span id="resumen-envio">$10.00</span>
+              </div>
+              <div class="summary-line total">
+                <span>Total a abonar</span>
+                <span id="resumen-total">$0.00</span>
+              </div>
+            </div>
+
+            <button type="button" id="continuar-pago-btn" class="btn-primary-blue btn-full">
+              <span>Continuar al pago</span>
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- ======================================================================
-       MODAL: PAYMENT (SIMULATION WITH VIRTUAL CARD)
-       ====================================================================== -->
+  <!-- MODAL 3: PAGO CON TARJETA Y CONFIRMACIÓN DE ORDEN -->
   <div id="modal-pago" class="modal" role="dialog" aria-modal="true" aria-labelledby="pago-title">
-    <div class="modal-contenido">
-      <button class="cerrar-modal" aria-label="Cerrar"><i class="fas fa-xmark"></i></button>
-      <h2 id="pago-title" style="font-family:var(--font-heading); font-size:1.5rem; margin-bottom:1.2rem;">Pasarela de Pago Segura</h2>
+    <div class="modal-content modal-payment-box">
+      <button class="cerrar-modal" aria-label="Cerrar ventana de pago"><i class="fas fa-xmark"></i></button>
 
-      <!-- Formulario de Pago con Tarjeta Virtual -->
+      <!-- Formulario de Tarjeta -->
       <form id="form-pago">
-        <!-- Virtual Card Live Mockup -->
-        <div class="virtual-card-preview">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div class="card-chip"></div>
-            <i class="fab fa-cc-visa" style="font-size:2rem; opacity:0.9;"></i>
+        <div class="modal-header-clean">
+          <span class="hero-tag">PASO 2 DE 2</span>
+          <h2 id="pago-title">Pago con tarjeta de crédito o débito</h2>
+        </div>
+
+        <!-- Tarjeta Sobria Corporativa (Sin gradientes neón) -->
+        <div class="credit-card-preview">
+          <div class="card-top-row">
+            <span class="card-chip"></span>
+            <span class="card-brand-label">VISA / MASTERCARD</span>
           </div>
-          <div id="card-display-number" class="card-number-display">•••• •••• •••• ••••</div>
-          <div class="card-details-display">
+          <div class="card-number-display" id="card-display-number">•••• •••• •••• ••••</div>
+          <div class="card-bottom-row">
             <div>
-              <div style="font-size:0.65rem; opacity:0.7;">TITULAR</div>
+              <small>TITULAR</small>
               <div id="card-display-name">TITULAR DE LA TARJETA</div>
             </div>
             <div>
-              <div style="font-size:0.65rem; opacity:0.7;">VENCE</div>
+              <small>VENCIMIENTO</small>
               <div id="card-display-exp">MM/AA</div>
             </div>
           </div>
         </div>
 
-        <div style="display:flex; flex-direction:column; gap:0.9rem; margin-bottom:1.5rem;">
-          <div>
-            <label for="nombre-tarjeta" style="font-size:0.78rem; text-transform:uppercase; font-weight:700; color:var(--text-muted); display:block; margin-bottom:0.3rem;">Nombre en la Tarjeta</label>
-            <input type="text" id="nombre-tarjeta" class="checkout-input" placeholder="Como figura en la tarjeta" required />
+        <div class="form-group">
+          <label for="numero-tarjeta">Número de tarjeta</label>
+          <input type="text" id="numero-tarjeta" placeholder="4509 1234 5678 9010" maxlength="19" required />
+        </div>
+
+        <div class="form-group">
+          <label for="nombre-tarjeta">Nombre y apellido como figura en la tarjeta</label>
+          <input type="text" id="nombre-tarjeta" placeholder="VALENTINA ROSSI" required />
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="fecha-exp">Vencimiento (MM/AA)</label>
+            <input type="text" id="fecha-exp" placeholder="08/28" maxlength="5" required />
           </div>
-          <div>
-            <label for="numero-tarjeta" style="font-size:0.78rem; text-transform:uppercase; font-weight:700; color:var(--text-muted); display:block; margin-bottom:0.3rem;">Número de Tarjeta</label>
-            <input type="text" id="numero-tarjeta" class="checkout-input" placeholder="1234 5678 9012 3456" maxlength="19" required />
-          </div>
-          <div class="payment-form-row">
-            <div>
-              <label for="fecha-exp" style="font-size:0.78rem; text-transform:uppercase; font-weight:700; color:var(--text-muted); display:block; margin-bottom:0.3rem;">Vencimiento</label>
-              <input type="text" id="fecha-exp" class="checkout-input" placeholder="MM/AA" maxlength="5" required />
-            </div>
-            <div>
-              <label for="cvv" style="font-size:0.78rem; text-transform:uppercase; font-weight:700; color:var(--text-muted); display:block; margin-bottom:0.3rem;">Código CVV</label>
-              <input type="password" id="cvv" class="checkout-input" placeholder="123" maxlength="4" required />
-            </div>
+          <div class="form-group">
+            <label for="cvv">Código de seguridad (CVV)</label>
+            <input type="password" id="cvv" placeholder="123" maxlength="4" required />
           </div>
         </div>
 
-        <button type="submit" id="btn-pagar-submit" class="cta-button" style="width:100%">
+        <div id="pago-spinner" class="payment-processing" style="display: none;">
+          <i class="fas fa-circle-notch fa-spin"></i>
+          <span>Procesando transacción y generando orden en el CRM...</span>
+        </div>
+
+        <button type="submit" id="btn-pagar-submit" class="btn-primary-blue btn-full">
           <i class="fas fa-lock"></i>
-          <span>Pagar Ahora de Forma Segura</span>
+          <span>Confirmar y abonar compra</span>
         </button>
-        <div id="pago-spinner" class="spinner" style="display:none; margin-top:1.2rem;"></div>
       </form>
 
-      <!-- Order Confirmation Celebration View -->
-      <div id="pago-success-view" class="order-success-view" style="display:none;">
-        <div class="success-icon-box">
+      <!-- Vista de Orden Confirmada -->
+      <div id="pago-success-view" class="order-success-box" style="display: none;">
+        <div class="success-icon-circle">
           <i class="fas fa-check"></i>
         </div>
-        <h3 style="font-family:var(--font-heading); font-size:1.6rem; color:var(--text-main); margin-bottom:0.4rem;">¡Pago Aprobado con Éxito!</h3>
-        <p style="color:var(--text-secondary); font-size:0.95rem;">Muchas gracias por tu compra. Tu pedido ya está siendo preparado.</p>
-        <div class="order-id-badge">
-          Pedido: <span id="order-id-display">MT-000000</span>
+        <h2>¡Tu compra fue registrada con éxito!</h2>
+        <p>Ya ingresamos tu pedido en nuestro sistema de despacho y facturación.</p>
+        
+        <div class="order-code-box">
+          <span>CÓDIGO DE SEGUIMIENTO</span>
+          <strong id="order-id-display">MT-000000</strong>
         </div>
-        <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:1.5rem;">
-          <a id="btn-notificar-wa" href="#" target="_blank" class="cta-button" style="background:#25d366; width:100%">
-            <i class="fab fa-whatsapp"></i> Notificar Pedido por WhatsApp
+
+        <div class="success-actions">
+          <a href="#" id="btn-notificar-wa" target="_blank" rel="noopener" class="btn-primary-blue btn-full">
+            <i class="fab fa-whatsapp"></i>
+            <span>Enviar comprobante por WhatsApp</span>
           </a>
-          <button type="button" class="cta-button cta-button-outline cerrar-modal" style="color:var(--text-main); border-color:var(--border-color); width:100%">
-            Seguir Comprando
-          </button>
+          <a href="dashboard/index.html" class="btn-outline-dark btn-full">
+            <i class="fas fa-table-columns"></i>
+            <span>Ver mi orden e imprimir factura en el CRM</span>
+          </a>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- ======================================================================
-       FOOTER
-       ====================================================================== -->
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-col">
-        <h3>Sobre MiTienda</h3>
-        <p>
-          Plataforma de e-commerce moderna desarrollada con los más altos estándares de rendimiento, accesibilidad y experiencia de compra intuitiva.
-        </p>
-        <div style="display:flex; align-items:center; gap:0.6rem; margin-top:1.2rem; font-size:1.6rem; color:#64748b;">
-          <i class="fab fa-cc-visa" title="Visa"></i>
-          <i class="fab fa-cc-mastercard" title="Mastercard"></i>
-          <i class="fab fa-cc-amex" title="American Express"></i>
-          <i class="fab fa-cc-paypal" title="PayPal"></i>
-        </div>
-      </div>
+  <!-- CONTENEDOR DE NOTIFICACIONES TOAST -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
-      <div class="footer-col">
-        <h3>Navegación Rápida</h3>
-        <ul>
-          <li><a href="#hero">Inicio</a></li>
-          <li><a href="#productos">Catálogo de Productos</a></li>
-          <li><a href="#contacto">Atención al Cliente</a></li>
-          <li><a href="dashboard/index.html"><i class="fas fa-chart-line" style="color:var(--color-primary); margin-right:5px;"></i> Panel Admin CRM</a></li>
-          <li><a href="https://portfolio-leodoerflinger.vercel.app/" target="_blank">Portfolio del Desarrollador</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h3>Contacto & Redes</h3>
-        <p style="margin-bottom:1rem; font-size:0.88rem;">Córdoba, Argentina • Atención online 24/7</p>
-        <div class="social-icons">
-          <a href="https://www.instagram.com/leo_doerflinger" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://wa.me/543512619874" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://github.com/LeoDoerflinger" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/leopoldo-doerflinger-737570186/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p>&copy; 2026 MiTienda. Diseñado y desarrollado por <strong>Leopoldo Doerflinger</strong>. Todos los derechos reservados.</p>
-    </div>
-  </footer>
-
-  <!-- Toast Container -->
-  <div id="toast-container" class="toast-container" role="alert" aria-live="polite"></div>
-
-  <!-- App Script -->
   <script src="app.js"></script>
 </body>
 </html>
